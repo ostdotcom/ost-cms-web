@@ -1,12 +1,4 @@
 /*
- *= require web/ost/Jumbotron
- *= require web/ost/Subscribe
- *= require web/ost/Powered
- *= require web/ost/LaunchBt
- *= require web/ost/HomeCarousel
- *= require web/ost/OstBuy
- *= require web/ost/OstTeam
- *= require web/ost/Technology
- *= require plugins/slick/slick
- *= require plugins/slick/slick-theme
+ *#= require web/ost/MetisMenu
+ *#= require web/ost/SbAdmin
  */
