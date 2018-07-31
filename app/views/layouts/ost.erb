@@ -10,6 +10,7 @@
   <meta name="robots" content="<%= @page_meta_data[:robots] %>">
   <% if @page_meta_data[:canonical].present? %>
     <link rel="canonical" href="<%= @page_meta_data[:canonical] %>" />
+
   <% end %>
 
   <%
@@ -61,6 +62,7 @@
 }
 </script>
 
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link rel="stylesheet" href="https://blackrockdigital.github.io/startbootstrap-sb-admin/vendor/fontawesome-free/css/all.min.css">
   <%= stylesheet_link_tag 'web/ost_default' %>
   <%= stylesheet_link_tag "#{specific_manifest_file_path}", media: 'all' if has_specific_css_manifest_file? %>
@@ -86,8 +88,22 @@
 <body contenteditable="false" id="page-top">
   <%= yield %>
 <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin/vendor/jquery/jquery.min.js"></script>
-<script src="https://blackrockdigital.github.io/startbootstrap-sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin/js/sb-admin.min.js" crossorigin="anonymous"></script>
+  <script>
+    $( function() {
+      $( "#sortable" ).sortable({
+        revert: true
+      });
+      $( "#draggable" ).draggable({
+        connectToSortable: "#sortable",
+        helper: "clone",
+        revert: "invalid"
+      });
+      $( "ul, li" ).disableSelection();
+    } );
+  </script>
 <%= javascript_include_tag "#{specific_manifest_file_path}" if has_specific_js_manifest_file? %>
 
 <%= yield(:end_js) %>
