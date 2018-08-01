@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
 
   scope '', controller: 'web/ost' do
-    get '/' => :index
+    get '/dashboard' => :index
+    get '/' => :sign_in
   end
 
   # Route not found handler. Should be the last entry here
