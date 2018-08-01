@@ -8,6 +8,8 @@ class Web::OstController < Web::BaseController
 
   def index
 
+    service_response = CmsApi::Request::User.new('https://securedhost.com', request.cookies, {"User-Agent" => http_user_agent}).profile_detail
+    puts service_response.to_json
   end
 
 end

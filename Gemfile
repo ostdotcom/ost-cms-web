@@ -20,7 +20,6 @@ gem 'oj', '3.3.8'
 gem 'sanitize', '4.5.0'
 # Exception notifier
 gem 'exception_notification', '4.2.1'
-gem 'nokogiri', '1.8.3'
 gem 'listen', '>= 3.0.5', '< 3.2'
 
 # For identifying browser & device type of devices sending requests

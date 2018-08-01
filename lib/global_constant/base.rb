@@ -29,6 +29,10 @@ module GlobalConstant
         @stw_campaign_details ||= fetch_config.fetch('pepo_campaign', {}).with_indifferent_access
       end
 
+      def cms_api
+        @cms_api ||= fetch_config.fetch('cms_api', {}).with_indifferent_access
+      end
+
       private
 
       def fetch_config
