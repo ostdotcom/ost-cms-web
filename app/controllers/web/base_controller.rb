@@ -38,4 +38,13 @@ class Web::BaseController < ApplicationController
 
   end
 
+  def omniauth
+
+    @service_response = CmsApi::Request::User.new('https://securedhost.com', request.cookies, {"User-Agent" => http_user_agent}).profile_detail
+    unless @service_response.success?
+      redirect_to :sign_in
+    end
+
+  end
+
 end
