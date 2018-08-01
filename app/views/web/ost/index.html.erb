@@ -7,16 +7,59 @@
 <div id="content-wrapper">
 
 <div class="container-fluid">
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Draft Mode</a>
+      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Published</a>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active mt-4" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
 
-<!-- Breadcrumbs-->
-<ol class="breadcrumb">
-  <li class="breadcrumb-item">
-    <a href="#">Dashboard</a>
-  </li>
-  <li class="breadcrumb-item active">Overview</li>
-</ol>
 
-<div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+      <ul id="sortable">
+        <li >
+          <div class="card ui-state-default">
+            <div class="card-body">
+              This is some text within a card body.
+            </div>
+          </div>
+        </li>
+        <li >
+          <div class="card ui-state-default">
+            <div class="card-body">
+              This is second card
+            </div>
+          </div>
+        </li>
+        <li >
+          <div class="card ui-state-default">
+            <div class="card-body">
+              This is third card
+            </div>
+          </div>
+        </li>
+        <li >
+          <div class="card ui-state-default">
+            <div class="card-body">
+              This is fourth card
+            </div>
+          </div>
+        </li>
+        <li >
+          <div class="card ui-state-default">
+            <div class="card-body">
+              This is fifth card
+            </div>
+          </div>
+        </li>
+      </ul>
+
+
+    </div>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">This is tab two</div>
+    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">This is tab three</div>
+  </div>
 
 </div>
 
