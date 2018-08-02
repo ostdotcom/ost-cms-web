@@ -38,13 +38,19 @@ class Web::BaseController < ApplicationController
 
   end
 
-  def omniauth
-
+  def get_user_response
     @service_response = CmsApi::Request::User.new('https://securedhost.com', request.cookies, {"User-Agent" => http_user_agent}).profile_detail
-    unless @service_response.success?
-      redirect_to :sign_in
-    end
+  end
 
+  def omniauth
+    unless @service_response.success?
+      # if @service_response.to_json[:err][:code] == 'not_whitelisted_user'
+      #   redirect_template = :not_whitelisted
+      # else
+      #   redirect_template = :sign_in
+      # end
+      redirect_to  :sign_in
+    end
   end
 
 end
