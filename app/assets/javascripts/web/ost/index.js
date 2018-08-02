@@ -12,90 +12,52 @@
 
     bindButtonActions: function () {
 
-      $("#subscribe-form-submit").on("click", function (event) {
+
+      var treeviewMenu = $('.app-menu');
+
+      // Toggle Sidebar
+      $("[data-toggle='sidebar']").click(function(event) {
+        //event.preventDefault();
+        console.log("you clicked sidebar")
+        $('.app').toggleClass('sidenav-toggled');
+      });
+
+      // Activate sidebar treeview toggle
+      $("[data-toggle='treeview']").click(function(event) {
         event.preventDefault();
-        oThis.onSubscribe();
-      });
-
-      $(".smooth-scroll").on('click', function (event) {
-        if (this.hash !== "") {
-          event.preventDefault();
-          var hash = this.hash;
-          $('html, body').animate({
-            scrollTop: $(hash).offset().top
-          }, 800);
+        if(!$(this).parent().hasClass('is-expanded')) {
+          treeviewMenu.find("[data-toggle='treeview']").parent().removeClass('is-expanded');
         }
+        $(this).parent().toggleClass('is-expanded');
       });
 
-    },
+      // Set initial active toggle
+      $("[data-toggle='treeview.'].is-expanded").parent().toggleClass('is-expanded');
 
-    onSubscribe: function () {
-      var jsonpurl = $("#subscribe-form-submit").data('jsonp');
-      var email = $("#subscribe-form-email").val();
+      //Activate bootstrip tooltips
+      $("[data-toggle='tooltip']").tooltip();
 
-      var errors = [];
 
-      if (email == '') {
-        errors.push('Email is Mandatory!');
-      }
 
-      if (errors.length > 0) {
-        oThis.showError(errors.join(' '));
-        return false;
-      }
-
-      oThis.resetError();
-      $("#subscribe-form-submit").prop('disabled', true);
-
-      $.ajax({
-
-        url: jsonpurl,
-        jsonp: "callback",
-        dataType: "jsonp",
-        data: {email: email},
-        method: 'GET',
-        success: function (responseJson) {
-          if ((responseJson.error != undefined) && (responseJson.error != '')) {
-
-            var error_msg = [];
-            $.each(responseJson.error_message, function (errors_key, errors_value) {
-              $.each(errors_value, function (index, value) {
-                error_msg.push(value);
-              });
-            });
-
-            oThis.showError(error_msg.join('. '));
-
-          } else {
-
-            oThis.resetError();
-            $('#subscribe-form').hide();
-            $('#subscribe-success').show();
-          }
-
-        },
-        error: function (response) {
-          oThis.showError('Something Went Wrong');
-        },
-        complete: function (response) {
-          $("#subscribe-form-submit").prop('disabled', false);
-        }
-
+      $( "#sortable" ).sortable({
+        revert: true
       });
-    },
+      $( "#draggable" ).draggable({
+        connectToSortable: "#sortable",
+        helper: "clone",
+        revert: "invalid"
+      });
+      $( "ul, li" ).disableSelection();
 
+      $('.dropdown').on('show.bs.dropdown', function(e){
+        $(this).find('.dropdown-menu').first().stop(true, true).slideDown(300);
+      });
 
+      $('.dropdown').on('hide.bs.dropdown', function(e){
+        $(this).find('.dropdown-menu').first().stop(true, true).slideUp(200);
+      });
 
-    showError: function (text) {
-      $('#subscribe-form .error').html(text);
-      $('#subscribe-form-email').addClass('red');
-    },
-
-    resetError: function () {
-      $('#subscribe-form .error').html('');
-      $('#subscribe-form-email').removeClass('red');
     }
-
   };
 
   $(document).ready(function () {

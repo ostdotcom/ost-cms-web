@@ -1,71 +1,21 @@
-<%= render :partial => "/web/ost/index/navbar" %>
-<%= render :partial => "/web/ost/index/footer" %>
-<%= render :partial => "/web/ost/index/sidebar" %>
-
-<div id="wrapper">
-
-<div id="content-wrapper">
-
-<div class="container-fluid">
-  <nav>
-    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Draft Mode</a>
-      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Published</a>
+<div class="app sidebar-mini rtl  pace-done">
+  <div class=" pace  pace-inactive">
+    <div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
+      <div class="pace-progress-inner"></div>
     </div>
-  </nav>
-  <div class="tab-content" id="nav-tabContent">
-    <div class="tab-pane fade show active mt-4" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-
-
-      <ul id="sortable">
-        <li >
-          <div class="card ui-state-default">
-            <div class="card-body">
-              This is some text within a card body.
-            </div>
-          </div>
-        </li>
-        <li >
-          <div class="card ui-state-default">
-            <div class="card-body">
-              This is second card
-            </div>
-          </div>
-        </li>
-        <li >
-          <div class="card ui-state-default">
-            <div class="card-body">
-              This is third card
-            </div>
-          </div>
-        </li>
-        <li >
-          <div class="card ui-state-default">
-            <div class="card-body">
-              This is fourth card
-            </div>
-          </div>
-        </li>
-        <li >
-          <div class="card ui-state-default">
-            <div class="card-body">
-              This is fifth card
-            </div>
-          </div>
-        </li>
-      </ul>
-
-
-    </div>
-    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">This is tab two</div>
-    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">This is tab three</div>
+    <div class="pace-activity"></div>
   </div>
 
-</div>
+<%= render :partial => "/web/ost/index/navbar" %>
+<%= render :partial => "/web/ost/index/sidebar" %>
+
+  <div class="app-content h-100">
+      <%= render :partial => "/web/ost/index/content" %>
+  </div>
+      <%= render :partial => "/web/ost/index/footer" %>
+
+
 
 </div>
-<!-- /.container-fluid -->
 
-</div>
-<!-- /.content-wrapper -->
-<!-- /#wrapper -->
+

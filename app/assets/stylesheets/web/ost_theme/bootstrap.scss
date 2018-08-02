@@ -6,3 +6,21 @@
 
 // As of now, only variables are overrided
 @import "../../plugins/bootstrap/scss/bootstrap";
+
+//Styling for  nav
+@import "components/nav";
+@import "components/app";
+
+
+@import "components/buttons";
+
+
+@import "components/header";
+
+@import "components/nav";
+
+@import "components/sidebar";
+@import "components/sidebar-mini";
+
+@import "components/toggle-button";
+@import "components/list";

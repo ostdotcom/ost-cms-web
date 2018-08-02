@@ -16,7 +16,12 @@ Gemfile.lock
 !/log/.keep
 !/tmp/.keep
 
+# Mac specific files
+*.DS_Store
+
 .byebug_history
 
 db/schema.rb
 doc/
+
+Gemfile.lock

@@ -1,3 +1,6 @@
+// Import functions as variables depend on functions
+@import "../../plugins/bootstrap/scss/functions";
+
 // Variables
 //
 // Variables should follow the `$component-state-property-size` formula for
@@ -9,7 +12,7 @@
 //
 
 // stylelint-disable
-$white:    #fff !default;
+$white:    #ffffff !default;
 $gray-100: #f8f9fa !default;
 $gray-200: #e9ecef !default;
 $gray-300: #dee2e6 !default;
@@ -19,7 +22,21 @@ $gray-600: #6c757d !default;
 $gray-700: #495057 !default;
 $gray-800: #343a40 !default;
 $gray-900: #212529 !default;
-$black:    #000 !default;
+$black:    #000000 !default;
+$mint-cream: #F1F8F5 !default;
+$azure: #F8FAFA !default;
+$shakespeare: #6C9BA9 !default;
+$powder-blue: #BEDCDF !default;
+$neptune: #6CA3A9 !default;
+$skeptic: #91C0AD !default;
+$side-bar-nav-width : 250px!default;
+$casal: #3C5056!default;
+$spray: #7DD5E4!default;
+$onahau: #C7EAED!default;
+$bismark: #4C6375!default;
+$powder-blue: #AFE1E3!default;
+$crimson: #E7003B!default;
+
 
 $grays: () !default;
 $grays: map-merge((
@@ -38,12 +55,57 @@ $blue:    #007bff !default;
 $indigo:  #6610f2 !default;
 $purple:  #6f42c1 !default;
 $pink:    #e83e8c !default;
-$red:     #dc3545 !default;
-$orange:  #fd7e14 !default;
-$yellow:  #ffc107 !default;
+$red:     #eb4d4a !default; // customized
+$orange:  #F18543 !default; // customized
+$yellow:  #F6C62B !default; // customized
 $green:   #28a745 !default;
-$teal:    #20c997 !default;
-$cyan:    #17a2b8 !default;
+$teal:    #84D1D4 !default; // customized
+$cyan:    #438BAD !default; // customized
+$sherpa:  #61818a !default; // customized
+$rice-cake: #EEEDDC !default; // customized
+$cyanish-gray: #9BAFB5 !default; // customized
+$mystic: #DADFDC !default; // customized
+$banana: #FBD764 !default; // customized
+$aqua: #84D1D4 !default; // customized
+$shakespeare: #69A2BD !default; // customized
+$telegram-color : #85b4ca !default; //customized
+$steel-teal: #5f818b !default; //customized
+
+// Theme background colors
+$yellow-bg: #F9F8E6 !default;
+$grey-bg:   #F6F8FA !default;
+$blue-bg:   #F9FDFD !default;
+$teal-bg:   #f9fafa !default;
+$alice-blue: #f1f5f8!default; // customized
+
+// Theme blue shades
+$blue-100:  #D9E8EF !default;
+$blue-200:  #D2E3E5 !default;
+$blue-300:  #bfe6e8 !default;
+$blue-400:  #84d1d4 !default;
+$blue-500:  #8EB9CE !default;
+$blue-600:  #819AA1 !default;
+$blue-700:  #6da4a9  !default;
+$blue-800:  #597A84 !default; // font-primary
+$blue-900:  #34445b !default;
+$blue-1000:  #595b5e !default;
+$blue-1100: #aee1e3 !default;
+
+$green-400: #438cad !default;
+$green-500: #5a768c !default;
+
+// Theme yellow shades
+$yellow-300:  #E4B030 !default;
+$yellow-400:  #D9A025 !default;
+$yellow-500 : #c0993a !default;
+$yellow-600:  #af7f19 !default;
+
+
+//Theme orange shades
+$orange-100: #f8c2a1 !default;
+
+// Theme cyan shades
+$cyan-100:  #c1e8e9 !default;
 
 $colors: () !default;
 $colors: map-merge((
@@ -62,8 +124,8 @@ $colors: map-merge((
         "gray-dark":  $gray-800
 ), $colors);
 
-$primary:       $blue !default;
-$secondary:     $gray-600 !default;
+$primary:       #009688 !default;
+$secondary:     $white !default;
 $success:       $green !default;
 $info:          $cyan !default;
 $warning:       $yellow !default;
@@ -141,16 +203,16 @@ $sizes: map-merge((
 // Settings for the `<body>` element.
 
 $body-bg:                   $white !default;
-$body-color:                $gray-900 !default;
+$body-color:                $blue-800 !default;
 
 // Links
 //
 // Style anchor elements.
 
-$link-color:                theme-color("primary") !default;
+$link-color:                $blue-800 !default;
 $link-decoration:           none !default;
-$link-hover-color:          darken($link-color, 15%) !default;
-$link-hover-decoration:     underline !default;
+$link-hover-color:          $yellow-500 !default;
+$link-hover-decoration:     none !default;
 
 // Paragraphs
 //
@@ -226,7 +288,7 @@ $transition-collapse:         height .35s ease !default;
 // Font, line-height, and color for body text, headings, and more.
 
 // stylelint-disable value-keyword-case
-$font-family-sans-serif:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !default;
+$font-family-sans-serif:      'Quasimoda', Source Sans Pro, sans-serif !default;
 $font-family-monospace:       SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !default;
 $font-family-base:            $font-family-sans-serif !default;
 // stylelint-enable value-keyword-case
@@ -239,13 +301,18 @@ $font-weight-light:           300 !default;
 $font-weight-normal:          400 !default;
 $font-weight-bold:            700 !default;
 
-$font-weight-base:            $font-weight-normal !default;
+$font-weight-100:             100 !default;  //customized
+$font-weight-200:             200 !default;  //customized
+$font-weight-500:             500 !default;  //customized
+$font-weight-600:             600 !default;  //customized
+
+$font-weight-base:            $font-weight-light !default;
 $line-height-base:            1.5 !default;
 
-$h1-font-size:                $font-size-base * 2.5 !default;
-$h2-font-size:                $font-size-base * 2 !default;
-$h3-font-size:                $font-size-base * 1.75 !default;
-$h4-font-size:                $font-size-base * 1.5 !default;
+$h1-font-size:                $font-size-base * 2.75 !default;
+$h2-font-size:                $font-size-base * 2.5 !default;
+$h3-font-size:                $font-size-base * 2.25 !default;
+$h4-font-size:                $font-size-base * 1.75 !default;
 $h5-font-size:                $font-size-base * 1.25 !default;
 $h6-font-size:                $font-size-base !default;
 
@@ -253,7 +320,7 @@ $headings-margin-bottom:      ($spacer / 2) !default;
 $headings-font-family:        inherit !default;
 $headings-font-weight:        500 !default;
 $headings-line-height:        1.2 !default;
-$headings-color:              inherit !default;
+$headings-color:              $cyan !default;
 
 $display1-size:               6rem !default;
 $display2-size:               5.5rem !default;
@@ -265,6 +332,7 @@ $display2-weight:             300 !default;
 $display3-weight:             300 !default;
 $display4-weight:             300 !default;
 $display-line-height:         $headings-line-height !default;
+
 
 $lead-font-size:              ($font-size-base * 1.25) !default;
 $lead-font-weight:            300 !default;
@@ -359,7 +427,8 @@ $btn-line-height-lg:          $input-btn-line-height-lg !default;
 
 $btn-border-width:            $input-btn-border-width !default;
 
-$btn-font-weight:             $font-weight-normal !default;
+$btn-font-weight:             $font-weight-500 !default;
+$btn-font-base-size:          0.9rem !default;
 $btn-box-shadow:              inset 0 1px 0 rgba($white, .15), 0 1px 1px rgba($black, .075) !default;
 $btn-focus-width:             $input-btn-focus-width !default;
 $btn-focus-box-shadow:        $input-btn-focus-box-shadow !default;
@@ -892,3 +961,15 @@ $pre-scrollable-max-height:         340px !default;
 // Printing
 $print-page-size:                   a3 !default;
 $print-body-min-width:              map-get($grid-breakpoints, "lg") !default;
+
+
+
+
+//**Vali theme**//
+$sidebar-width: 230px;
+$sidebar-color: #222d32;
+$sidebar-accent: dark;
+$sidebar-dark-color: $white;
+$sidebar-dark-link-color: $white;
+$sidebar-light-color: #000;
+$sidebar-light-link-color: #333;
