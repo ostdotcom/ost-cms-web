@@ -96,10 +96,10 @@ module CmsApi
       def send
         uri = URI(@api_url)
         http = Net::HTTP.new(uri.host, uri.port)
-        unless Rails.env.development?
-          http.use_ssl = true
-          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        end
+       # unless Rails.env.development?
+        http.use_ssl = true
+        http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        #end
         http.read_timeout = GlobalConstant::Base.cms_api['read_timeout']
         http.open_timeout = GlobalConstant::Base.cms_api['open_timeout']
         req_obj = get_request_obj(uri.request_uri)
@@ -200,12 +200,11 @@ module CmsApi
       #
       def parse_api_response(http_response)
         response_data = Oj.load(http_response.body, mode: :strict) rescue {}
-
         case http_response.class.name
           when 'Net::HTTPOK'
             if response_data['success']
               # Success
-              success_result(response_data['data'])
+              success_with_data(response_data['data'])
             else
               # API Error
               Rails.logger.info("=*=Simple-Token-API-ERROR=*= #{response_data.inspect}")
