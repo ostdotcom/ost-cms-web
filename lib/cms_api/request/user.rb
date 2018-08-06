@@ -59,7 +59,7 @@ module CmsApi
       # @return [Result::Base] returns an object of Result::Base class
       #
       def profile_detail()
-        get("profile")
+        get("")
       end
 
       def test_detail()

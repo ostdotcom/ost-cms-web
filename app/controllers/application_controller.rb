@@ -93,4 +93,18 @@ class ApplicationController < ActionController::Base
 
   end
 
+  def get_user_response
+    @service_response = CmsApi::Request::User.new('https://securedhost.com', request.cookies, {"User-Agent" => http_user_agent}).profile_detail
+  end
+
+  def get_config
+    ui_yaml = YAML.load_file('config/ui_config.yml')
+    @config_response = CmsApi::Request::Config.new('https://securedhost.com', request.cookies, {"User-Agent" => http_user_agent}).get_config
+    @config_response.to_json[:data]["meta"].each do |key, value|
+      ui_yaml["meta"][value["section"].to_sym][value["data_key_name"].to_sym]["validations"] = value["validations"]
+    end
+    @config_response = ui_yaml
+
+  end
+
 end

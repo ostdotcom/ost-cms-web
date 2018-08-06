@@ -38,9 +38,7 @@ class Web::BaseController < ApplicationController
 
   end
 
-  def get_user_response
-    @service_response = CmsApi::Request::User.new('https://securedhost.com', request.cookies, {"User-Agent" => http_user_agent}).profile_detail
-  end
+
 
   def omniauth
     unless @service_response.success?
