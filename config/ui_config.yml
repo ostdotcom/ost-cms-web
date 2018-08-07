@@ -22,6 +22,6 @@ meta:
                 :data_key_name: news_list_article_link
         :news_list_date:
             :meta_ui:
-                :input_kind: generic-text
+                :input_kind: generic-date-picker
                 :input_label: Date
                 :data_key_name: news_list_date
