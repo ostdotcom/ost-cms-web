@@ -2,12 +2,12 @@ meta:
     :news_list:
         :news_list_header:
             :meta_ui:
-                :input_kind: text
+                :input_kind: generic-text-template
                 :input_label: Header
                 :data_key_name: news_list_header
         :news_list_title:
             :meta_ui:
-                :input_kind: text
+                :input_kind: generic-text-template
                 :input_label: Title
                 :data_key_name: news_list_title
         :news_list_description:

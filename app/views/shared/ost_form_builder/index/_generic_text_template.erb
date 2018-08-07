@@ -1,0 +1,13 @@
+<script  type="text/x-handlebars-template" id="generic-text-template" data-partial-id="generic-text-template">
+  <div class="generic-text-template">
+    <div class="text-right small">
+      <span class="char_count">{{field_value}}.length</span>/{{maxLength}}
+    </div>
+    <div class="form-group row">
+      <label for="{{field_key_name}}Input" class="col-3 col-form-label">{{input_label}}</label>
+      <div class="col-9">
+        <input class="form-control" type="text" maxLength="{{maxLength}}" value="{{field_value}}" id="{{field_key_name}}Input" />
+      </div>
+    </div>
+  </div>
+</script>

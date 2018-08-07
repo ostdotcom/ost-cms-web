@@ -1,26 +1,21 @@
-/usr/local/mysql/bin/mysqladmin -u root password root
+<%= render :partial => "/web/ost/index/navbar" %>
+<%#= render :partial => "/web/ost/index/footer" %>
 
 
+<script type="text/javascript">
+  var meta_data = <%= raw @config_response.to_json %>;
+    console.log(meta_data);
+</script>
 
 
-<div class="app sidebar-mini rtl  pace-done">
-  <div class=" pace  pace-inactive">
-    <div class="pace-progress" data-progress-text="100%" data-progress="99" style="transform: translate3d(100%, 0px, 0px);">
-      <div class="pace-progress-inner"></div>
-    </div>
-    <div class="pace-activity"></div>
-  </div>
+<script type="text/javascript">
+  //Move this to JS file.
+    $( function () {
+      // Do Stuff Here.
+      var ostFomrBuilder = new OstFomrBuilder();
+      var index = ost.index.init();
+    });
+</script>
 
-  <%= render :partial => "/web/ost/index/navbar" %>
-  <%= render :partial => "/web/ost/index/sidebar" %>
-
-  <div class="app-content h-100">
-    <%= render :partial => "/web/ost/index/content" %>
-  </div>
-  <%= render :partial => "/web/ost/index/footer" %>
-
-
-
-</div>
-
-
+<!-- /.content-wrapper -->
+<!-- /#wrapper -->

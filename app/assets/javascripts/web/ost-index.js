@@ -1,5 +1,2 @@
-//= require web/common/SimpleTokenNamespace
-//= require plugins/slick/slick
-//= require web/ost/home_carousel
+//= require ost_form_builder/ost_form_builder
 //= require web/ost/index
-//= require web/common/TopNavBar

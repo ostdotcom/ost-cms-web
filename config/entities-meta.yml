@@ -1,0 +1,344 @@
+meta:
+  :home_page:
+    :news_ol:
+     :header:
+      :meta_data:
+        :data_kind: "text"
+        :validations:
+          :required: false
+          :minLength:
+          :maxLength: 20
+      :meta_ui:
+        :input_kind: "text"
+        :input_label: "Header"
+        :data_key_name: "header"
+     :title:
+      :meta_data:
+        :data_kind: "text"
+        :validations:
+          :required: true
+          :minLength:
+          :maxLength: 500
+      :meta_ui:
+        :input_kind: "text"
+        :input_label: "Title"
+        :data_key_name: "title"
+     :description:
+      :meta_data:
+           :data_kind: "text"
+           :validations:
+             :required: false
+             :minLength:
+             :maxLength: 100
+      :meta_ui:
+           :input_kind: "textarea"
+           :input_label: "Description"
+           :data_key_name: "desc"
+     :image:
+      :meta_data:
+            :data_kind: "url"
+            :validations:
+              :required: true
+              :minLength:
+              :maxLength:
+      :meta_ui:
+            :input_kind: "url"
+            :input_label: "Image"
+            :data_key_name:
+     :article_link:
+       :meta_data:
+             :data_kind: "url"
+             :validations:
+               :required: true
+               :minLength:
+               :maxLength:
+       :meta_ui:
+             :input_kind: "url"
+             :input_label: "Article Link"
+             :data_key_name: "link"
+     :date:
+      :meta_data:
+            :data_kind: "date"
+            :validations:
+              :required: true
+              :minLength:
+              :maxLength:
+      :meta_ui:
+            :input_kind: "date"
+            :input_label: "Date"
+            :data_key_name: "date"
+  :team_page:
+    :core_team_members_ol:
+     :name:
+      :meta_data:
+            :data_kind: "text"
+            :validations:
+              :required: true
+              :minLength:
+              :maxLength:
+      :meta_ui:
+            :input_kind: "text"
+            :input_label: "Name"
+            :data_key_name:
+     :title:
+      :meta_data:
+            :data_kind: "text"
+            :validations:
+              :required: true
+              :minLength:
+              :maxLength:
+      :meta_ui:
+            :input_kind: "text"
+            :input_label: "Title"
+            :data_key_name:
+     :image:
+      :meta_data:
+            :data_kind: "url"
+            :validations:
+              :required: true
+              :minLength:
+              :maxLength:
+      :meta_ui:
+            :input_kind: "url"
+            :input_label: "Image"
+            :data_key_name:
+     :linkedIn:
+      :meta_data:
+            :data_kind: "url"
+            :validations:
+              :required: true
+              :minLength:
+              :maxLength:
+      :meta_ui:
+            :input_kind: "url"
+            :input_label: "LinkedIn"
+            :data_key_name:
+     :twitter:
+      :meta_data:
+            :data_kind: "url"
+            :validations:
+              :required: true
+              :minLength:
+              :maxLength:
+      :meta_ui:
+            :input_kind: "url"
+            :input_label: "Twitter"
+            :data_key_name:
+     :medium:
+      :meta_data:
+            :data_kind: "url"
+            :validations:
+              :required: true
+              :minLength:
+              :maxLength:
+      :meta_ui:
+            :input_kind: "url"
+            :input_label: "medium"
+            :data_key_name:
+     :description:
+      :meta_data:
+            :data_kind: "text"
+            :validations:
+              :required: true
+              :minLength:
+              :maxLength:
+      :meta_ui:
+            :input_kind: "text-area"
+            :input_label: "Description"
+            :data_key_name:
+    :extended_team_ol:
+    :early_backers_ol:
+    :security_auditors_ol:
+  :partners_page:
+    :partner_companies_ol:
+     :name:
+      :meta_data:
+            :data_kind: "text"
+            :validations:
+              :required: true
+              :minLength:
+              :maxLength:
+      :meta_ui:
+            :input_kind: "text"
+            :input_label: "Name"
+            :data_key_name:
+     :categories:
+      :meta_data:
+            :data_kind: "text"
+            :validations:
+              :required: true
+              :minLength:
+              :maxLength:
+      :meta_ui:
+            :input_kind: "select"
+            :input_label: "Categories"
+            :data_key_name:
+     :size: #eg: "large"
+      :meta_data:
+            :data_kind: "text"
+            :validations:
+              :required: true
+              :minLength:
+              :maxLength:
+      :meta_ui:
+            :input_kind: "text"
+            :input_label: "Size"
+            :data_key_name:
+     :on_hover_bgcolor: #eg: "#000000"
+      :meta_data:
+            :data_kind: "color"
+            :validations:
+              :required: true
+              :minLength:
+              :maxLength:
+      :meta_ui:
+            :input_kind: "color"
+            :input_label: "On Hover Background color"
+            :data_key_name:
+     :on_hover_imgcolor: #eg: "#classname"
+      :meta_data:
+            :data_kind: "text"
+            :validations:
+              :required: true
+              :minLength:
+              :maxLength:
+      :meta_ui:
+            :input_kind: "text"
+            :input_label: "On Hover Image Color"
+            :data_key_name:
+     :sprite_index:
+      :meta_data:
+            :data_kind: "number"
+            :validations:
+              :required: true
+              :minLength:
+              :maxLength:
+      :meta_ui:
+            :input_kind: "number"
+            :input_label: "Sprite Index"
+            :data_key_name:
+     :has_exited:
+      :meta_data:
+            :data_kind: "boolean"
+            :validations:
+              :required: true
+              :minLength:
+              :maxLength:
+      :meta_ui:
+            :input_kind: "radio"
+            :input_label: "Has Exited"
+            :data_key_name:
+     :description_html:
+      :meta_data:
+            :data_kind: "text"
+            :validations:
+              :required: true
+              :minLength:
+              :maxLength:
+      :meta_ui:
+            :input_kind: "text-area"
+            :input_label: "Description Html"
+            :data_key_name:
+     :location:
+      :meta_data:
+            :data_kind: "text"
+            :validations:
+              :required: true
+              :minLength:
+              :maxLength:
+      :meta_ui:
+            :input_kind: "text"
+            :input_label: "Location"
+            :data_key_name:
+     :website:
+       :meta_data:
+             :data_kind: "url"
+             :validations:
+               :required: true
+               :minLength:
+               :maxLength:
+       :meta_ui:
+             :input_kind: "url"
+             :input_label: "Website"
+             :data_key_name:
+     :founders:
+      name:
+        :meta_data:
+              :data_kind: "text"
+              :validations:
+                :required: true
+                :minLength:
+                :maxLength:
+        :meta_ui:
+              :input_kind: "text"
+              :input_label: "Name"
+              :data_key_name:
+     :social:
+      name:
+        :meta_data:
+              :data_kind: "url"
+              :validations:
+                :required: true
+                :minLength:
+                :maxLength:
+        :meta_ui:
+              :input_kind: "url"
+              :input_label: "Social"
+              :data_key_name:
+      :link:
+        :meta_data:
+              :data_kind: "url"
+              :validations:
+                :required: true
+                :minLength:
+                :maxLength:
+        :meta_ui:
+              :input_kind: "url"
+              :input_label: "Link"
+              :data_key_name:
+  :careers_page:
+    :jobs_ol:
+     :location:
+      :meta_data:
+            :data_kind: "text"
+            :validations:
+              :required: true
+              :minLength:
+              :maxLength:
+      :meta_ui:
+            :input_kind: "text"
+            :input_label: "Location"
+            :data_key_name:
+     :profile:
+      :meta_data:
+            :data_kind: "url"
+            :validations:
+              :required: true
+              :minLength:
+              :maxLength:
+      :meta_ui:
+            :input_kind: "url"
+            :input_label: "Profile"
+            :data_key_name:
+     :profile_link:
+      :meta_data:
+            :data_kind: "url"
+            :validations:
+              :required: true
+              :minLength:
+              :maxLength:
+      :meta_ui:
+            :input_kind: "url"
+            :input_label: "Profile Link"
+            :data_key_name:
+     :description:
+      :meta_data:
+            :data_kind: "text"
+            :validations:
+              :required: true
+              :minLength:
+              :maxLength:
+      :meta_ui:
+            :input_kind: "text-area"
+            :input_label: "Description"
+            :data_key_name:

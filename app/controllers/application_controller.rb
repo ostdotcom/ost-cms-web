@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 
   before_action :set_request_from_bot_flag
 
+  before_action :set_entities_meta_info
+
   # Sanitize params
   include Sanitizer
   before_action :sanitize_params
@@ -63,6 +65,17 @@ class ApplicationController < ActionController::Base
     @page_assets_data = page_extended_data[:assets]
   end
 
+  # Set entities meta info
+  #
+  def set_entities_meta_info
+    @entities_meta_data = GetEntitiesMeta.new.get_meta_config
+    page = 'home_page'
+    list = 'news_ol'
+    @entity_meta = @entities_meta_data[page][list]
+    puts @entity_meta.to_json
+
+  end
+
   # Render error response for
   #
   # * Author: Kedar
@@ -102,8 +115,10 @@ class ApplicationController < ActionController::Base
     @config_response = CmsApi::Request::Config.new('https://securedhost.com', request.cookies, {"User-Agent" => http_user_agent}).get_config
     @config_response.to_json[:data]["meta"].each do |key, value|
       ui_yaml["meta"][value["section"].to_sym][value["data_key_name"].to_sym]["validations"] = value["validations"]
+      puts "testing-------#{ui_yaml["meta"][value["section"].to_sym]}"
     end
     @config_response = ui_yaml
+    puts "@config_response---- #{@config_response.to_json}"
 
   end
 
