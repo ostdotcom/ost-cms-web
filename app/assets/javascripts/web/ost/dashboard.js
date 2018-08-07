@@ -11,6 +11,7 @@
     init: function (config) {
       oThis.bindButtonActions();
       oThis.ostFormBuilder = new cms.OstFormBuilder();
+      oThis.getAll();
     },
 
     bindButtonActions: function () {
@@ -59,15 +60,56 @@
         $(this).find('.dropdown-menu').first().stop(true, true).slideUp(200);
       });
 
-        $('#createModal').on('show.bs.modal', function (e) {
-            oThis.ostFormBuilder.renderTemplate(
-                '#news_list',
-                {news_list: meta_data.meta.news_list},
-                '#createModal .modal-body'
-            );
-        })
+      $('#createModal').on('show.bs.modal', function (e) {
+        oThis.buildForm();
+      });
 
+      $('#createModal .btn-primary').on('click', function(e) {
+         oThis.create();
+      });
+
+    },
+
+    buildForm: function(){
+        oThis.ostFormBuilder.renderTemplate(
+            '#news_list',
+            {
+                news_list: meta_data.meta.news_list,
+                action: '/api/create',
+                method: 'POST'
+            },
+            '#createModal .modal-body'
+        );
+    },
+
+    getAll: function(){
+        $.ajax({
+            url: '/api/active',
+            method: 'GET',
+            data: {
+                entity_id: 1
+            },
+            success: function(response){
+                console.log(response);
+            }
+        })
+    },
+
+    create: function(){
+        jForm = $('#news_form');
+        $.ajax({
+            url: jForm.attr('action'),
+            method: jForm.attr('method'),
+            data: jForm.serialize(),
+            success: function(response){
+                console.log(response);
+                $('#createModal').modal('hide');
+            }
+        })
     }
+
+
+
   };
 
   $(document).ready(function () {

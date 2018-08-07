@@ -1,7 +1,8 @@
 <script  type="text/x-handlebars-template" id="news_list">
-  <form>
+  <form action={{action}} method={{method}} id="news_form">
     {{#each news_list}}
       {{> (lookup this.meta_ui 'input_kind') input_label=this.meta_ui.input_label data_key_name=this.meta_ui.data_key_name}}
     {{/each}}
+    <input type="hidden" name="entity_id" value="1" />
   </form>
 </script>
