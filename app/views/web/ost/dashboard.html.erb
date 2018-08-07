@@ -216,18 +216,28 @@
 
 <% content_for :end_js do %>
 
-  <%= render :partial => "/shared/ost_form_builder/all_templates" %>
-
+  <%= render :partial => "/shared/ost_form_builder/all_partials_templates" %>
   <script type="text/javascript">
     var meta_data = <%= raw @config_response.to_json %>;
-    console.log(meta_data);
-  </script>
-  <script type="text/javascript">
-    //Move this to JS file.
     $( function () {
       // Do Stuff Here.
       var ostFormBuilder = new cms.OstFormBuilder();
-      var index = ost.index.init();
+
+        $('#editModal').on('show.bs.modal', function (e) {
+            ostFormBuilder.renderTemplate(
+                '#news_list',
+                {news_list: meta_data.meta.news_list},
+                '#editModal .modal-body'
+            );
+        })
+
+        $('#createModal').on('show.bs.modal', function (e) {
+            ostFormBuilder.renderTemplate(
+                '#news_list',
+                {news_list: meta_data.meta.news_list},
+                '#createModal .modal-body'
+            );
+        })
     });
   </script>
 <% end %>

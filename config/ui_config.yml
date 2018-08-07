@@ -2,31 +2,31 @@ meta:
     :news_list:
         :news_list_header:
             :meta_ui:
-                :input_kind: generic-text-template
+                :input_kind: generic-text
                 :input_label: Header
                 :data_key_name: news_list_header
         :news_list_title:
             :meta_ui:
-                :input_kind: generic-text-template
+                :input_kind: generic-text
                 :input_label: Title
                 :data_key_name: news_list_title
         :news_list_description:
             :meta_ui:
-                :input_kind: textarea
+                :input_kind: generic-text
                 :input_label: Description
                 :data_key_name: news_list_description
         :news_list_image:
             :meta_ui:
-                :input_kind: url
+                :input_kind: generic-text
                 :input_label: Image
                 :data_key_name: news_list_image
         :news_list_article_link:
             :meta_ui:
-                :input_kind: url
+                :input_kind: generic-text
                 :input_label: Article Link
                 :data_key_name: news_list_article_link
         :news_list_date:
             :meta_ui:
-                :input_kind: date
+                :input_kind: generic-text
                 :input_label: Date
                 :data_key_name: news_list_date
