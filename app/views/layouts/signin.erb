@@ -14,8 +14,8 @@
   <% end %>
 
   <%
-     og_meta = @page_meta_data[:og]
-     if og_meta.present?
+    og_meta = @page_meta_data[:og]
+    if og_meta.present?
   %>
     <% if og_meta[:title].present? %>
       <meta property="og:title" content="<%= og_meta[:title] %>"/>
@@ -28,8 +28,8 @@
   <% end %>
 
   <%
-     tw_meta = @page_meta_data[:twitter]
-     if tw_meta.present?
+    tw_meta = @page_meta_data[:twitter]
+    if tw_meta.present?
   %>
     <meta name="twitter:card" content="<%= tw_meta[:card] %>" />
     <% if tw_meta[:site].present? %>
@@ -74,17 +74,13 @@
 
 <body contenteditable="false" id="page-top">
 
-  <%= render :partial => "/web/ost/index/navbar" %>
-  <%= render :partial => "/web/ost/index/sidebar" %>
-  <div class="app-content h-100">
-    <%= yield %>
-  </div>
+  <%= yield %>
 
-  <script src="https://blackrockdigital.github.io/startbootstrap-sb-admin/vendor/jquery/jquery.min.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://blackrockdigital.github.io/startbootstrap-sb-admin/vendor/jquery/jquery.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-  <%= javascript_include_tag "web/common" %>
-  <%= javascript_include_tag "#{specific_manifest_file_path}" if has_specific_js_manifest_file? %>
+<%= javascript_include_tag "web/common" %>
+<%= javascript_include_tag "#{specific_manifest_file_path}" if has_specific_js_manifest_file? %>
 
 <%= yield(:end_js) %>
 

@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
 
   scope '', controller: 'web/ost' do
-    get '/dashboard' => :index
-    get '/' => :sign_in, as: 'sign_in'
+    get '/dashboard' => :dashboard
     get '/not_whitelisted' => :not_whitelisted, as: 'not_whitelisted'
+  end
+
+  scope '', controller: 'web/signin' do
+    get '/' => :sign_in, as: 'sign_in'
   end
 
   # Route not found handler. Should be the last entry here
