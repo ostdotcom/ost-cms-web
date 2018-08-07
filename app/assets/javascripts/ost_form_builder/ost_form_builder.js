@@ -4,14 +4,14 @@
 
   var parentNs = ns("cms");
 
-  var OstFomrBuilder = function ( config ) {
+  var OstFormBuilder = function ( config ) {
     var oThis = this;
     $.extend( oThis, config);
 
     oThis.init();
   };
 
-  OstFomrBuilder.prototype = {
+  OstFormBuilder.prototype = {
     init: function () {
       // Register all partials.
       $("[data-partial-id]").each( function ( index, el ) {
@@ -37,6 +37,8 @@
   };
 
 
-  parentNs.OstFomrBuilder = OstFomrBuilder;
+  parentNs.OstFormBuilder = OstFormBuilder;
+
+
 
 })();

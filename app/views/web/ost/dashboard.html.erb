@@ -162,7 +162,6 @@
                 </button>
               </div>
               <div class="modal-body">
-                <%#= render :partial => "/shared/ost_form_builder/all_templates" %>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Discard</button>
@@ -182,7 +181,6 @@
                 </button>
               </div>
               <div class="modal-body">
-                <%#= render :partial => "/shared/ost_form_builder/all_templates" %>
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Discard</button>
@@ -217,6 +215,9 @@
 <!-- /.container-fluid -->
 
 <% content_for :end_js do %>
+
+  <%= render :partial => "/shared/ost_form_builder/all_templates" %>
+
   <script type="text/javascript">
     var meta_data = <%= raw @config_response.to_json %>;
     console.log(meta_data);
@@ -225,7 +226,7 @@
     //Move this to JS file.
     $( function () {
       // Do Stuff Here.
-      var ostFomrBuilder = new OstFomrBuilder();
+      var ostFormBuilder = new cms.OstFormBuilder();
       var index = ost.index.init();
     });
   </script>
