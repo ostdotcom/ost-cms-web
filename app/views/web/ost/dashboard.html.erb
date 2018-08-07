@@ -153,7 +153,7 @@
         </ul>
 
         <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="false">
-          <div class="modal-dialog" role="document">
+          <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="editModalLabel">Edit Form</h5>
@@ -172,7 +172,7 @@
         </div>
 
         <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel" aria-hidden="false">
-          <div class="modal-dialog" role="document">
+          <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="createModalLabel">Create Form</h5>
@@ -221,23 +221,15 @@
     var meta_data = <%= raw @config_response.to_json %>;
     $( function () {
       // Do Stuff Here.
-      var ostFormBuilder = new cms.OstFormBuilder();
-
-        $('#editModal').on('show.bs.modal', function (e) {
-            ostFormBuilder.renderTemplate(
-                '#news_list',
-                {news_list: meta_data.meta.news_list},
-                '#editModal .modal-body'
-            );
-        })
-
-        $('#createModal').on('show.bs.modal', function (e) {
-            ostFormBuilder.renderTemplate(
-                '#news_list',
-                {news_list: meta_data.meta.news_list},
-                '#createModal .modal-body'
-            );
-        })
+      // var ostFormBuilder = new cms.OstFormBuilder();
+      //
+      //   $('#createModal').on('show.bs.modal', function (e) {
+      //       ostFormBuilder.renderTemplate(
+      //           '#news_list',
+      //           {news_list: meta_data.meta.news_list},
+      //           '#createModal .modal-body'
+      //       );
+      //   })
     });
   </script>
 <% end %>
