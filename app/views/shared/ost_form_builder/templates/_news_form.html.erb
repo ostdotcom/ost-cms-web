@@ -1,8 +1,20 @@
 <script  type="text/x-handlebars-template" id="news_list">
   <form action={{action}} method={{method}} id="news_form">
-    {{#each news_list}}
-      {{> (lookup this.meta_ui 'input_kind') input_label=this.meta_ui.input_label data_key_name=this.meta_ui.data_key_name}}
-    {{/each}}
-    <input type="hidden" name="entity_id" value="1" />
+    <div class="modal-header">
+      <h5 class="modal-title" id="createModalLabel">Create News Entity</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      {{#each news_list}}
+        {{> (lookup this.meta_ui 'input_kind') input_label=this.meta_ui.input_label data_key_name=this.meta_ui.data_key_name validations=this.validations}}
+      {{/each}}
+      <input type="hidden" name="entity_id" value="1" />
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-dismiss="modal">Discard</button>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </div>
   </form>
 </script>

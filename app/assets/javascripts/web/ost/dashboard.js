@@ -40,8 +40,6 @@
       //Activate bootstrip tooltips
       $("[data-toggle='tooltip']").tooltip();
 
-
-
       $( "#sortable" ).sortable({
         revert: true
       });
@@ -65,12 +63,14 @@
       });
 
       $('#createModal .btn-primary').on('click', function(e) {
+         e.preventDefault();
          oThis.create();
       });
 
     },
 
     buildForm: function(){
+        console.log(meta_data.meta.news_list);
         oThis.ostFormBuilder.renderTemplate(
             '#news_list',
             {
@@ -78,7 +78,7 @@
                 action: '/api/create',
                 method: 'POST'
             },
-            '#createModal .modal-body'
+            '#createModal .modal-content'
         );
     },
 

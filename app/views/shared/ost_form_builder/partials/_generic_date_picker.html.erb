@@ -1,6 +1,14 @@
 <script  type="text/x-handlebars-template" id="generic-date-picker" data-partial-id="generic-date-picker">
   <div class="form-group">
     <label for="{{data_key_name}}">{{input_label}}</label>
-    <input type="date" class="form-control" id="{{data_key_name}}" name="{{data_key_name}}" value="{{data_key_value}}">
+    <input type="date" class="form-control" id="{{data_key_name}}" name="{{data_key_name}}" value="{{data_key_value}}"
+    {{#each validations}}
+      {{#when @key '==' 'required'}}
+        {{#when this '==' true}}required{{else}} {{/when}}
+      {{else}}
+        {{@key}}="{{this}}"
+      {{/when}}
+    {{/each}}
+    />
   </div>
 </script>

@@ -18,6 +18,7 @@
     jFormContainer: null,
 
     init: function () {
+
       var oThis = this;
       // Register all partials.
       $("[data-partial-id]").each( function ( index, el ) {
@@ -28,7 +29,7 @@
         jEl.removeAttr( "data-partial-id" );
       });
 
-        //oThis.renderTemplate('#news_list', {news_list: oThis.meta.news_list});
+      oThis.registerHelpers();
     },
 
     buildForm: function ( data, jFormContainer ) {
@@ -45,6 +46,24 @@
             $(jSelectorOutput).html(html);
         }
         return html;
+    },
+
+    registerHelpers: function(){
+        Handlebars.registerHelper( "when", function(operand_1, operator, operand_2, options) {
+            var operators = {
+                '==': function(l,r) { return l == r; },
+                '!=': function(l,r) { return l != r; },
+                '>': function(l,r) { return Number(l) > Number(r); },
+                '<': function(l,r) { return Number(l) < Number(r); },
+                '||': function(l,r) { return l || r; },
+                '&&': function(l,r) { return l && r; },
+                '%': function(l,r) { return (l % r) === 0; }
+            }
+                , result = operators[operator](operand_1,operand_2);
+
+            if (result) return options.fn(this);
+            else  return options.inverse(this);
+        });
     }
   };
 
