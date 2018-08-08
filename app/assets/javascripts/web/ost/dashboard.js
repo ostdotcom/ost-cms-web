@@ -91,13 +91,9 @@
                 entity_id: 1
             },
             success: function(response){
-                // oThis.listData = Object.assign({},{'data' :response.data }, meta_data);
-                // console.log(oThis.listData)
                 oThis.listData = oThis.createMetaObject(response.data);
-                console.log(oThis.listData)
                 var template = Handlebars.compile(jList.text());
                 var html = template({'list_data' : oThis.listData});
-                console.log("html----"+html);
                 $('#list').html(html);
             }
         })
