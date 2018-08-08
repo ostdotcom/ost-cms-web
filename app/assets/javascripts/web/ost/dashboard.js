@@ -7,11 +7,12 @@
   oSTNs.dashboard = oThis = {
 
     ostFormBuilder: null,
+    listData: null,
 
     init: function (config) {
       oThis.bindButtonActions();
       oThis.ostFormBuilder = new cms.OstFormBuilder();
-      oThis.getAll();
+      oThis.populateList();
     },
 
     bindButtonActions: function () {
@@ -90,7 +91,14 @@
                 entity_id: 1
             },
             success: function(response){
-                console.log(response);
+                // oThis.listData = Object.assign({},{'data' :response.data }, meta_data);
+                // console.log(oThis.listData)
+                oThis.listData = oThis.createMetaObject(response.data);
+                console.log(oThis.listData)
+                var template = Handlebars.compile(jList.text());
+                var html = template({'list_data' : oThis.listData});
+                console.log("html----"+html);
+                $('#list').html(html);
             }
         })
     },
@@ -106,9 +114,24 @@
                 $('#createModal').modal('hide');
             }
         })
+    },
+
+    populateList: function(){
+      jList = $('#list_view');
+      oThis.getAll();
+    },
+
+    createMetaObject: function(list){
+      var configList = Object.assign({},list);
+      $.each( configList, function( key, list_item ) {
+        var record = list_item.record;
+        $.each( record , function( key, value ) {
+          record[key] = {'display_label' : meta_data['meta']['news_list'][key]['meta_ui']['input_label'], 'display_value' : value};
+          console.log(record[key])
+        });
+      });
+      return configList;
     }
-
-
 
   };
 
