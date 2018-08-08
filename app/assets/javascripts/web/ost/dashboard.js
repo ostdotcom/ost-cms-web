@@ -63,6 +63,10 @@
         oThis.buildForm();
       });
 
+      $('#editModal').on('show.bs.modal', function (e) {
+        oThis.buildEditForm();
+      });
+
       $('#createModal .btn-primary').on('click', function(e) {
          e.preventDefault();
          oThis.create();
@@ -94,7 +98,7 @@
                 oThis.listData = oThis.createMetaObject(response.data);
                 var template = Handlebars.compile(jList.text());
                 var html = template({'list_data' : oThis.listData});
-                $('#list').html(html);
+                $('#sortable').html(html);
             }
         })
     },
@@ -127,6 +131,10 @@
         });
       });
       return configList;
+    },
+
+    buildEditForm: function(){
+
     }
 
   };
