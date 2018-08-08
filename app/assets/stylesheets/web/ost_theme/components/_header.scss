@@ -7,7 +7,7 @@
 	top: 0;
 	width: 100%;
 	display: flex;
-	background-color: $primary;
+	background-color: $info;
 	z-index: 1030;
 	padding-right: 15px;
 	@media(min-width: 768px) { padding-right: 30px }
@@ -16,7 +16,7 @@
 
 .app-header__logo {
 	flex: 1 0 auto;
-	color: #fff;
+	color: #34445b;
 	text-align: center;
 	font-family: 'Niconne';
 	padding: 0 15px;
@@ -28,23 +28,23 @@
 		display: block;
 		width: 230px;
 		@if $sidebar-accent == dark {
-			background-color: darken( $primary, 5% );
+			background-color: darken( $info, 5% );
 		}
 		@if $sidebar-accent == light {
-			background-color: lighten( $primary, 5% );
+			background-color: lighten( $info, 5% );
 		}
 	}
 	&:focus,
 	&:hover {
 		text-decoration: none;
-		color: #fff;
+		color: #34445b;
 	}
 }
 
 .app-sidebar__toggle {
 	padding: 0 15px;
 	font-family: fontAwesome;
-	color: #fff;
+	color: #34445b;
 	line-height: 2.4;
 	transition: background-color 0.3s ease;
 	@media(max-width: 767px) { order: -1; }
@@ -54,8 +54,8 @@
 	}
 	&:focus,
 	&:hover {
-		color: #fff;
-		background-color: darken($primary, 10);
+		color: #34445b;
+		background-color: darken($info, 10);
 		text-decoration: none;
 	}
 }
@@ -72,12 +72,12 @@
 	display: block;
 	padding: 15px;
 	line-height: 20px;
-	color: #fff;
+	color: #34445b;
 	transition: background-color 0.3s ease;
 	&:hover,
 	&:focus {
 		background: rgba(0, 0, 0, 0.1);
-		color: #f6f6f6;
+		color: #34445b;
 	}
 }
 
@@ -115,8 +115,8 @@
 .app-notification__title {
 	padding: 8px 20px;
 	text-align: center;
-	background-color: transparentize($primary, 0.6);
-	color: #333;
+	background-color: transparentize($info, 0.6);
+	color: #34445b;
 }
 .app-notification__footer {
 	padding: 8px 20px;

@@ -124,10 +124,10 @@ $colors: map-merge((
         "gray-dark":  $gray-800
 ), $colors);
 
-$primary:       #009688 !default;
+$primary:       #e4b030 !default;
 $secondary:     $white !default;
 $success:       $green !default;
-$info:          $cyan !default;
+$info:          #afe1e3 !default;
 $warning:       $yellow !default;
 $danger:        $red !default;
 $light:         $gray-100 !default;
@@ -967,7 +967,7 @@ $print-body-min-width:              map-get($grid-breakpoints, "lg") !default;
 
 //**Vali theme**//
 $sidebar-width: 230px;
-$sidebar-color: #222d32;
+$sidebar-color: #34445b;
 $sidebar-accent: dark;
 $sidebar-dark-color: $white;
 $sidebar-dark-link-color: $white;

@@ -8,11 +8,13 @@
 
     ostFormBuilder: null,
     listData: null,
+    jNewsForm: $('#news_form'),
+    jSortable:  $('#sortable'),
 
     init: function (config) {
       oThis.bindButtonActions();
       oThis.ostFormBuilder = new cms.OstFormBuilder();
-      oThis.populateList();
+      oThis.getAll();
     },
 
     bindButtonActions: function () {
@@ -41,9 +43,10 @@
       //Activate bootstrip tooltips
       $("[data-toggle='tooltip']").tooltip();
 
-      $( "#sortable" ).sortable({
+      oThis.jSortable.sortable({
         revert: true
       });
+
       $( "#draggable" ).draggable({
         connectToSortable: "#sortable",
         helper: "clone",
@@ -60,21 +63,17 @@
       });
 
       $('#createModal').on('show.bs.modal', function (e) {
-        oThis.buildForm();
+        oThis.buildCreateForm();
       });
 
-      $('#editModal').on('show.bs.modal', function (e) {
-        oThis.buildEditForm();
-      });
-
-      $('#createModal .btn-primary').on('click', function(e) {
-         e.preventDefault();
-         oThis.create();
+      $('body').on('submit', '#news_form' , function(e) {
+          e.preventDefault();
+          oThis.create();
       });
 
     },
 
-    buildForm: function(){
+    buildCreateForm: function(){
         console.log(meta_data.meta.news_list);
         oThis.ostFormBuilder.renderTemplate(
             '#news_list',
@@ -95,30 +94,24 @@
                 entity_id: 1
             },
             success: function(response){
-                oThis.listData = oThis.createMetaObject(response.data);
-                var template = Handlebars.compile(jList.text());
+                oThis.listData = oThis.createMetaObject(response.data.list);
+                var template = Handlebars.compile($('#list_view').text());
                 var html = template({'list_data' : oThis.listData});
-                $('#sortable').html(html);
+                oThis.jSortable.html(html);
             }
         })
     },
 
     create: function(){
-        jForm = $('#news_form');
         $.ajax({
-            url: jForm.attr('action'),
-            method: jForm.attr('method'),
-            data: jForm.serialize(),
+            url: oThis.jNewsForm.attr('action'),
+            method: oThis.jNewsForm.attr('method'),
+            data: oThis.jNewsForm.serialize(),
             success: function(response){
-                console.log(response);
                 $('#createModal').modal('hide');
+                oThis.getAll();
             }
         })
-    },
-
-    populateList: function(){
-      jList = $('#list_view');
-      oThis.getAll();
     },
 
     createMetaObject: function(list){
@@ -127,7 +120,6 @@
         var record = list_item.record;
         $.each( record , function( key, value ) {
           record[key] = {'display_label' : meta_data['meta']['news_list'][key]['meta_ui']['input_label'], 'display_value' : value};
-          console.log(record[key])
         });
       });
       return configList;
@@ -140,7 +132,7 @@
   };
 
   $(document).ready(function () {
-    oThis.init({i18n: {}});
+    oThis.init();
   });
 
 })(window);
