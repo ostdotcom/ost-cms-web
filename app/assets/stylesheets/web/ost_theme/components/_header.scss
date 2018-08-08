@@ -7,7 +7,7 @@
 	top: 0;
 	width: 100%;
 	display: flex;
-	background-color: $info;
+	background-color: #FBD764;
 	z-index: 1030;
 	padding-right: 15px;
 	@media(min-width: 768px) { padding-right: 30px }
@@ -27,12 +27,6 @@
 		flex: 0 0 auto;
 		display: block;
 		width: 230px;
-		@if $sidebar-accent == dark {
-			background-color: darken( $info, 5% );
-		}
-		@if $sidebar-accent == light {
-			background-color: lighten( $info, 5% );
-		}
 	}
 	&:focus,
 	&:hover {

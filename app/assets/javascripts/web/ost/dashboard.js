@@ -60,7 +60,7 @@
         $(this).find('.dropdown-menu').first().stop(true, true).slideUp(200);
       });
 
-      $('.create-button').on('click', function () {
+      $('.j-create-button').on('click', function () {
         oThis.buildCreateForm();
       });
 

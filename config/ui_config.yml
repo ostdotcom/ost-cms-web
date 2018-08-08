@@ -3,7 +3,7 @@ meta:
         :news_list_title:
             :meta_ui:
                 :input_kind: generic-text
-                :input_label: Title
+                :input_label: Title (max length)
                 :data_key_name: news_list_title
         :news_list_description:
             :meta_ui:
