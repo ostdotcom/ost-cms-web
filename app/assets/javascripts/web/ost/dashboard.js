@@ -8,7 +8,6 @@
 
     ostFormBuilder: null,
     listData: null,
-    jNewsForm: $('#news_form'),
     jSortable:  $('#sortable'),
 
     init: function (config) {
@@ -103,10 +102,11 @@
     },
 
     create: function(){
+        jNewsForm = $('#news_form')
         $.ajax({
-            url: oThis.jNewsForm.attr('action'),
-            method: oThis.jNewsForm.attr('method'),
-            data: oThis.jNewsForm.serialize(),
+            url: jNewsForm.attr('action'),
+            method: jNewsForm.attr('method'),
+            data: jNewsForm.serialize(),
             success: function(response){
                 $('#createModal').modal('hide');
                 oThis.getAll();
