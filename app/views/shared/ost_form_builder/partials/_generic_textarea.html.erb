@@ -1,7 +1,7 @@
 <script  type="text/x-handlebars-template" id="generic-textarea" data-partial-id="generic-textarea">
   <div class="form-group">
     <label for="{{data_key_name}}">{{input_label}}</label>
-    <textarea class="form-control" id="{{data_key_name}}" name="{{data_key_name}}" value="{{data_key_value}}" rows="3"
+    <textarea class="form-control" id="{{data_key_name}}" name="{{data_key_name}}" rows="3"
     {{#each validations}}
       {{#when @key '==' 'required'}}
         {{#when this '==' true}}required{{else}} {{/when}}
@@ -9,6 +9,6 @@
         {{@key}}="{{this}}"
       {{/when}}
     {{/each}}
-    ></textarea>
+    >{{data_key_value}}</textarea>
   </div>
 </script>

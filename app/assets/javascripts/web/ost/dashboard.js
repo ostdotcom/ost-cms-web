@@ -13,7 +13,7 @@
     init: function (config) {
       oThis.bindButtonActions();
       oThis.ostFormBuilder = new cms.OstFormBuilder();
-      oThis.getAll();
+      oThis.refresh();
     },
 
     bindButtonActions: function () {
@@ -45,7 +45,6 @@
       oThis.jSortable.sortable({
         revert: true
       });
-
       $( "#draggable" ).draggable({
         connectToSortable: "#sortable",
         helper: "clone",
@@ -61,31 +60,41 @@
         $(this).find('.dropdown-menu').first().stop(true, true).slideUp(200);
       });
 
-      $('#createModal').on('show.bs.modal', function (e) {
+      $('.create-button').on('click', function () {
         oThis.buildCreateForm();
       });
 
+
       $('body').on('submit', '#news_form' , function(e) {
           e.preventDefault();
-          oThis.create();
+          oThis.submitForm();
       });
+
+      $('body').on('click', '.ordered-list-item .btn-primary', function(e) {
+        oThis.buildEditForm($(this).data('id'));
+      });
+
+      $('body').on('click', '.ordered-list-item .btn-secondary', function(e) {
+        oThis.delete($(this).data('id'));
+      });
+
 
     },
 
     buildCreateForm: function(){
-        console.log(meta_data.meta.news_list);
         oThis.ostFormBuilder.renderTemplate(
             '#news_list',
             {
                 news_list: meta_data.meta.news_list,
                 action: '/api/create',
-                method: 'POST'
+                method: 'POST',
+                header: 'Create News Entity'
             },
-            '#createModal .modal-content'
+            '#genericModal .modal-content'
         );
     },
 
-    getAll: function(){
+    refresh: function(){
         $.ajax({
             url: '/api/active',
             method: 'GET',
@@ -101,15 +110,15 @@
         })
     },
 
-    create: function(){
-        jNewsForm = $('#news_form')
+    submitForm: function(){
+        jNewsForm = $('#news_form');
         $.ajax({
             url: jNewsForm.attr('action'),
             method: jNewsForm.attr('method'),
             data: jNewsForm.serialize(),
             success: function(response){
-                $('#createModal').modal('hide');
-                oThis.getAll();
+                $('#genericModal').modal('hide');
+                oThis.refresh();
             }
         })
     },
@@ -125,9 +134,40 @@
       return configList;
     },
 
-    buildEditForm: function(){
+    buildEditForm: function(recordId) {
+      $.ajax({
+        url: '/api/record?id='+recordId,
+        method: 'GET',
+        success: function (response) {
+          oThis.ostFormBuilder.renderTemplate(
+            '#news_list',
+            {
+              news_list: meta_data.meta.news_list,
+              action: '/api/edit',
+              method: 'POST',
+              header: 'Edit News Entity',
+              data: response.data.record,
+              id: recordId
+            },
+            '#genericModal .modal-content'
+          );
+        }
+      });
+    },
 
+    delete: function(recordId) {
+      $.ajax({
+        url: '/api/delete',
+        method: 'POST',
+        data: {
+          id: recordId
+        },
+        success: function (response) {
+          oThis.refresh();
+        }
+      });
     }
+
 
   };
 
