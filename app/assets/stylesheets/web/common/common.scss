@@ -1,3 +1,5 @@
+@import "../ost_theme/variables";
+
 #logo-group{
   padding: 10px;
   height: 40px;
@@ -15,3 +17,14 @@
 .app-nav__item{
   padding: 8px;
 }
+
+//to move in appropriate file
+
+.card-header{
+  background-color: $card-bg;
+}
+
+#accordion .card{
+  cursor: move;
+}
+

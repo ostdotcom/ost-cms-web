@@ -42,15 +42,6 @@
       //Activate bootstrip tooltips
       $("[data-toggle='tooltip']").tooltip();
 
-      oThis.jSortable.sortable({
-        revert: true
-      });
-      $( "#draggable" ).draggable({
-        connectToSortable: "#sortable",
-        helper: "clone",
-        revert: "invalid"
-      });
-      $( "ul, li" ).disableSelection();
 
       $('.dropdown').on('show.bs.dropdown', function(e){
         $(this).find('.dropdown-menu').first().stop(true, true).slideDown(300);
@@ -64,34 +55,38 @@
         oThis.buildCreateForm();
       });
 
-
       $('body').on('submit', '#news_form' , function(e) {
           e.preventDefault();
           oThis.submitForm();
       });
 
-      $('body').on('click', '.ordered-list-item .btn-primary', function(e) {
+      $('body').on('click', '.j-edit-button', function(e) {
         oThis.buildEditForm($(this).data('id'));
       });
 
-      $('body').on('click', '.ordered-list-item .btn-secondary', function(e) {
+      $('body').on('click', '.j-delete-button', function(e) {
         oThis.delete($(this).data('id'));
       });
 
+    },
 
+    bindSortableAction : function() {
+      $('#accordion').sortable({
+        revert: true
+      });
     },
 
     buildCreateForm: function(){
-        oThis.ostFormBuilder.renderTemplate(
-            '#news_list',
-            {
-                news_list: meta_data.meta.news_list,
-                action: '/api/create',
-                method: 'POST',
-                header: 'Create News Entity'
-            },
-            '#genericModal .modal-content'
-        );
+      oThis.ostFormBuilder.renderTemplate(
+          '#news_list',
+          {
+            news_list: meta_data.meta.news_list,
+            action: '/api/create',
+            method: 'POST',
+            header: 'Create News Entity'
+        },
+          '#genericModal .modal-content'
+      );
     },
 
     refresh: function(){
@@ -105,7 +100,8 @@
                 oThis.listData = oThis.createMetaObject(response.data.list);
                 var template = Handlebars.compile($('#list_view').text());
                 var html = template({'list_data' : oThis.listData});
-                oThis.jSortable.html(html);
+                $('#list').html(html);
+                oThis.bindSortableAction();
             }
         })
     },
