@@ -175,7 +175,6 @@
 <% content_for :end_js do %>
 
   <%= render :partial => "/shared/ost_form_builder/all_partials_templates" %>
-  <%= render :partial => "/web/ost/index/list_view" %>
   <script type="text/javascript">
     var meta_data = <%= raw @config_response.to_json %>;
   </script>
