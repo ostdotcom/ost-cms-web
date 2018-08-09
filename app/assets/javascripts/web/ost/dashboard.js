@@ -14,6 +14,7 @@
       oThis.bindButtonActions();
       oThis.ostFormBuilder = new cms.OstFormBuilder();
       oThis.refresh();
+      oThis.initPublishedListData();
     },
 
     bindButtonActions: function () {
@@ -162,6 +163,22 @@
           oThis.refresh();
         }
       });
+    },
+
+    initPublishedListData: function(){
+      $.ajax({
+        url: '/api/active',//to be changed to /api/published
+        method: 'GET',
+        data: {
+          entity_id: 1
+        },
+        success: function(response){
+          oThis.publishedListData = oThis.createMetaObject(response.data.list);
+          var template = Handlebars.compile($('#published_list_view').text());
+          var html = template({'published_list_data' : oThis.publishedListData});
+          $('#published_list').html(html);
+        }
+      })
     }
 
 

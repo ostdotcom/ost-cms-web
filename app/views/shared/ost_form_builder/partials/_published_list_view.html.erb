@@ -1,0 +1,27 @@
+<script type="text/x-handlebars-template" id="published_list_view">
+  <div id="accordion">
+    {{#each published_list_data}}
+    <div class="card mb-3 published-mode">
+      <div class="card-header" id="listHeading">
+        <h5 class="mb-0">
+          <button class="btn btn-link px-0" data-toggle="collapse" data-target="#published_rec_{{this.id}}" aria-expanded="true" aria-controls="{{this.id}}">
+            Record #{{@index}}
+          </button>
+        </h5>
+      </div>
+      <div id="published_rec_{{this.id}}" class="collapse show" aria-labelledby="listHeading" data-parent="#accordion">
+        <div class="card-body">
+          {{#each this.record}}
+            {{#if this.display_value}}
+              <div class="row pb-1">
+                <div class="col-2"><span class="text-capitalize font-weight-bold">{{this.display_label}}:</span></div>
+                <div class="col-10"><span class="font-weight-light">{{this.display_value}}</span></div>
+              </div>
+            {{/if}}
+          {{/each}}
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</script>

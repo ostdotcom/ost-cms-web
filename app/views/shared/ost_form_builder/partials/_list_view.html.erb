@@ -1,15 +1,15 @@
 <script type="text/x-handlebars-template" id="list_view">
     <div id="accordion">
       {{#each list_data}}
-        <div class="card mb-3">
+        <div class="card mb-3 draft-mode">
           <div class="card-header" id="listHeading">
             <h5 class="mb-0">
-              <button class="btn btn-link" data-toggle="collapse" data-target="#{{this.id}}" aria-expanded="false" aria-controls="{{this.id}}">
+              <button class="btn btn-link px-0" data-toggle="collapse" data-target="#record_{{this.id}}" aria-expanded="false" aria-controls="{{this.id}}">
                 Record #{{@index}}
               </button>
             </h5>
           </div>
-          <div id="{{this.id}}" class="collapse hide" aria-labelledby="listHeading" data-parent="#accordion">
+          <div id="record_{{this.id}}" class="collapse hide" aria-labelledby="listHeading" data-parent="#accordion">
             <div class="card-body">
               <div class="row">
                 <div class="col-8">

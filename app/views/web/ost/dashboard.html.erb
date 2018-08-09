@@ -131,38 +131,18 @@
     <div class="tab-content pb-4" id="nav-tabContent">
 
       <div class="tab-pane fade show active mt-4" id="nav-draft" role="tabpanel" aria-labelledby="nav-home-tab">
-        <div class="container">
-          <div class="mb-5 mt-5 text-right" style="display: none;">
-            <button class="btn btn-secondary pt-3 pb-3 create-button " name="Create" data-toggle="modal" data-target="#genericModal">Create</button>
-            <button class="btn btn-primary pt-3 pb-3 " data-submiting="Setting Up...">Save</button>
-          </div>
-        </div>
-
-        <div id="list">
-        </div>
-
+        <div id="list"></div>
         <div class="modal fade" id="genericModal" tabindex="-1" role="dialog" aria-labelledby="genericModalLabel" aria-hidden="false">
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
             </div>
           </div>
         </div>
-
       </div>
+
+
       <div class="tab-pane fade mt-4" id="nav-published" role="tabpanel" aria-labelledby="nav-profile-tab">
-        <ul class="pb-5">
-          <% temp_data.each_with_index do | data | %>
-            <li class="mb-3" >
-              <div class="card ui-state-default ">
-                <div class="card-body">
-                  <% data.each do | key, attr | %>
-                    <p class="text-capitalize"><%=key%> : <%= attr %></p>
-                  <% end%>
-                </div>
-              </div>
-            </li>
-          <% end %>
-        </ul>
+       <div id="published_list"></div>
       </div>
     </div>
 
