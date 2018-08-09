@@ -5,22 +5,4 @@ ul {
   }
 }
 
-.draggable-indicator {
-  width: 16px;
-  height: 16px;
 
-  position: absolute;
-  right: 0.5em;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-}
-
-/* coloring the individual dots within each group */
-.draggable-indicator rect {
-  fill: #ccc;
-}
-
-.ordered-list-item, .ordered-list-item *{
-  cursor : move
-}

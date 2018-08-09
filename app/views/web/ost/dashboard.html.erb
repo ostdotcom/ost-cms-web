@@ -106,28 +106,40 @@
       },
   ]
 %>
-
-<div class="content-wrapper">
-  <div class="container-fluid">
-
-    <nav>
-      <div class="nav nav-tabs pt-3" id="nav-tab" role="tablist">
-        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Draft Mode</a>
-        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Published</a>
+<nav>
+  <ul class="nav nav-tabs justify-content-end">
+    <li class="nav-item">
+      <a class="nav-link active nav-item" id="nav-home-tab" data-toggle="tab" href="#nav-draft" role="tab" aria-controls="nav-draft" aria-selected="false">Draft Mode</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-published" role="tab" aria-controls="nav-published" aria-selected="false">Published</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Actions</a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item j-create-button" href="#" data-toggle="modal" data-target="#genericModal">Create New</a>
+        <a class="dropdown-item" href="#">Preview Changes</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="#">Reset to Published Version</a>
+        <a class="dropdown-item" href="#">Publish Changes</a>
       </div>
-    </nav>
+    </li>
+  </ul>
+</nav>
+<div class="content-wrapper" style="overflow: auto;max-height: calc(100vh - 130px)">
+  <div class="container-fluid">
     <div class="tab-content pb-4" id="nav-tabContent">
 
-      <div class="tab-pane fade show active mt-4" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+      <div class="tab-pane fade show active mt-4" id="nav-draft" role="tabpanel" aria-labelledby="nav-home-tab">
         <div class="container">
-          <div class="mb-5 mt-5 text-right">
+          <div class="mb-5 mt-5 text-right" style="display: none;">
             <button class="btn btn-secondary pt-3 pb-3 create-button " name="Create" data-toggle="modal" data-target="#genericModal">Create</button>
             <button class="btn btn-primary pt-3 pb-3 " data-submiting="Setting Up...">Save</button>
           </div>
         </div>
 
-        <ul id="sortable" >
-        </ul>
+        <div id="list">
+        </div>
 
         <div class="modal fade" id="genericModal" tabindex="-1" role="dialog" aria-labelledby="genericModalLabel" aria-hidden="false">
           <div class="modal-dialog modal-lg" role="document">
@@ -137,7 +149,7 @@
         </div>
 
       </div>
-      <div class="tab-pane fade mt-4" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+      <div class="tab-pane fade mt-4" id="nav-published" role="tabpanel" aria-labelledby="nav-profile-tab">
         <ul class="pb-5">
           <% temp_data.each_with_index do | data | %>
             <li class="mb-3" >
