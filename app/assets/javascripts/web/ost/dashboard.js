@@ -78,7 +78,10 @@
 
     bindSortableAction : function() {
       $('#accordion').sortable({
-        revert: true
+        revert: true,
+        stop: function( ) {
+          $('#list .card').each(function(k,v){ $(this).find('.record-index').text(k+1) })
+        }
       });
     },
 
