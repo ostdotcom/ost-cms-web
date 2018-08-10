@@ -14,7 +14,7 @@
       oThis.bindButtonActions();
       oThis.ostFormBuilder = new cms.OstFormBuilder();
       oThis.refresh();
-      oThis.initPublishedListData();
+      oThis.initPublishedListData(1);
     },
 
     bindButtonActions: function () {
@@ -67,6 +67,11 @@
 
       $('body').on('click', '.j-delete-button', function(e) {
         oThis.delete($(this).data('id'));
+      });
+
+      $('body').on('click', '.j-publish-changes-link', function(e) {
+        var entityId = 1;
+        oThis.publish(entityId);
       });
 
     },
@@ -139,12 +144,12 @@
       });
     },
 
-    initPublishedListData: function(){
+    initPublishedListData: function(entityId){
       $.ajax({
-        url: '/api/active',//to be changed to /api/published
+        url: '/api/published',
         method: 'GET',
         data: {
-          entity_id: 1
+          entity_id: entityId
         },
         success: function(response){
           var recordHeading = 'news_list_title';
@@ -154,8 +159,20 @@
           $('#published_list').html(html);
         }
       })
-    }
+    },
 
+    publish: function(entityId){
+      $.ajax({
+        url: '/api/publish',
+        method: 'POST',
+        data: {
+          entity_id: entityId
+        },
+        success: function(response){
+         oThis.initPublishedListData(entityId);
+        }
+      })
+    }
 
   };
 
