@@ -2,10 +2,11 @@
 
 (function () {
 
-  var parentNs = ns("cms");
+  var parentNs = ns("cms"),
+      oThis;
 
   var OstFormBuilder = function ( config ) {
-    var oThis = this;
+    oThis = this;
     $.extend( oThis, config);
 
     oThis.init();
@@ -19,7 +20,6 @@
 
     init: function () {
 
-      var oThis = this;
       // Register all partials.
       $("[data-partial-id]").each( function ( index, el ) {
         var jEl = $( el );
@@ -47,6 +47,41 @@
         }
         return html;
     },
+
+    buildCreateForm: function(){
+      oThis.renderTemplate(
+        '#news_list',
+        {
+          news_list: meta_data.meta.news_list,
+          action: '/api/create',
+          method: 'POST',
+          header: 'Create News Entity'
+        },
+        '#genericModal .modal-content'
+      );
+    },
+
+    buildEditForm: function(recordId) {
+      $.ajax({
+        url: '/api/record?id='+recordId,
+        method: 'GET',
+        success: function (response) {
+          oThis.renderTemplate(
+            '#news_list',
+            {
+              news_list: meta_data.meta.news_list,
+              action: '/api/edit',
+              method: 'POST',
+              header: 'Edit News Entity',
+              data: response.data.record,
+              id: recordId
+            },
+            '#genericModal .modal-content'
+          );
+        }
+      });
+    },
+
 
     registerHelpers: function(){
         Handlebars.registerHelper( "when", function(operand_1, operator, operand_2, options) {
