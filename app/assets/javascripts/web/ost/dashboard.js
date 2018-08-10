@@ -11,13 +11,13 @@
     jSortable:  $('#sortable'),
 
     init: function (config) {
-      oThis.bindButtonActions();
+      oThis.bindEvents();
       oThis.ostFormBuilder = new cms.OstFormBuilder();
       oThis.refresh();
       oThis.initPublishedListData(1);
     },
 
-    bindButtonActions: function () {
+    bindEvents: function () {
 
       var treeviewMenu = $('.app-menu');
 
@@ -76,15 +76,44 @@
 
     },
 
-    bindSortableAction : function() {
+    onRefresh: function(response){
+      var recordHeading = 'news_list_title';
+      var recId, prevElementId, nextElementId ;
+      oThis.listData = oThis.createMetaObject(response.data.list, recordHeading);
+      var template = Handlebars.compile($('#list_view').text());
+      var html = template({'list_data' : oThis.listData});
+      $('#list').html(html);
       $('#accordion').sortable({
         revert: true,
-        stop: function( ) {
-          $('#list .card').each(function(k,v){ $(this).find('.record-index').text(k+1) })
+        stop: function(e, ui) {
+          $('#list .card').each(function(k){
+            $(this).find('.record-index').text(k+1);
+          });
+          console.log(ui.item);
+          recId = ui.item.data('recordId');
+          prevElementId = ui.item.prev().data('recordId');
+          nextElementId = ui.item.next().data('recordId');
+          console.log('recId:'+recId, 'prevElementId:'+prevElementId, 'nextElementId:'+nextElementId);
+          oThis.sortRecords(1, recId, prevElementId, nextElementId);
         }
       });
     },
 
+    sortRecords: function(entityId, recordId, previous, next){
+      $.ajax({
+        url: '/api/sort',
+        method: 'POST',
+        data: {
+          entity_id: entityId,
+          id : recordId,
+          prev: previous,
+          next: next
+        },
+        success: function(){
+          oThis.refresh();
+        }
+      })
+    },
 
     refresh: function(){
         $.ajax({
@@ -94,12 +123,7 @@
                 entity_id: 1
             },
             success: function(response){
-              var recordHeading = 'news_list_title';
-              oThis.listData = oThis.createMetaObject(response.data.list, recordHeading);
-              var template = Handlebars.compile($('#list_view').text());
-              var html = template({'list_data' : oThis.listData});
-              $('#list').html(html);
-              oThis.bindSortableAction();
+              oThis.onRefresh(response);
             }
         })
     },
