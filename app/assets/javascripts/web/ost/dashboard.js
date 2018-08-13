@@ -52,7 +52,7 @@
         $(this).find('.dropdown-menu').first().stop(true, true).slideUp(200);
       });
 
-      $('.j-create-button').on('click', function () {
+      $('.j-create-link').on('click', function () {
         oThis.ostFormBuilder.buildCreateForm();
       });
 
@@ -61,11 +61,11 @@
           oThis.submitForm();
       });
 
-      $('body').on('click', '.j-edit-button', function(e) {
+      $('body').on('click', '.j-edit-link', function(e) {
         oThis.ostFormBuilder.buildEditForm($(this).data('id'));
       });
 
-      $('body').on('click', '.j-delete-button', function(e) {
+      $('body').on('click', '.j-delete-link', function(e) {
         oThis.delete($(this).data('id'));
       });
 
