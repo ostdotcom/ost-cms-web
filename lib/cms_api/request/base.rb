@@ -82,7 +82,7 @@ module CmsApi
       # @return [String] returns BASE API URL
       #
       def base_url
-        Rails.env.development? ? "#{@host}:8443/api/" : "#{@host}/api/"
+        Rails.env.development? ? "#{@host}/api/" : "#{@host}/api/"
       end
 
       # make API Request

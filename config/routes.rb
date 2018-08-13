@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   scope '', controller: 'web/signin' do
     get '/' => :sign_in, as: 'sign_in'
+    get '/go-to-dashboard' => :goto_dashboard, as: 'goto_dashboard'
   end
 
   # Route not found handler. Should be the last entry here
