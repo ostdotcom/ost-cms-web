@@ -19,6 +19,11 @@ module CmsApi
         @service_base_route = 'user/'
       end
 
+
+      def base_url
+        Rails.env.development? ? "#{@host}/auth/" : "#{@host}/auth/"
+      end
+
       # Get User info
       #
       # * Author: Aman
@@ -48,6 +53,8 @@ module CmsApi
         extra_params.merge!(token: token) if token.present?
         get("basic-detail", extra_params)
       end
+
+
 
       # Get User profile page info
       #

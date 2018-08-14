@@ -53,7 +53,7 @@
         '#news_list',
         {
           news_list: meta_data.meta.news_list,
-          action: '/api/create',
+          action: '/api/content/create',
           method: 'POST',
           header: 'Create News Entity'
         },
@@ -63,14 +63,14 @@
 
     buildEditForm: function(recordId) {
       $.ajax({
-        url: '/api/record?id='+recordId,
+        url: '/api/content/record?id='+recordId,
         method: 'GET',
         success: function (response) {
           oThis.renderTemplate(
             '#news_list',
             {
               news_list: meta_data.meta.news_list,
-              action: '/api/edit',
+              action: '/api/content/edit',
               method: 'POST',
               header: 'Edit News Entity',
               data: response.data.record,

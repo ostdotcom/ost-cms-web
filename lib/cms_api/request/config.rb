@@ -6,7 +6,7 @@ module CmsApi
 
       def initialize(host, cookies = {}, headers = {})
         super
-        @service_base_route = 'configs/'
+        @service_base_route = 'content/configs/'
       end
 
       def get_config()

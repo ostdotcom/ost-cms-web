@@ -101,7 +101,7 @@
 
     sortRecords: function(entityId, recordId, previous, next){
       $.ajax({
-        url: '/api/sort',
+        url: '/api/content/sort',
         method: 'POST',
         data: {
           entity_id: entityId,
@@ -117,7 +117,7 @@
 
     refresh: function(){
         $.ajax({
-            url: '/api/active',
+            url: '/api/content/active',
             method: 'GET',
             data: {
                 entity_id: 1
@@ -160,7 +160,7 @@
 
     delete: function(recordId) {
       $.ajax({
-        url: '/api/delete',
+        url: '/api/content/delete',
         method: 'POST',
         data: {
           id: recordId
@@ -190,7 +190,7 @@
 
     publish: function(entityId){
       $.ajax({
-        url: '/api/publish',
+        url: '/api/content/publish',
         method: 'POST',
         data: {
           entity_id: entityId
