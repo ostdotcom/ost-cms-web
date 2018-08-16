@@ -6,7 +6,7 @@ class Web::OstController < Web::BaseController
   before_action :get_user_response
   before_action :omniauth, except: [:sign_in]
   before_action :set_page_meta_info
-  before_action :get_config, only:[:dashboard]
+  before_action :get_config, except:[:sign_in]
 
   def dashboard
 
