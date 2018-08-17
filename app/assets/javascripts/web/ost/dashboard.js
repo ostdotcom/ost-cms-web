@@ -74,6 +74,11 @@
         oThis.publish(entityId);
       });
 
+      $('body').on('click', '.j-reset-publish-link', function(e) {
+        var entityId = 1;
+        oThis.resetPublish(entityId);
+      });
+
     },
 
     onRefresh: function(response){
@@ -197,6 +202,20 @@
         },
         success: function(response){
          oThis.initPublishedListData(entityId);
+        }
+      })
+    },
+
+    resetPublish: function(entityId){
+      $.ajax({
+        url: '/api/content/rollback',
+        method: 'POST',
+        data: {
+          entity_id: entityId
+        },
+        success: function(response){
+          oThis.initPublishedListData(entityId);
+          oThis.refresh();
         }
       })
     }
