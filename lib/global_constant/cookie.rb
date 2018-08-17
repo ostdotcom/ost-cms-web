@@ -5,23 +5,12 @@ module GlobalConstant
 
     class << self
 
-      def admin_cookie_name
-        'ta'
-      end
-
-      def user_cookie_name
-        'tu'
-      end
-
-      def utm_cookie_name
-        'ost_utm'
-      end
-
       def utm_cookie_expiry
         30.days
       end
 
       def new_api_cookie_key
+        # Used to forward can set the cookies from API call
         'new_api_cookies'
       end
 

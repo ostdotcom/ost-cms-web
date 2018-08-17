@@ -1,6 +1,8 @@
 module CmsApi
+
   module Request
-    class User < Base
+
+    class EntityConfig < Base
 
       # Initialize
       #
@@ -12,25 +14,18 @@ module CmsApi
       #
       def initialize(host, cookies = {}, headers = {})
         super
-        @service_base_route = 'user/'
+        @service_base_route = 'content/configs/'
       end
 
-      # Get User profile details
+      # Get Entity config
       #
       # @return [Result::Base] returns an object of Result::Base class
       #
-      def profile_detail()
+      def get_config()
         get("")
       end
-
-      private
-
-      # Override base url
-      #
-      def base_url
-        "#{@host}/auth/"
-      end
-
     end
+
   end
+
 end

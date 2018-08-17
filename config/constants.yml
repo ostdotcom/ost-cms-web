@@ -5,8 +5,8 @@ constants:
     domain: <%= ENV['OCW_CLOUDFRONT_DOMAIN'] %>
 
   basic_auth:
-    username: <%= ENV['OW_BASIC_AUTH_USERNAME'] %>
-    password: <%= ENV['OW_BASIC_AUTH_PASSWORD'] %>
+    username: <%= ENV['OCW_BASIC_AUTH_USERNAME'] %>
+    password: <%= ENV['OCW_BASIC_AUTH_PASSWORD'] %>
 
   cms_api:
     open_timeout: 50

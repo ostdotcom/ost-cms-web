@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   before_action :set_request_from_bot_flag
 
-  before_action :set_entities_meta_info
+  after_action :handle_whitelisted_api_cookies
 
   # Sanitize params
   include Sanitizer
@@ -16,15 +16,28 @@ class ApplicationController < ActionController::Base
   #
   def not_found
     res = {
-      error: 'ost_page_not_found',
+      error: 'ost_cms_page_not_found',
       error_display_text: 'Page not found',
       http_code: GlobalConstant::ErrorCode.not_found
     }
-    @response = Result::Base.error(res)
-    render_error_response_for(@response)
+    render_error_response_for(Result::Base.error(res))
   end
 
   private
+
+  # Handle API specific whitelisted cookies
+  #
+  def handle_whitelisted_api_cookies
+    new_api_cookies = request.cookies[GlobalConstant::Cookie.new_api_cookie_key.to_sym]
+    return if new_api_cookies.blank?
+    whitelisted_api_cookies = []
+    whitelisted_api_cookies.each do |key|
+      whitelisted_cookie = new_api_cookies[key]
+      if whitelisted_cookie.present? and whitelisted_cookie.is_a?(Hash)
+        cookies[key.to_sym] = whitelisted_cookie
+      end
+    end
+  end
 
   # Get user agent
   #
@@ -62,25 +75,10 @@ class ApplicationController < ActionController::Base
     page_extended_data = service_response.data
 
     @page_meta_data = page_extended_data[:meta]
-    @page_assets_data = page_extended_data[:assets]
-  end
-
-  # Set entities meta info
-  #
-  def set_entities_meta_info
-    @entities_meta_data = GetEntitiesMeta.new.get_meta_config
-    page = 'home_page'
-    list = 'news_ol'
-    @entity_meta = @entities_meta_data[page][list]
-    puts @entity_meta.to_json
-
+@page_assets_data = page_extended_data[:assets]
   end
 
   # Render error response for
-  #
-  # * Author: Kedar
-  # * Date: 09/10/2017
-  # * Reviewed By: Sunil Khedar
   #
   def render_error_response_for(service_response)
 
@@ -95,7 +93,7 @@ class ApplicationController < ActionController::Base
       (render plain: Oj.dump(service_response.to_json, mode: :compat), status: http_code) and return
     else
       if http_code == GlobalConstant::ErrorCode.unauthorized_access
-        redirect_to :login and return
+        redirect_to '/' and return
       elsif http_code == GlobalConstant::ErrorCode.temporary_redirect
         redirect_to '/' and return
       else
@@ -103,22 +101,6 @@ class ApplicationController < ActionController::Base
         render file: "public/#{http_code}.html", layout: false, status: http_code and return
       end
     end
-
-  end
-
-  def get_user_response
-    @service_response = CmsApi::Request::User.new('https://securedhost.com', request.cookies, {"User-Agent" => http_user_agent}).profile_detail
-  end
-
-  def get_config
-    ui_yaml = YAML.load_file('config/ui_config.yml')
-    @config_response = CmsApi::Request::Config.new('https://securedhost.com', request.cookies, {"User-Agent" => http_user_agent}).get_config
-    @config_response.to_json[:data]["meta"].each do |key, value|
-      ui_yaml["meta"][value["section"].to_sym][value["data_key_name"].to_sym]["validations"] = value["validations"]
-      puts "testing-------#{ui_yaml["meta"][value["section"].to_sym]}"
-    end
-    @config_response = ui_yaml
-    puts "@config_response---- #{@config_response.to_json}"
 
   end
 

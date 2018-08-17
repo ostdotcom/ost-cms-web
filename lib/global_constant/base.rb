@@ -16,10 +16,6 @@ module GlobalConstant
       def basic_auth_config
         @basic_auth_config ||= fetch_config.fetch('basic_auth', {}).with_indifferent_access
       end
-      
-      def pepo_campaign
-        @stw_campaign_details ||= fetch_config.fetch('pepo_campaign', {}).with_indifferent_access
-      end
 
       def cms_api
         @cms_api ||= fetch_config.fetch('cms_api', {}).with_indifferent_access

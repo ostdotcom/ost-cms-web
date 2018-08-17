@@ -233,7 +233,7 @@
         , statusCode: { 
           401: function () {
             //Redirect to Login.
-            window.location = '/login';
+            window.location = '/';
           }
         }
       };

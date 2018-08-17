@@ -8,6 +8,8 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.1.6'
+# Rake
+gem 'rake', '12.3.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '5.0.7'
 # Use Uglifier as compressor for JavaScript assets
@@ -23,18 +25,19 @@ gem 'exception_notification', '4.2.1'
 
 
 # For identifying browser & device type of devices sending requests
-gem 'browser', '~> 1.1'
+#gem 'browser', '~> 1.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '~> 2.13'
-  gem 'selenium-webdriver'
+  # # Adds support for Capybara system testing and selenium driver
+  # gem 'capybara', '~> 2.13'
+  # gem 'selenium-webdriver'
   gem 'listen', '3.1.5'
   gem 'puma', '~> 3.7'
-  gem 'pry'
-  gem 'web-console', '>= 3.3.0'
+  # gem 'pry'
+  # gem 'web-console', '>= 3.3.0'
+  gem 'letter_opener'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

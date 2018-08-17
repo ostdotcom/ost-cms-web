@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   scope '', controller: 'web/ost' do
     get '/dashboard' => :dashboard
-    get '/not_whitelisted' => :not_whitelisted, as: 'not_whitelisted'
   end
 
   scope '', controller: 'web/signin' do

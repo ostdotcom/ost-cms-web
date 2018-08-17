@@ -1,6 +1,8 @@
 class Web::BaseController < ApplicationController
 
   before_action :basic_auth
+  before_action :get_user_details
+  before_action :set_page_meta_info
 
   private
 
@@ -14,20 +16,10 @@ class Web::BaseController < ApplicationController
 
   # basic auth
   #
-  # * Author: Puneet
-  # * Date: 03/03/2018
-  # * Reviewed By:
-  #
   def basic_auth
-
-    return if Rails.env.development?
-
-    return if Rails.env.production?
-
     users = {
       GlobalConstant::BasicAuth.username => GlobalConstant::BasicAuth.password
     }
-
     authenticate_or_request_with_http_basic do |username, password|
       if users[username].present? && users[username] == password
         true
@@ -35,20 +27,14 @@ class Web::BaseController < ApplicationController
         false
       end
     end
-
   end
 
-
-
-  def omniauth
-    unless @service_response.success?
-      # if @service_response.to_json[:err][:code] == 'not_whitelisted_user'
-      #   redirect_template = :not_whitelisted
-      # else
-      #   redirect_template = :sign_in
-      # end
-      redirect_to  :sign_in
-    end
+  # Get logged in user details
+  #
+  def get_user_details
+    r = CmsApi::Request::User.new(GlobalConstant::Base.root_url, request.cookies, {"User-Agent" => http_user_agent}).profile_detail
+    redirect_to :sign_in unless r.success?
+    @current_user = r.data
   end
 
 end

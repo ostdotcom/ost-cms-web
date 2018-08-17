@@ -3,7 +3,7 @@
 
     <div class="row">
       <div class="mx-auto">
-        <% if @query_params["err"] &&  @query_params["err"] == 'not_whitelisted'   %>
+        <% if params["err"] == 'not_whitelisted'   %>
           <div class="alert alert-warning text-center mt-4" style="width: 400px">
             You are not whitelisted
           </div>
@@ -15,7 +15,7 @@
       <div class="mx-auto">
       <h1 class="display-4">OST CMS</h1>
       <a href="/auth/google_oauth2">
-        <img src="btn_google_signin_dark_normal_web@2x.png" style="width:250px" />
+        <img src="https://dxwfxs8b4lg24.cloudfront.net/ost/images/ost-cms/google_signin_btn.png" style="width:250px" />
       </a>
       </div>
     </div>

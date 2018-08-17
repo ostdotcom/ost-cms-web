@@ -8,18 +8,18 @@ en:
         :canonical: '%{canonical}'
         :keywords: 'OST, Simple Token, Utility Chain, Blockchain'
         :name: 'OST'
-        :robots: 'index, follow'
+        :robots: 'noindex, nofollow'
         :og:
-          :title: 'OST | Connect to The Utility Blockchain'
-          :description: 'The OST software platform helps businesses gain competitive advantage from blockchain and turn the potential of decentralization into reality.'
-          :type: 'website'
-          :image: 'https://dxwfxs8b4lg24.cloudfront.net/ost/images/ost-og-image-1.jpg'
-          :url: '%{og_url}'
+          :title: ''
+          :description: ''
+          :type: ''
+          :image: ''
+          :url: ''
         :twitter:
-          :card: 'summary_large_image'
-          :title: 'OST | Connect to The Utility Blockchain'
-          :description: 'The OST software platform helps businesses gain competitive advantage from blockchain and turn the potential of decentralization into reality.'
-          :image: 'https://dxwfxs8b4lg24.cloudfront.net/ost/images/ost-og-image-1.jpg'
+          :card: ''
+          :title: ''
+          :description: ''
+          :image: ''
       :assets:
         :specific_css_required: 1
         :specific_js_required: 1
@@ -32,18 +32,41 @@ en:
               :canonical: '%{canonical}'
               :keywords: 'OST, Simple Token, Utility Chain, Blockchain'
               :name: 'OST'
-              :robots: 'index, follow'
+              :robots: 'noindex, nofollow'
               :og:
-                :title: 'OST | Connect to The Utility Blockchain'
-                :description: 'The OST software platform helps businesses gain competitive advantage from blockchain and turn the potential of decentralization into reality.'
-                :type: 'website'
-                :image: 'https://dxwfxs8b4lg24.cloudfront.net/ost/images/ost-og-image-1.jpg'
-                :url: '%{og_url}'
+                :title: ''
+                :description: ''
+                :type: ''
+                :image: ''
+                :url: ''
               :twitter:
-                :card: 'summary_large_image'
-                :title: 'OST | Connect to The Utility Blockchain'
-                :description: 'The OST software platform helps businesses gain competitive advantage from blockchain and turn the potential of decentralization into reality.'
-                :image: 'https://dxwfxs8b4lg24.cloudfront.net/ost/images/ost-og-image-1.jpg'
+                :card: ''
+                :title: ''
+                :description: ''
+                :image: ''
+            :assets:
+              :specific_css_required: 0
+              :specific_js_required: 0
+
+      goto_dashboard:
+            :meta:
+              :title: 'OST | Connect to The Utility Blockchain'
+              :description: 'The OST software platform helps businesses gain competitive advantage from blockchain and turn the potential of decentralization into reality.'
+              :canonical: '%{canonical}'
+              :keywords: 'OST, Simple Token, Utility Chain, Blockchain'
+              :name: 'OST'
+              :robots: 'noindex, nofollow'
+              :og:
+                :title: ''
+                :description: ''
+                :type: ''
+                :image: ''
+                :url: ''
+              :twitter:
+                :card: ''
+                :title: ''
+                :description: ''
+                :image: ''
             :assets:
               :specific_css_required: 0
               :specific_js_required: 0
