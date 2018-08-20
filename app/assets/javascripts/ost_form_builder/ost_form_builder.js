@@ -32,13 +32,6 @@
       oThis.registerHelpers();
     },
 
-    buildForm: function ( data, jFormContainer ) {
-      var oThis = this;
-      jFormContainer = jFormContainer || oThis.jFormContainer;
-      var uiConfig = oThis.uiConfig;
-      var dataConfig = oThis.dataConfig;
-    },
-
     renderTemplate: function( jSelectorTemplate, context, jSelectorOutput ){
         var template = Handlebars.compile($(jSelectorTemplate).text());
         var html = template(context);
@@ -111,6 +104,50 @@
           "/": lvalue / rvalue,
           "%": lvalue % rvalue
         }[operator];
+      });
+
+      Handlebars.registerHelper('ifTooltip', function(tooltip, options ) {
+        if( !!tooltip ){
+          return options.fn(this);
+        }
+
+        return options.inverse(this);
+      });
+
+      var idCount = 1 ;
+      Handlebars.registerHelper('configurator_component_id', function( name, isSameId , options ) {
+        if( isSameId !== true ) {  //This should be exactly checked.
+          idCount++
+        }
+        if( name ){
+          return name + "_" + idCount ;
+        }else {
+          return "no_name" + "_" + idCount ;
+        }
+      });
+
+      Handlebars.registerHelper('getAccept', function( data, options ) {
+        if( typeof data == "string" ){
+          return data;
+        }else if( data.constructor == Array ) {
+          return data.join(' , ');
+        }
+        return "";
+      });
+
+      Handlebars.registerHelper('ifFilePath', function( data, options ) {
+        if( typeof data == "string" ){
+          return options.fn(this);
+        }
+        return options.inverse(this);
+      });
+
+      Handlebars.registerHelper('is_required', function(data, options ) {
+        if( data == 1 ){
+          return "required";
+        }else {
+          return "";
+        }
       });
     }
   };

@@ -4,21 +4,24 @@
           page_label: "Home Page",
           page_icon_class: "fa-home",
           lists: [news_ol: {
-                list_label: "News List"
+                list_label: "News List",
+                id: 1
             }]
       },
       team_page: {
           page_label: "Team Page",
           page_icon_class: "fa-users",
           lists: [team_ol: {
-              list_label: "Members List"
+              list_label: "Members List",
+              id: 2
           }]
       },
       careers_page: {
           page_label: "Careers Page",
           page_icon_class: "fa-graduation-cap",
           lists: [careers_ol: {
-              list_label: "Careers List"
+              list_label: "Careers List",
+              id: 3
           }]
       },
       partners_page: {
@@ -27,7 +30,8 @@
           lists: [
               {
                   partners_ol: {
-                      list_label: "Partners List"
+                      list_label: "Partners List",
+                      id: 4
                     }
               }
           ]
@@ -43,7 +47,7 @@
         <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa <%=data[:page_icon_class] %>"></i><span class="app-menu__label"><%= data[:page_label] %></span><i class="treeview-indicator fa fa-angle-right"></i></a>
         <ul class="treeview-menu">
           <% data[:lists].each do |list_item | %>
-            <li><a class="treeview-item" href=""><i class="icon fa fa-circle-o"></i><%= list_item.values[0][:list_label] %></a>
+            <li><a class="treeview-item" href="/dashboard/<%= list_item.values[0][:id] %>"><i class="icon fa fa-circle-o"></i><%= list_item.values[0][:list_label] %></a>
             </li>
           <% end%>
         </ul>

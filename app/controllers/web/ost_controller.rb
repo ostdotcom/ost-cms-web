@@ -7,6 +7,7 @@ class Web::OstController < Web::BaseController
   # Edit entity Dashboard
   #
   def dashboard
+    @entity_id = params[:id] || 1
   end
 
   private
@@ -16,13 +17,15 @@ class Web::OstController < Web::BaseController
   def get_entity_ui_config
     ui_yaml = YAML.load_file(Rails.root.to_s + '/config/ui_config.yml')
     @config_response = CmsApi::Request::EntityConfig.new(GlobalConstant::Base.root_url, request.cookies, {"User-Agent" => http_user_agent}).get_config
-    Rails.logger.debug(ui_yaml.inspect)
-    @config_response[:data]["meta"].each do |key, value|
-      Rails.logger.debug(key.inspect)
-      Rails.logger.debug(value.inspect)
-      ui_yaml["meta"][value["section"].to_sym][value["data_key_name"].to_sym]["validations"] = value["validations"]
+
+    ui_yaml["meta"].each do |key, value |
+      ui_yaml["meta"][key].map! {
+        |field_name|
+          field_name.each do | key_1, value_1|
+            field_name[key_1]["validations"] = @config_response.data["meta"][key.to_s][key_1.to_s]["validations"]
+          end
+      }
     end
-    Rails.logger.debug(ui_yaml.inspect)
     @config_response = ui_yaml
 
   end
