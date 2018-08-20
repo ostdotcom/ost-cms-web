@@ -13,7 +13,7 @@ class Web::SigninController < Web::BaseController
   # remove the google as referer to forward cookies
   #
   def goto_dashboard
-    render html: '<html><head><script>window.location="/dashboard"</script></head></html>'.html_safe
+    render html: '<html><head><script>window.location="/dashboard/1"</script></head></html>'.html_safe
   end
 
 end

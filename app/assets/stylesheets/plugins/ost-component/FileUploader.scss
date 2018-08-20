@@ -1,0 +1,10 @@
+@import "../../web/ost_theme/variables";
+
+.ost-file-uploader-wrap {
+  .file-upload-input {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+}
+

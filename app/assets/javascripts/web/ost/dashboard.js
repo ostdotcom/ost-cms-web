@@ -14,7 +14,7 @@
       oThis.bindEvents();
       oThis.ostFormBuilder = new cms.OstFormBuilder();
       oThis.refresh();
-      oThis.initPublishedListData(1);
+      oThis.initPublishedListData(entity_id);
     },
 
     bindEvents: function () {
@@ -24,7 +24,6 @@
       // Toggle Sidebar
       $("[data-toggle='sidebar']").click(function(event) {
         //event.preventDefault();
-        console.log("you clicked sidebar")
         $('.app').toggleClass('sidenav-toggled');
       });
 
@@ -70,8 +69,7 @@
       });
 
       $('body').on('click', '.j-publish-changes-link', function(e) {
-        var entityId = 1;
-        oThis.publish(entityId);
+        oThis.publish(entity_id);
       });
 
       $('body').on('click', '.j-reset-publish-link', function(e) {
@@ -99,7 +97,7 @@
           prevElementId = ui.item.prev().data('recordId');
           nextElementId = ui.item.next().data('recordId');
           console.log('recId:'+recId, 'prevElementId:'+prevElementId, 'nextElementId:'+nextElementId);
-          oThis.sortRecords(1, recId, prevElementId, nextElementId);
+          oThis.sortRecords(entity_id, recId, prevElementId, nextElementId);
         }
       });
     },
@@ -125,7 +123,7 @@
             url: '/api/content/active',
             method: 'GET',
             data: {
-                entity_id: 1
+                entity_id: entity_id
             },
             success: function(response){
               oThis.onRefresh(response);
@@ -148,14 +146,20 @@
 
     createMetaObject: function(list, recordHeading){
       var configList = Object.assign({},list);
-      var heading;
+      var heading, attrConfig;
       $.each( configList, function( key, list_item ) {
         var record = list_item.record;
         $.each( record , function( key, value ) {
           if(recordHeading && key == recordHeading){
             heading = value;
           }
-          var label = meta_data['meta']['news_list'][key]['meta_ui']['input_label'];
+          meta_data['meta']['news_list'].forEach(function(attr_object){
+            if(attr_object[key]){
+              attrConfig = attr_object[key];
+              return;
+            }
+          });
+          var label = attrConfig['meta_ui']['input_label'];
           record[key] = {'display_label' : label, 'display_value' : value};
         });
         list_item.heading = heading;

@@ -7,6 +7,7 @@ class Web::OstController < Web::BaseController
   # Edit entity Dashboard
   #
   def dashboard
+    @entity_id = params[:id] || 1
   end
 
   private
@@ -20,7 +21,11 @@ class Web::OstController < Web::BaseController
     @config_response[:data]["meta"].each do |key, value|
       Rails.logger.debug(key.inspect)
       Rails.logger.debug(value.inspect)
-      ui_yaml["meta"][value["section"].to_sym][value["data_key_name"].to_sym]["validations"] = value["validations"]
+      ui_yaml["meta"][value["section"].to_sym].each do |section|
+        if section[key] && section[key][:meta_ui]
+          section[key][:meta_ui]["validations"] = section["validations"]
+        end
+      end
     end
     Rails.logger.debug(ui_yaml.inspect)
     @config_response = ui_yaml
