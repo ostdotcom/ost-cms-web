@@ -23,7 +23,6 @@
 
       // Toggle Sidebar
       $("[data-toggle='sidebar']").click(function(event) {
-        //event.preventDefault();
         $('.app').toggleClass('sidenav-toggled');
       });
 
@@ -94,7 +93,6 @@
     },
 
     onRefresh: function(response){
-      var recId, prevElementId, nextElementId ;
       oThis.listData = oThis.createMetaObject(response.data.list);
       var template = Handlebars.compile($('#list_view').text());
       var html = template({'list_data' : oThis.listData});
@@ -260,12 +258,12 @@
     },
 
     getEntityConfig: function() {
-     return meta_data['meta'][entity_id];
+     return meta_data && meta_data['meta'][entity_id];
     },
 
     getRecordHeading: function() {
       var config = oThis.getEntityConfig();
-      return config['record_heading'];
+      return config && config['record_heading'];
     }
 
   };
