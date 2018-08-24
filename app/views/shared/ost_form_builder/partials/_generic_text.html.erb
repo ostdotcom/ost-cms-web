@@ -1,5 +1,5 @@
 <script  type="text/x-handlebars-template" id="generic-text" data-partial-id="generic-text">
-  <div class="form-group">
+  <div class="form-group mb-0">
     <label for="{{data_key_name}}">{{input_label}}</label>
     <input type="text" class="form-control" id="{{data_key_name}}" name="{{data_key_name}}" value="{{data_key_value}}"
       {{#each validations}}
@@ -10,5 +10,6 @@
         {{/when}}
       {{/each}}
     />
+    <div class="is-error" data-field-name="{{data_key_name}}" data-forname="{{data_key_name}}"></div>
   </div>
 </script>

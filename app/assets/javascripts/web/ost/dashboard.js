@@ -133,6 +133,7 @@
 
     submitForm: function(){
         jNewsForm = $('#news_form');
+        oThis.resetErrors();
         $.ajax({
             url: jNewsForm.attr('action'),
             method: jNewsForm.attr('method'),
@@ -140,8 +141,32 @@
             success: function(response){
                 $('#genericModal').modal('hide');
                 oThis.refresh();
+            },
+            error: function(error){
+              if (error.responseJSON.err   ){
+              var  errorResponse = error.responseJSON.err.error_data
+              } else{
+                return;
+              }
+              for (var key in errorResponse){
+                if (errorResponse[key].length > 0){
+                  var errorElement = $("[data-field-name='" + key + "']")
+                  var errorText =  oThis.getErrorText(errorResponse[key]);
+                  errorElement.text(errorText);
+                }
+              }
             }
         })
+    },
+
+    getErrorText: function (errorResponse) {
+      var errorText = '';
+      errorResponse.forEach(function(error){
+        for (var key in error){
+          errorText += error[key];
+        }
+      });
+      return errorText;
     },
 
     createMetaObject: function(list, recordHeading){
@@ -222,6 +247,11 @@
           oThis.refresh();
         }
       })
+    },
+
+    resetErrors: function () {
+      $(".is-error").text("");
+
     }
 
   };
