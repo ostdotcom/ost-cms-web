@@ -38,20 +38,21 @@
         if(jSelectorOutput){
             $(jSelectorOutput).html(html);
         }
-        ostNs.ostFileUploader.init('[name="news_list_image"]');
-        var fileUploader = $('[name="news_list_image"]').ostFileUploader();
+        ostNs.ostFileUploader.init('.file-uploader');
+        var fileUploader = $('.file-uploader').ostFileUploader();
         fileUploader.setToSignedApi( "/api/content/get_signed_url");
         return html;
     },
 
-    buildCreateForm: function(){
+    buildCreateForm: function(entityId){
       oThis.renderTemplate(
-        '#news_list',
+        '#generic_form',
         {
-          news_list: meta_data.meta.news_list,
+          entity: meta_data['meta'][entityId]['fields'],
+          entityId: entityId,
           action: '/api/content/create',
           method: 'POST',
-          header: 'Create News Entity'
+          header: 'Create New Record'
         },
         '#genericModal .modal-content'
       );
@@ -64,14 +65,15 @@
         method: 'GET',
         success: function (response) {
           oThis.renderTemplate(
-            '#news_list',
+            '#generic_form',
             {
-              news_list: meta_data.meta.news_list,
+              entity: meta_data['meta'][entity_id]['fields'],
               action: '/api/content/edit',
               method: 'POST',
-              header: 'Edit News Entity',
+              header: 'Edit Record',
               data: response.data.record,
-              id: recordId
+              id: recordId,
+              entityId: entity_id
             },
             '#genericModal .modal-content'
           );

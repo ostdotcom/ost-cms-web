@@ -1,5 +1,5 @@
-<script  type="text/x-handlebars-template" id="news_list">
-  <form action={{action}} method={{method}} id="news_form">
+<script  type="text/x-handlebars-template" id="generic_form">
+  <form action={{action}} method={{method}} id="entity_data_form">
     <div class="modal-header">
       <h5 class="modal-title" id="createModalLabel">{{header}}</h5>
       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -7,12 +7,12 @@
       </button>
     </div>
     <div class="modal-body">
-      {{#each news_list}}
+      {{#each entity}}
         {{#each this}}
           {{> (lookup this.meta_ui 'input_kind') input_label=this.meta_ui.input_label data_key_name=this.meta_ui.data_key_name  validations=this.validations data_key_value=(lookup ../../data this.meta_ui.data_key_name)}}
         {{/each}}
       {{/each}}
-      <input type="hidden" name="entity_id" value="1" />
+      <input type="hidden" name="entity_id" value="{{entityId}}" />
       {{#if id}}
         <input type="hidden" name="id" value={{id}} />
       {{/if}}

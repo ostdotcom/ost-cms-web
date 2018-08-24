@@ -1,5 +1,7 @@
 meta:
-    :news_list:
+    :1:
+      :record_heading: news_list_title
+      :fields:
         - news_list_title:
             :meta_ui:
                 :input_kind: generic-text
@@ -26,3 +28,16 @@ meta:
                 :input_kind: generic-date-picker
                 :input_label: Date
                 :data_key_name: news_list_date
+    :2:
+          :record_heading: members_list_title
+          :fields:
+            - members_list_title:
+                :meta_ui:
+                    :input_kind: generic-text
+                    :input_label: Title
+                    :data_key_name: members_list_title
+            - members_list_name:
+                :meta_ui:
+                    :input_kind: generic-text
+                    :input_label: Name
+                    :data_key_name: members_list_name

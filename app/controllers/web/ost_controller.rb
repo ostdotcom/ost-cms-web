@@ -20,7 +20,7 @@ class Web::OstController < Web::BaseController
     @config_response = CmsApi::Request::EntityConfig.new(GlobalConstant::Base.root_url, request.cookies, {"User-Agent" => http_user_agent}).get_config
 
     ui_yaml["meta"].each do |key, value |
-      ui_yaml["meta"][key].map! {
+      ui_yaml["meta"][key][:fields].map! {
         |field_name|
           field_name.each do | key_1, value_1|
           field_name[key_1]["validations"] = @config_response.data["meta"][key.to_s][key_1.to_s]["validations"]
