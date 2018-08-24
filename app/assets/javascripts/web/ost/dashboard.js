@@ -133,7 +133,7 @@
 
 
     submitForm: function(){
-        jNewsForm = $('#news_form');
+       var  jForm = $('#entity_data_form');
         oThis.resetErrors();
         $.ajax({
             url: jForm.attr('action'),
