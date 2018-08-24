@@ -159,8 +159,6 @@
         jEl       = oThis.jEl,
         fileType  = jElMocker[0].files[0].type ,
         fileName  = jElMocker[0].files[0].name ,
-
-        inputName = jEl.attr('name'),
         params    = { },
         currType , pathPreFix
       ;
@@ -169,7 +167,7 @@
         if( fileType.indexOf( key ) > -1  ){
           currType = oThis.fileTypeEnum[ key ];
           params[ currType ] = {};
-          params[ currType ][inputName] = fileType ;
+          params[ currType ]['image_type'] = fileType ;
           params[ currType ][ "image_name" ] = fileName.split(".").slice(0,-1).join(".")
           break;
         }
