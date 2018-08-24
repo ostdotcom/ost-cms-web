@@ -3,7 +3,7 @@
 export OC_SECRET_KEY_BASE='b1f0ff90cd692556f9740a8e609f88f2f4fc15d9dda9035445a7577c3f94936eaae91a0793c4ad5500314fe5a526a3b3f7c7c71c303f883d903df138783a8225'
 
 # Base Url
-export OC_BASE_URL='https://securedhost.com'
+export OC_BASE_URL='https://cms.developmentost.com'
 
 # Cloudfront details
 export OCW_CLOUDFRONT_DOMAIN=''

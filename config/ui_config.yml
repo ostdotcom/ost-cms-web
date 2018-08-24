@@ -15,9 +15,10 @@ meta:
                 :input_kind: ost-input-file
                 :input_label: Image
                 :data_key_name: news_list_image
+                :get_signed_url: api/content/get_signed_url
         - news_list_article_link:
             :meta_ui:
-                :input_kind: generic-text
+                :input_kind: generic-link
                 :input_label: Article Link
                 :data_key_name: news_list_article_link
         - news_list_date:

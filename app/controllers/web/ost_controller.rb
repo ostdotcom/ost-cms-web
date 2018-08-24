@@ -3,6 +3,7 @@ class Web::OstController < Web::BaseController
   layout "ost"
 
   before_action :get_entity_ui_config
+  before_action :get_configurations
 
   # Edit entity Dashboard
   #
@@ -28,6 +29,11 @@ class Web::OstController < Web::BaseController
     end
     @config_response = ui_yaml
 
+  end
+
+  def get_configurations
+    app_config = CmsApi::Request::EntityConfig.new(GlobalConstant::Base.root_url, request.cookies, {"User-Agent" => http_user_agent}).get_app_config
+    @app_config = app_config.data["meta"]
   end
 
 end

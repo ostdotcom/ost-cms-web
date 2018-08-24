@@ -13,6 +13,10 @@
 
   <% end %>
 
+  <% if @app_config.present? %>
+    <meta name="cloudfront-url" content="<%= @app_config["cloudfront_url"] %>" />
+  <% end %>
+
   <%
      og_meta = @page_meta_data[:og]
      if og_meta.present?
@@ -70,6 +74,7 @@
   <%= csrf_meta_tags %>
 
   <%= render :partial => "/shared/web/common/fav_icons" %>
+  <%= render :partial => "/shared/web/common/svgs" %>
 
 </head>
 

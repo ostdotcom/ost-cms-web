@@ -1,10 +1,36 @@
 @import "../../web/ost_theme/variables";
-
 .ost-file-uploader-wrap {
-  .file-upload-input {
+   border: 1px solid #ced4da;
+   border-radius: 4px;
+   margin: 0px;
+
+   height: 38px;
+
+  .file-name{
+    font-size: 14px;
+    border: none;
+    width: 100%;
+    outline: none;
+    color: transparent;
+    text-shadow: 0 0 0 #9ba0a5;
+
+
+  }
+  .label-wrapper{
+    color: #495057;
+    background-color: #e9ecef;
+  }
+  .not-in-view{
     position: absolute;
     top: -9999px;
     left: -9999px;
   }
+  .edit-svg, .upload-svg {
+    height: 15px;
+    width: 15px;
+    cursor: pointer;
+  }
 }
+
+
 

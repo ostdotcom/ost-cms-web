@@ -24,6 +24,14 @@ module CmsApi
       def get_config()
         get("")
       end
+
+      # Get configurations required for application
+      #
+      #
+      #
+      def get_app_config()
+        get("app")
+      end
     end
 
   end

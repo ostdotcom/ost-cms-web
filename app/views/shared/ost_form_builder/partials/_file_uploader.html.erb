@@ -1,65 +1,63 @@
 <script type="text/x-handlebars-template" id="ost-input-file" data-partial-id="ost-input-file">
-  <div class="form-group">
-    <label>{{input_label}}</label>
-    <div class="custom-file form-control">
-      <input type="file" class="custom-file-input"
-             id="validatedCustomFile"
-             data-get-signed-url="{{signed_url}}"
-             class="file-upload-input"
-             {{is_required validations.required}}
-             data-min-bytes="{{validations.min_bytes}}"
-             data-max-bytes="{{validations.max_bytes}}"
-             type='file'
-             name="{{data_key_name}}"
-             value="{{value}}">
-      <label class="custom-file-label" for="validatedCustomFile">
-        {{#if data_key_value}}
-          {{data_key_value}}
-        {{else}}
-          Choose File...
-        {{/if}}
-      </label>
-      <div class="invalid-feedback">Example invalid custom file feedback</div>
+
+  <div class="file-input-error-wrapper">
+  <label>{{input_label}}</label>
+  <div class="row form-group  ost-file-uploader-wrap {{entityKey}}">
+    <div class="col-10 align-self-center">
+        <input type="text" {{isRequired validations.required}}  class=" mb-0 file-name" value="{{#ifFilePath data_key_value}}{{data_key_value}} {{/ifFilePath}}">
     </div>
+    <div class="col-2 text-right label-wrapper d-flex">
+      <label class="input-label-wrapper mb-0 mx-auto pt-1" for="{{generateId data_key_name}}" title="{{title}}">
+            Browse
+      </label>
+      <input id="{{generateId true}}" class="file-upload-mocker not-in-view" type='file' name="{{data_key_name}}_mocker"
+             {{#validations.min_bytes}} data-min-bytes="{{this}}" {{/validations.min_bytes}}
+      {{#validations.max_bytes}} data-max-bytes="{{this}}" {{/validations.max_bytes}}
+      {{#validations.accept}} data-accept="{{getAccept this}}" {{/validations.accept}}
+      data-get-signed-url={{get_signed_url}} >
+
+      <input class="not-in-view" name="{{data_key_name}}" value="{{data_key_value}}" type="text"
+             {{isRequired validations.required}} />
+    </div>
+
+  </div>
+  <div class="row" style="height:20px;">
     <div class="invalid-feedback col-12" data-forname="{{data_key_name}}"></div>
   </div>
+  </div>
+
 </script>
 
 <script type="unknown" id="j-processing-icon">
-  <img class="img-fluid processing-icon" src="https://dxwfxs8b4lg24.cloudfront.net/ost-kit/images/processed-loader-1.gif"/>
+  <img class="img-fluid processing-icon" width="25px" height="25px" src="https://dxwfxs8b4lg24.cloudfront.net/ost-kit/images/processed-loader-1.gif"/>
 </script>
 
 <script type="text/x-handlebars-template" id="uploaded-image-wrap">
-  <img class="img-fluid file-uploaded-img" src="{{img_src}}"/>
-  <svg class="fav-svg align-middle">
+  <img class="file-uploaded-img" src="{{img_src}}" height="25" width="25" />
+  <svg class="edit-svg align-middle">
     <switch>
       <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#edit-icon"></use>
     </switch>
   </svg>
 </script>
 
-<%# content_for :ost_components do %>
-<!--  <script type="text/javascript">-->
-<!--    $(function () {-->
-
-<!--      Handlebars.registerHelper('getAccept', function( data, options ) {-->
-<!--        if( typeof data == "string" ){-->
-<!--          return data;-->
-<!--        }else if( data.constructor == Array ) {-->
-<!--          return data.join(' , ');-->
-<!--        }-->
-<!--        return "";-->
-<!--      });-->
-
-<!--      Handlebars.registerHelper('ifFilePath', function( data, options ) {-->
-<!--        if( typeof data == "string" ){-->
-<!--          return options.fn(this);-->
-<!--        }-->
-<!--        return options.inverse(this);-->
-<!--      });-->
-
-<!--    });-->
-<!--  </script>-->
-<%#end%>
-
-
+<% content_for :ost_components do %>
+  <script type="text/javascript">
+    $(function () {
+      Handlebars.registerHelper('getAccept', function( data, options ) {
+        if( typeof data == "string" ){
+          return data;
+        }else if( data && data.constructor == Array ) {
+          return data.join(' , ');
+        }
+        return "";
+      });
+      Handlebars.registerHelper('ifFilePath', function( data, options ) {
+        if( typeof data == "string" ){
+          return options.fn(this);
+        }
+        return options.inverse(this);
+      });
+    });
+  </script>
+<%end%>

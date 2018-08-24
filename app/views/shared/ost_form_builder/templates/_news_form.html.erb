@@ -9,7 +9,7 @@
     <div class="modal-body">
       {{#each news_list}}
         {{#each this}}
-          {{> (lookup this.meta_ui 'input_kind') input_label=this.meta_ui.input_label data_key_name=this.meta_ui.data_key_name validations=this.validations data_key_value=(lookup ../../data this.meta_ui.data_key_name)}}
+          {{> (lookup this.meta_ui 'input_kind') input_label=this.meta_ui.input_label data_key_name=this.meta_ui.data_key_name  validations=this.validations data_key_value=(lookup ../../data this.meta_ui.data_key_name)}}
         {{/each}}
       {{/each}}
       <input type="hidden" name="entity_id" value="1" />

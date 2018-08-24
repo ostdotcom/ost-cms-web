@@ -3,6 +3,7 @@
 (function () {
 
   var parentNs = ns("cms"),
+      ostNs = ns("ost"),
       oThis;
 
   var OstFormBuilder = function ( config ) {
@@ -19,7 +20,6 @@
     jFormContainer: null,
 
     init: function () {
-
       // Register all partials.
       $("[data-partial-id]").each( function ( index, el ) {
         var jEl = $( el );
@@ -38,6 +38,9 @@
         if(jSelectorOutput){
             $(jSelectorOutput).html(html);
         }
+        ostNs.ostFileUploader.init('[name="news_list_image"]');
+        var fileUploader = $('[name="news_list_image"]').ostFileUploader();
+        fileUploader.setToSignedApi( "/api/content/get_signed_url");
         return html;
     },
 
@@ -52,6 +55,7 @@
         },
         '#genericModal .modal-content'
       );
+
     },
 
     buildEditForm: function(recordId) {
