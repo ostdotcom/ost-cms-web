@@ -15,6 +15,7 @@
       oThis.ostFormBuilder = new cms.OstFormBuilder();
       oThis.refresh();
       oThis.initPublishedListData(entity_id);
+      oThis.getEntityConfig();
     },
 
     bindEvents: function () {
@@ -52,12 +53,12 @@
       });
 
       $('.j-create-link').on('click', function () {
-        oThis.ostFormBuilder.buildCreateForm();
+        oThis.ostFormBuilder.buildCreateForm(entity_id);
       });
 
-      $('body').on('submit', '#news_form' , function(e) {
+      $('body').on('submit', '#entity_data_form' , function(e) {
           e.preventDefault();
-          oThis.submitForm();
+          oThis.submitForm($(this));
       });
 
       $('body').on('click', '.j-edit-link', function(e) {
@@ -73,33 +74,33 @@
       });
 
       $('body').on('click', '.j-reset-publish-link', function(e) {
-        var entityId = 1;
-        oThis.resetPublish(entityId);
+        oThis.resetPublish(entity_id);
       });
 
     },
 
-    onRefresh: function(response){
-      var recordHeading = 'news_list_title';
-      var recId, prevElementId, nextElementId ;
-      oThis.listData = oThis.createMetaObject(response.data.list, recordHeading);
-      var template = Handlebars.compile($('#list_view').text());
-      var html = template({'list_data' : oThis.listData});
-      $('#list').html(html);
+    bindSortable: function() {
       $('#accordion').sortable({
         revert: true,
         stop: function(e, ui) {
           $('#list .card').each(function(k){
             $(this).find('.record-index').text(k+1);
           });
-          console.log(ui.item);
           recId = ui.item.data('recordId');
           prevElementId = ui.item.prev().data('recordId');
           nextElementId = ui.item.next().data('recordId');
-          console.log('recId:'+recId, 'prevElementId:'+prevElementId, 'nextElementId:'+nextElementId);
           oThis.sortRecords(entity_id, recId, prevElementId, nextElementId);
         }
       });
+    },
+
+    onRefresh: function(response){
+      var recId, prevElementId, nextElementId ;
+      oThis.listData = oThis.createMetaObject(response.data.list);
+      var template = Handlebars.compile($('#list_view').text());
+      var html = template({'list_data' : oThis.listData});
+      $('#list').html(html);
+      oThis.bindSortable();
     },
 
     sortRecords: function(entityId, recordId, previous, next){
@@ -131,29 +132,29 @@
         })
     },
 
-    submitForm: function(){
-        jNewsForm = $('#news_form');
+    submitForm: function(jForm){
         $.ajax({
-            url: jNewsForm.attr('action'),
-            method: jNewsForm.attr('method'),
-            data: jNewsForm.serialize(),
-            success: function(response){
+            url: jForm.attr('action'),
+            method: jForm.attr('method'),
+            data: jForm.serialize(),
+            success: function(){
                 $('#genericModal').modal('hide');
                 oThis.refresh();
             }
         })
     },
 
-    createMetaObject: function(list, recordHeading){
-      var configList = Object.assign({},list);
-      var heading, attrConfig;
+    createMetaObject: function(list){
+      var configList = Object.assign({},list),
+          heading, attrConfig,
+          recordHeading = oThis.getRecordHeading();
       $.each( configList, function( key, list_item ) {
         var record = list_item.record;
         $.each( record , function( key, value ) {
           if(recordHeading && key == recordHeading){
             heading = value;
           }
-          meta_data['meta']['news_list'].forEach(function(attr_object){
+          meta_data['meta'][entity_id]['fields'].forEach(function(attr_object){
             if(attr_object[key]){
               attrConfig = attr_object[key];
               return;
@@ -174,7 +175,7 @@
         data: {
           id: recordId
         },
-        success: function (response) {
+        success: function () {
           oThis.refresh();
         }
       });
@@ -188,7 +189,7 @@
           entity_id: entityId
         },
         success: function(response){
-          var recordHeading = 'news_list_title';
+          var recordHeading = oThis.getRecordHeading();
           oThis.publishedListData = oThis.createMetaObject(response.data.list, recordHeading);
           var template = Handlebars.compile($('#published_list_view').text());
           var html = template({'published_list_data' : oThis.publishedListData});
@@ -204,7 +205,7 @@
         data: {
           entity_id: entityId
         },
-        success: function(response){
+        success: function(){
          oThis.initPublishedListData(entityId);
         }
       })
@@ -217,11 +218,20 @@
         data: {
           entity_id: entityId
         },
-        success: function(response){
+        success: function(){
           oThis.initPublishedListData(entityId);
           oThis.refresh();
         }
       })
+    },
+
+    getEntityConfig: function() {
+     return meta_data['meta'][entity_id];
+    },
+
+    getRecordHeading: function() {
+      var config = oThis.getEntityConfig();
+      return config['record_heading'];
     }
 
   };
