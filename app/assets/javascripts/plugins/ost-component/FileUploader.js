@@ -191,8 +191,8 @@
         jElMocker = oThis.jElMocker ,
         jEl       = oThis.jEl,
         inputName = jEl.attr('name');
-        var action    = response.data[inputName].url ,
-        fields    = response.data[inputName].fields,
+        var action    = response.data.url ,
+        fields    = response.data.fields,
         theFormFile  = jElMocker[0].files[0] ,
         imageSrc  = fields.key
       ;

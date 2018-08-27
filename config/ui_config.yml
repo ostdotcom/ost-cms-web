@@ -17,7 +17,6 @@ meta:
                 :input_kind: ost-input-file
                 :input_label: Image
                 :data_key_name: news_list_image
-                :get_signed_url: api/content/get_signed_url
         - news_list_article_link:
             :meta_ui:
                 :input_kind: generic-link
@@ -29,15 +28,22 @@ meta:
                 :input_label: Date
                 :data_key_name: news_list_date
     :2:
-          :record_heading: members_list_title
-          :fields:
-            - members_list_title:
-                :meta_ui:
-                    :input_kind: generic-text
-                    :input_label: Title
-                    :data_key_name: members_list_title
-            - members_list_name:
-                :meta_ui:
-                    :input_kind: generic-text
-                    :input_label: Name
-                    :data_key_name: members_list_name
+      :record_heading: members_list_title
+      :fields:
+        - members_list_title:
+            :meta_ui:
+                :input_kind: generic-text
+                :input_label: Title
+                :data_key_name: members_list_title
+        - members_list_name:
+            :meta_ui:
+                :input_kind: generic-text
+                :input_label: Name
+                :data_key_name: members_list_name
+        - members_list_image:
+            :meta_ui:
+                :input_kind: ost-input-file
+                :input_label: Image
+                :data_key_name: members_list_image
+
+

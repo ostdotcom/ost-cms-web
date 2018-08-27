@@ -15,6 +15,7 @@
       oThis.refresh();
       oThis.initPublishedListData(entity_id);
       oThis.getEntityConfig();
+      oThis.hideSideBarMenuItem();
     },
 
     bindEvents: function () {
@@ -264,6 +265,15 @@
     getRecordHeading: function() {
       var config = oThis.getEntityConfig();
       return config && config['record_heading'];
+    },
+
+    hideSideBarMenuItem: function() {
+      var jEls = $('.treeview-menu');
+      jEls.each( function(index, jEl) {
+        if($(jEl).find('.treeview-item').length == 0){
+          $(jEl).closest(".treeview").hide();
+        }
+      });
     }
 
   };

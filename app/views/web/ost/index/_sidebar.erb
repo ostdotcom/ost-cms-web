@@ -47,8 +47,11 @@
         <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa <%=data[:page_icon_class] %>"></i><span class="app-menu__label"><%= data[:page_label] %></span><i class="treeview-indicator fa fa-angle-right"></i></a>
         <ul class="treeview-menu">
           <% data[:lists].each do |list_item | %>
-            <li><a class="treeview-item" href="/dashboard/<%= list_item.values[0][:id] %>"><i class="icon fa fa-circle-o"></i><%= list_item.values[0][:list_label] %></a>
-            </li>
+            <% rec_id = list_item.values[0][:id].to_s.to_sym %>
+            <% if @config_response["meta"][rec_id] %>
+              <li><a class="treeview-item" href="/dashboard/<%= list_item.values[0][:id] %>"><i class="icon fa fa-circle-o"></i><%= list_item.values[0][:list_label] %></a>
+              </li>
+            <%end%>
           <% end%>
         </ul>
       </li>
