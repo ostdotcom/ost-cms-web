@@ -18,6 +18,7 @@
     uiConfig: null,
     dataConfig: null,
     jFormContainer: null,
+    sSelectedItem: "a.selected",
 
     init: function () {
       // Register all partials.
@@ -52,7 +53,7 @@
           entityId: entityId,
           action: '/api/content/create',
           method: 'POST',
-          header: 'Create New Record'
+          header: 'Create '+ $(oThis.selectedItem).text() +' Record'
         },
         '#genericModal .modal-content'
       );
@@ -70,7 +71,7 @@
               entity: meta_data['meta'][entity_id]['fields'],
               action: '/api/content/edit',
               method: 'POST',
-              header: 'Edit Record',
+              header: 'Edit ' + $(oThis.selectedItem).text() + ' Record',
               data: response.data.record,
               id: recordId,
               entityId: entity_id

@@ -4,7 +4,7 @@
           page_label: "Home Page",
           page_icon_class: "fa-home",
           lists: [news_ol: {
-                list_label: "News List",
+                list_label: "News",
                 id: 1
             }]
       },
@@ -12,15 +12,15 @@
           page_label: "Team Page",
           page_icon_class: "fa-users",
           lists: [{team_ol: {
-                    list_label: "Members List",
+                    list_label: "Members Team",
                     id: 2
                   }},
                   {advisory_team_ol: {
-                      list_label: "Advisors List",
+                      list_label: "Advisors Team",
                       id: 3
                   }},
                   {extended_team_ol: {
-                      list_label: "Extended Team List",
+                      list_label: "Extended Team",
                       id: 4
                   }}]
       },
@@ -28,11 +28,11 @@
           page_label: "Careers Page",
           page_icon_class: "fa-graduation-cap",
           lists: [{berlin_careers_ol: {
-                    list_label: "Berlin Careers List",
+                    list_label: "Berlin Careers",
                      id: 5
                   }},
                   {pune_careers_ol: {
-                      list_label: "Pune Careers List",
+                      list_label: "Pune Careers",
                        id: 6
                   }}
 
@@ -44,7 +44,7 @@
           lists: [
               {
                   partners_ol: {
-                      list_label: "Partners List",
+                      list_label: "Partners",
                       id: 7
                     }
               }
@@ -63,7 +63,7 @@
           <% data[:lists].each do |list_item | %>
             <% rec_id = list_item.values[0][:id].to_s.to_sym %>
             <% if @config_response["meta"][rec_id] %>
-              <li><a class="treeview-item" href="/dashboard/<%= list_item.values[0][:id] %>"><i class="icon fa fa-circle-o"></i><%= list_item.values[0][:list_label] %></a>
+              <li><a class="treeview-item" data-entity-id="<%= list_item.values[0][:id] %>" href="/dashboard/<%= list_item.values[0][:id] %>"><i class="icon fa fa-circle-o"></i><%= list_item.values[0][:list_label] %></a>
               </li>
             <%end%>
           <% end%>

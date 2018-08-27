@@ -8,13 +8,16 @@
     ostFormBuilder: null,
     listData: null,
     jSortable:  $('#sortable'),
+    jSidebar: $('.app-sidebar'),
+    selectedItem: "a.selected",
 
     init: function (config) {
       oThis.bindEvents();
-      oThis.ostFormBuilder = new cms.OstFormBuilder();
+      oThis.ostFormBuilder = new cms.OstFormBuilder({selectedItem: oThis.selectedItem});
       oThis.refresh();
       oThis.initPublishedListData(entity_id);
       oThis.getEntityConfig();
+      oThis.selectSidebarMenu();
       oThis.hideSideBarMenuItem();
     },
 
@@ -99,6 +102,17 @@
       var html = template({'list_data' : oThis.listData});
       $('#list').html(html);
       oThis.bindSortable();
+    },
+
+
+    selectSidebarMenu: function(){
+      var entityId = window.location.pathname,
+        entityId = entityId[entityId.length - 1],
+        selectedItem = oThis.jSidebar.find("[data-entity-id='" + entityId + "']"),
+        selectedParent = selectedItem.closest("li.treeview");
+        selectedParent.addClass("is-expanded");
+        selectedItem.addClass("selected");
+
     },
 
     sortRecords: function(entityId, recordId, previous, next){

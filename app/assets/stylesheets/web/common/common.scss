@@ -35,3 +35,10 @@
 .custom-file.form-control{
   border: none;
 }
+
+a.treeview-item{
+  &.selected{
+    background-color: #fbd764;
+    color: #34445b;
+  }
+}
