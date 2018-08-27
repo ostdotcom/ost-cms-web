@@ -45,6 +45,27 @@ meta:
                 :input_kind: ost-input-file
                 :input_label: Image
                 :data_key_name: members_list_image
+        - members_list_linkedIn:
+             :meta_ui:
+                :input_kind: generic-link
+                :input_label: LinkedIn
+                :data_key_name: members_list_linkedIn
+        - members_list_twitter:
+            :meta_ui:
+                :input_kind: generic-link
+                :input_label: Twitter
+                :data_key_name: members_list_twitter
+        - members_list_medium:
+            :meta_ui:
+                :input_kind: generic-link
+                :input_label: Medium
+                :data_key_name: members_list_medium
+        - members_list_description:
+            :meta_ui:
+                :input_kind: generic-textarea
+                :input_label: Description
+                :data_key_name: members_list_description
+
     :4:
       :record_heading: extended_team_url
       :fields:
@@ -58,6 +79,4 @@ meta:
                 :input_kind: ost-input-file
                 :input_label: Image
                 :data_key_name: extended_team_image
-
-
 
