@@ -66,6 +66,46 @@ meta:
                 :input_label: Description
                 :data_key_name: members_list_description
 
+
+    :3:
+      :record_heading: advisors_list_title
+      :fields:
+        - advisors_list_title:
+            :meta_ui:
+                :input_kind: generic-text
+                :input_label: Title
+                :data_key_name: advisors_list_title
+        - advisors_list_name:
+             :meta_ui:
+                :input_kind: generic-text
+                :input_label: Name
+                :data_key_name: advisors_list_name
+        - advisors_list_image:
+             :meta_ui:
+                :input_kind: ost-input-file
+                :input_label: Image
+                :data_key_name: advisors_list_image
+        - advisors_list_linkedIn:
+             :meta_ui:
+                :input_kind: generic-link
+                :input_label: LinkedIn
+                :data_key_name: advisors_list_linkedIn
+        - advisors_list_twitter:
+            :meta_ui:
+                :input_kind: generic-link
+                :input_label: Twitter
+                :data_key_name: advisors_list_twitter
+        - advisors_list_medium:
+            :meta_ui:
+                :input_kind: generic-link
+                :input_label: Medium
+                :data_key_name: advisors_list_medium
+        - advisors_list_description:
+            :meta_ui:
+                :input_kind: generic-textarea
+                :input_label: Description
+                :data_key_name: advisors_list_description
+
     :4:
       :record_heading: extended_team_url
       :fields:
@@ -80,3 +120,42 @@ meta:
                 :input_label: Image
                 :data_key_name: extended_team_image
 
+    :5:
+        :record_heading: careers_title
+        :fields:
+          - careers_title:
+              :meta_ui:
+                  :input_kind: generic-text
+                  :input_label: Title
+                  :data_key_name: careers_title
+          - careers_description:
+                :meta_ui:
+                    :input_kind: generic-textarea
+                    :input_label: Description
+                    :data_key_name: careers_description
+
+          - careers_url:
+              :meta_ui:
+                  :input_kind: generic-link
+                  :input_label: Job Description Link
+                  :data_key_name: careers_url
+
+    :6:
+        :record_heading: careers_title
+        :fields:
+          - careers_title:
+              :meta_ui:
+                  :input_kind: generic-text
+                  :input_label: Title
+                  :data_key_name: careers_title
+          - careers_description:
+                :meta_ui:
+                    :input_kind: generic-textarea
+                    :input_label: Description
+                    :data_key_name: careers_description
+
+          - careers_url:
+              :meta_ui:
+                  :input_kind: generic-link
+                  :input_label: Job Description Link
+                  :data_key_name: careers_url
