@@ -33,11 +33,27 @@ meta:
           :fields:
             - members_list_title:
                 :meta_ui:
-                    :input_kind: generic-text
-                    :input_label: Title
+                    :input_kind: generic-select
+                    :input_label: title
                     :data_key_name: members_list_title
+                    :options: [option 1, option 2, option 3 ]
             - members_list_name:
                 :meta_ui:
                     :input_kind: generic-text
                     :input_label: Name
                     :data_key_name: members_list_name
+    :3:
+          :record_heading: extended_team_url
+          :fields:
+            - extended_team_url:
+                :meta_ui:
+                    :input_kind: generic-link
+                    :input_label: URL
+                    :data_key_name: extended_team_url
+            - extended_team_image:
+                :meta_ui:
+                    :input_kind: ost-input-file
+                    :input_label: Image
+                    :data_key_name: extended_team_image
+
+
