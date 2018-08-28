@@ -16,7 +16,7 @@
 
   <div class="form-group">
     <label for="exampleFormControlSelect1">{{input_label}}</label>
-    <select class="form-control"  name="{{data_key_name}}" id="exampleFormControlSelect1">
+    <select class="form-control"  name="{{data_key_name}}" id="exampleFormControlSelect1" multiple>
       {{#each select_options}}
       <option value="{{this}}">{{this}}</option>
       {{/each}}

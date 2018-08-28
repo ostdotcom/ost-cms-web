@@ -107,18 +107,61 @@ meta:
                 :data_key_name: advisors_list_description
 
     :4:
-      :record_heading: extended_team_url
+      :record_heading: partners_name
       :fields:
-        - extended_team_url:
+        - partners_name:
+            :meta_ui:
+                :input_kind: generic-text
+                :input_label: Name
+                :data_key_name: partners_name
+        - partners_description:
+            :meta_ui:
+                :input_kind: generic-textarea
+                :input_label: Description
+                :data_key_name: partners_description
+        - partners_founders:
+            :meta_ui:
+                :input_kind: generic-text
+                :input_label: Founders
+                :data_key_name: partners_founders
+        - partners_location:
+            :meta_ui:
+                :input_kind: generic-text
+                :input_label: Location
+                :data_key_name: partners_location
+        - partners_industry:
+            :meta_ui:
+                :input_kind: generic-select
+                :input_label: Industry
+                :data_key_name: partners_industry
+                :options: [Social & Creative, Loyalty, DApps, Marketplace, Community, Sharing Economy]
+        - partners_size:
+            :meta_ui:
+                :input_kind: generic-select
+                :input_label: Size
+                :data_key_name: partners_industry
+        - partners_url:
             :meta_ui:
                 :input_kind: generic-link
                 :input_label: URL
-                :data_key_name: extended_team_url
-        - extended_team_image:
+                :data_key_name: partners_url
+        - partners_twitter:
             :meta_ui:
-                :input_kind: ost-input-file
-                :input_label: Image
-                :data_key_name: extended_team_image
+                :input_kind: generic-link
+                :input_label: Twitter URL
+                :data_key_name: partners_twitter
+        - partners_medium:
+            :meta_ui:
+                :input_kind: generic-link
+                :input_label: Medium URL
+                :data_key_name: partners_medium
+        - partners_linkedin:
+            :meta_ui:
+                :input_kind: generic-link
+                :input_label: LinkedIn URL
+                :data_key_name: partners_linkedin
+
+
 
     :5:
         :record_heading: careers_title

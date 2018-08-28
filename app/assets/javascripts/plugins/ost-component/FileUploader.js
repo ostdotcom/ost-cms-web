@@ -103,7 +103,7 @@
         type      = file.type,
         minBytes  = jElMocker.data('min-bytes'),
         maxBytes  = jElMocker.data('max-bytes'),
-        accept    = jElMocker.data('accept').split(","),
+        // accept    = jElMocker.data('accept').split(","),
         validFile = true,
         maxMb ,
         errorMsg
@@ -117,10 +117,10 @@
         maxMb = maxBytes / (1024*1024);
         errorMsg = name +' file size too large. Max allowed '+maxMb+' MB';
         oThis.showError( errorMsg  ) ;
-      }else if (accept.indexOf(type) < 0){
-        validFile = false;
-        errorMsg = 'This file format is not supported';
-        oThis.showError( errorMsg  ) ;
+      // }else if (accept.indexOf(type) < 0){
+      //   validFile = false;
+      //   errorMsg = 'This file format is not supported';
+      //   oThis.showError( errorMsg  ) ;
       }
 
       return validFile ;
@@ -166,9 +166,8 @@
       for(var key in oThis.fileTypeEnum ){
         if( fileType.indexOf( key ) > -1  ){
           currType = oThis.fileTypeEnum[ key ];
-          params[ currType ] = {};
-          params[ currType ]['image_type'] = fileType ;
-          params[ currType ][ "image_name" ] = fileName.split(".").slice(0,-1).join(".")
+          params['file_type'] = fileType ;
+          params[ "file_name" ] = fileName.split(".").slice(0,-1).join(".")
           break;
         }
       }
