@@ -62,7 +62,7 @@ meta:
                 :data_key_name: members_list_medium
         - members_list_description:
             :meta_ui:
-                :input_kind: generic-color-picker
+                :input_kind: generic-textarea
                 :input_label: Description
                 :data_key_name: members_list_description
 
@@ -131,7 +131,7 @@ meta:
                 :data_key_name: partners_location
         - partners_industry:
             :meta_ui:
-                :input_kind: generic-select
+                :input_kind: generic-multiselect
                 :input_label: Industry
                 :data_key_name: partners_industry
                 :options: [Social & Creative, Loyalty, DApps, Marketplace, Community, Sharing Economy]
@@ -140,6 +140,7 @@ meta:
                 :input_kind: generic-select
                 :input_label: Size
                 :data_key_name: partners_industry
+                :options: [Small, Medium, Large]
         - partners_url:
             :meta_ui:
                 :input_kind: generic-link
@@ -160,7 +161,16 @@ meta:
                 :input_kind: generic-link
                 :input_label: LinkedIn URL
                 :data_key_name: partners_linkedin
-
+        - partners_on_hover_bgcolor:
+            :meta_ui:
+                :input_kind: generic-color-picker
+                :input_label: On Hover Background Color
+                :data_key_name: partners_on_hover_bgcolor
+        - partners_on_hover_imgcolor:
+            :meta_ui:
+                :input_kind: generic-color-picker
+                :input_label: On Hover Image Color
+                :data_key_name: partners_on_hover_imgcolor
 
 
     :5:

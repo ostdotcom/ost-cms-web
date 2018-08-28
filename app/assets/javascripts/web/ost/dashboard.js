@@ -191,7 +191,9 @@
           recordHeading = oThis.getRecordHeading();
 
       $.each( configList, function( key, list_item ) {
-        var record = list_item.record;
+        var record = list_item.record,
+            label,
+            inputKind;
         $.each( record , function( key, value ) {
           if(recordHeading && key == recordHeading){
             heading = value;
@@ -202,8 +204,9 @@
               return;
             }
           });
-          var label = attrConfig['meta_ui']['input_label'];
-          record[key] = {'display_label' : label, 'display_value' : value};
+          label = attrConfig['meta_ui']['input_label'];
+          inputKind = attrConfig['meta_ui']['input_kind'];
+          record[key] = {'display_label' : label, 'display_value' : value, 'input_kind' : inputKind};
         });
         list_item.heading = heading;
       });

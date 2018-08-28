@@ -155,13 +155,32 @@
           return "";
         }
       });
+
+      Handlebars.registerHelper('isImageUrl', function(data, options) {
+        if( data == "ost-input-file" ){
+          return options.fn(this);
+        }
+        return options.inverse(this);
+      });
+
+      Handlebars.registerHelper('isColor', function(data, options) {
+        if( data == "generic-color-picker" ){
+          return options.fn(this);
+        }
+        return options.inverse(this);
+      });
+
+      Handlebars.registerHelper('isText', function(data, options) {
+        if( data != "ost-input-file" && data != "generic-color-picker"){
+          return options.fn(this);
+        }
+        return options.inverse(this);
+      });
+
     },
 
     bindColorPicker : function() {
-      $(".color-picker").spectrum({
-        color: "#fff",
-        preferredFormat: "hex"
-      });
+      ostNs.colorPicker.initColorPicker('.color-picker');
     },
 
     initFileUploader : function() {
