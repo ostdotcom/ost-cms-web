@@ -3,48 +3,43 @@
 (function () {
 
   var parentNs = ns("cms"),
-      ostNs = ns("ost"),
-      oThis;
+    ostNs = ns("ost"),
+    oThis;
 
-  var OstFormBuilder = function ( config ) {
+  var OstFormBuilder = function (config) {
     oThis = this;
-    $.extend( oThis, config);
+    $.extend(oThis, config);
 
     oThis.init();
   };
 
   OstFormBuilder.prototype = {
 
-    uiConfig: null,
-    dataConfig: null,
-    jFormContainer: null,
-    sSelectedItem: "a.selected",
-
     init: function () {
       // Register all partials.
-      $("[data-partial-id]").each( function ( index, el ) {
-        var jEl = $( el );
-        var templateHtml =  el.innerHTML;
+      $("[data-partial-id]").each(function (index, el) {
+        var jEl = $(el);
+        var templateHtml = el.innerHTML;
         var templateId = jEl.data("partialId");
-        Handlebars.registerPartial( templateId, templateHtml );
-        jEl.removeAttr( "data-partial-id" );
+        Handlebars.registerPartial(templateId, templateHtml);
+        jEl.removeAttr("data-partial-id");
       });
 
       oThis.registerHelpers();
     },
 
-    renderTemplate: function( jSelectorTemplate, context, jSelectorOutput ){
-        var template = Handlebars.compile($(jSelectorTemplate).text());
-        var html = template(context);
-        if(jSelectorOutput){
-            $(jSelectorOutput).html(html);
-        }
-        oThis.initFileUploader();
-        oThis.bindColorPicker();
-        return html;
+    renderTemplate: function (jSelectorTemplate, context, jSelectorOutput) {
+      var template = Handlebars.compile($(jSelectorTemplate).text());
+      var html = template(context);
+      if (jSelectorOutput) {
+        $(jSelectorOutput).html(html);
+      }
+      oThis.initFileUploader();
+      oThis.bindColorPicker();
+      return html;
     },
 
-    buildCreateForm: function(entityId){
+    buildCreateForm: function (entityId) {
       oThis.renderTemplate(
         '#generic_form',
         {
@@ -52,16 +47,16 @@
           entityId: entityId,
           action: '/api/content/create',
           method: 'POST',
-          header: 'Create '+ $(oThis.selectedItem).text() +' Record'
+          header: 'Create ' + $(oThis.selectedItem).text() + ' Record'
         },
         '#genericModal .modal-content'
       );
 
     },
 
-    buildEditForm: function(recordId) {
+    buildEditForm: function (recordId) {
       $.ajax({
-        url: '/api/content/record?id='+recordId,
+        url: '/api/content/record?id=' + recordId,
         method: 'GET',
         success: function (response) {
           oThis.renderTemplate(
@@ -82,24 +77,38 @@
     },
 
 
-    registerHelpers: function(){
-        Handlebars.registerHelper( "when", function(operand_1, operator, operand_2, options) {
-            var operators = {
-                '==': function(l,r) { return l == r; },
-                '!=': function(l,r) { return l != r; },
-                '>': function(l,r) { return Number(l) > Number(r); },
-                '<': function(l,r) { return Number(l) < Number(r); },
-                '||': function(l,r) { return l || r; },
-                '&&': function(l,r) { return l && r; },
-                '%': function(l,r) { return (l % r) === 0; }
-            }
-                , result = operators[operator](operand_1,operand_2);
+    registerHelpers: function () {
+      Handlebars.registerHelper("when", function (operand_1, operator, operand_2, options) {
+        var operators = {
+          '==': function (l, r) {
+            return l == r;
+          },
+          '!=': function (l, r) {
+            return l != r;
+          },
+          '>': function (l, r) {
+            return Number(l) > Number(r);
+          },
+          '<': function (l, r) {
+            return Number(l) < Number(r);
+          },
+          '||': function (l, r) {
+            return l || r;
+          },
+          '&&': function (l, r) {
+            return l && r;
+          },
+          '%': function (l, r) {
+            return (l % r) === 0;
+          }
+        }
+          , result = operators[operator](operand_1, operand_2);
 
-            if (result) return options.fn(this);
-            else  return options.inverse(this);
-        });
+        if (result) return options.fn(this);
+        else return options.inverse(this);
+      });
 
-      Handlebars.registerHelper("math", function(lvalue, operator, rvalue, options) {
+      Handlebars.registerHelper("math", function (lvalue, operator, rvalue, options) {
         lvalue = parseFloat(lvalue);
         rvalue = parseFloat(rvalue);
 
@@ -112,66 +121,66 @@
         }[operator];
       });
 
-      Handlebars.registerHelper('ifTooltip', function(tooltip, options ) {
-        if( !!tooltip ){
+      Handlebars.registerHelper('ifTooltip', function (tooltip, options) {
+        if (!!tooltip) {
           return options.fn(this);
         }
 
         return options.inverse(this);
       });
 
-      var idCount = 1 ;
-      Handlebars.registerHelper('configurator_component_id', function( name, isSameId , options ) {
-        if( isSameId !== true ) {  //This should be exactly checked.
+      var idCount = 1;
+      Handlebars.registerHelper('configurator_component_id', function (name, isSameId, options) {
+        if (isSameId !== true) {  //This should be exactly checked.
           idCount++
         }
-        if( name ){
-          return name + "_" + idCount ;
-        }else {
-          return "no_name" + "_" + idCount ;
+        if (name) {
+          return name + "_" + idCount;
+        } else {
+          return "no_name" + "_" + idCount;
         }
       });
 
-      Handlebars.registerHelper('getAccept', function( data, options ) {
-        if( typeof data == "string" ){
+      Handlebars.registerHelper('getAccept', function (data, options) {
+        if (typeof data == "string") {
           return data;
-        }else if( data.constructor == Array ) {
+        } else if (data.constructor == Array) {
           return data.join(' , ');
         }
         return "";
       });
 
-      Handlebars.registerHelper('ifFilePath', function( data, options ) {
-        if( typeof data == "string" ){
+      Handlebars.registerHelper('ifFilePath', function (data, options) {
+        if (typeof data == "string") {
           return options.fn(this);
         }
         return options.inverse(this);
       });
 
-      Handlebars.registerHelper('is_required', function(data, options ) {
-        if( data == 1 ){
+      Handlebars.registerHelper('is_required', function (data, options) {
+        if (data == 1) {
           return "required";
-        }else {
+        } else {
           return "";
         }
       });
 
-      Handlebars.registerHelper('isImageUrl', function(data, options) {
-        if( data == "ost-input-file" ){
+      Handlebars.registerHelper('isImageUrl', function (data, options) {
+        if (data == "ost-input-file") {
           return options.fn(this);
         }
         return options.inverse(this);
       });
 
-      Handlebars.registerHelper('isColor', function(data, options) {
-        if( data == "generic-color-picker" ){
+      Handlebars.registerHelper('isColor', function (data, options) {
+        if (data == "generic-color-picker") {
           return options.fn(this);
         }
         return options.inverse(this);
       });
 
-      Handlebars.registerHelper('isText', function(data, options) {
-        if( data != "ost-input-file" && data != "generic-color-picker"){
+      Handlebars.registerHelper('isText', function (data, options) {
+        if (data != "ost-input-file" && data != "generic-color-picker") {
           return options.fn(this);
         }
         return options.inverse(this);
@@ -179,20 +188,19 @@
 
     },
 
-    bindColorPicker : function() {
-      ostNs.colorPicker.initColorPicker('.color-picker');
+    bindColorPicker: function (config) {
+      ostNs.colorPicker.initColorPicker('.color-picker', config);
     },
 
-    initFileUploader : function() {
-      ostNs.ostFileUploader.init('.file-uploader');
+    initFileUploader: function (config) {
+      ostNs.ostFileUploader.init('.file-uploader', config);
       var fileUploader = $('.file-uploader').ostFileUploader();
-      fileUploader.setToSignedApi( "/api/content/get_signed_url");
+      fileUploader.setToSignedApi("/api/content/get_signed_url");
     }
   };
 
 
   parentNs.OstFormBuilder = OstFormBuilder;
-
 
 
 })();
