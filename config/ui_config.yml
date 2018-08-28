@@ -62,7 +62,7 @@ meta:
                 :data_key_name: members_list_medium
         - members_list_description:
             :meta_ui:
-                :input_kind: generic-textarea
+                :input_kind: generic-color-picker
                 :input_label: Description
                 :data_key_name: members_list_description
 

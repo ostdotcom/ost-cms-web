@@ -39,9 +39,8 @@
         if(jSelectorOutput){
             $(jSelectorOutput).html(html);
         }
-        ostNs.ostFileUploader.init('.file-uploader');
-        var fileUploader = $('.file-uploader').ostFileUploader();
-        fileUploader.setToSignedApi( "/api/content/get_signed_url");
+        oThis.initFileUploader();
+        oThis.bindColorPicker();
         return html;
     },
 
@@ -156,6 +155,19 @@
           return "";
         }
       });
+    },
+
+    bindColorPicker : function() {
+      $(".color-picker").spectrum({
+        color: "#fff",
+        preferredFormat: "hex"
+      });
+    },
+
+    initFileUploader : function() {
+      ostNs.ostFileUploader.init('.file-uploader');
+      var fileUploader = $('.file-uploader').ostFileUploader();
+      fileUploader.setToSignedApi( "/api/content/get_signed_url");
     }
   };
 
