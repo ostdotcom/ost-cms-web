@@ -5,3 +5,4 @@
 //= require plugins/ost-component/HandlebarHelper
 //= require plugins/ost-component/FileUploader
 //= require plugins/ost-component/Spectrum
+//= require plugins/ost-component/ColorPicker

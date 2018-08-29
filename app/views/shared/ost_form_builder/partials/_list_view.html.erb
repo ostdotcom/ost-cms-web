@@ -20,7 +20,17 @@
                 {{#if this.display_value}}
                   <div class="row pb-1">
                     <div class="col-2"><span class="text-capitalize font-weight-bold">{{this.display_label}}:</span></div>
-                    <div class="col-10"><span class="font-weight-light">{{this.display_value}}</span></div>
+                    <div class="col-10">
+                      {{#isImageUrl this.input_kind}}
+                        <img height = 100px width = 100px src = "{{this.display_value}}"/>
+                      {{/isImageUrl}}
+                      {{#isText this.input_kind}}
+                        <span class="font-weight-light">{{this.display_value}}</span>
+                      {{/isText}}
+                      {{#isColor this.input_kind}}
+                        <div style="height:20px;width:50px;background-color:{{this.display_value}};" />
+                      {{/isColor}}
+                    </div>
                   </div>
                 {{/if}}
               {{/each}}
