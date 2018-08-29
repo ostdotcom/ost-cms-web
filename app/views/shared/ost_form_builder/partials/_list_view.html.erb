@@ -6,7 +6,7 @@
           <div class="card-header pt-0" id="listHeading">
             <h5 class="mb-0">
               <button class="btn btn-link px-0 pt-0" data-toggle="collapse" data-target="#record_{{this.id}}" aria-expanded="false" aria-controls="record_{{this.id}}">
-                #<span class="record-index">{{math @index '+' 1}}</span> {{this.heading}}
+                #<span class="record-index">{{math @index '+' 1}}</span> {{{this.heading}}}
               </button>
               <span class="float-right align-text-top">
                   <a class="j-edit-link mb-3 mr-2" name="Edit" data-toggle="modal" data-target="#genericModal" data-id="{{this.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>

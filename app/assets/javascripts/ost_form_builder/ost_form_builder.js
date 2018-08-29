@@ -187,6 +187,21 @@
         return options.inverse(this);
       });
 
+      Handlebars.registerHelper('isSelected', function (value , values , options) {
+        console.log("value" , value);
+        console.log("values" , values);
+        if(values && values.indexOf(value) > -1  ){
+          return 'selected' ;
+        }else {
+          return "";
+        }
+      });
+
+      //FOR debugging purpose only
+      Handlebars.registerHelper('toJSONString', function (value  , options) {
+          return JSON.stringify( value );
+      });
+
     },
 
     bindColorPicker: function (config) {

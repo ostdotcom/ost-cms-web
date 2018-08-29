@@ -204,6 +204,9 @@
               return;
             }
           });
+          if(!attrConfig || ! attrConfig['meta_ui']){
+            debugger;
+          }
           label = attrConfig['meta_ui']['input_label'];
           inputKind = attrConfig['meta_ui']['input_kind'];
           record[key] = {'display_label': label, 'display_value': value, 'input_kind': inputKind};
