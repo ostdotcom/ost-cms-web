@@ -139,7 +139,7 @@ meta:
             :meta_ui:
                 :input_kind: generic-select
                 :input_label: Size
-                :data_key_name: partners_industry
+                :data_key_name: partners_size
                 :options: [Small, Medium, Large]
         - partners_url:
             :meta_ui:

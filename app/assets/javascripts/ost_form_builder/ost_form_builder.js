@@ -36,6 +36,7 @@
       }
       oThis.initFileUploader();
       oThis.bindColorPicker();
+      oThis.initSelectPicker();
       return html;
     },
 
@@ -196,6 +197,10 @@
       ostNs.ostFileUploader.init('.file-uploader', config);
       var fileUploader = $('.file-uploader').ostFileUploader();
       fileUploader.setToSignedApi("/api/content/get_signed_url");
+    },
+
+    initSelectPicker: function() {
+      $('.selectpicker').selectpicker();
     }
   };
 
