@@ -133,7 +133,7 @@ meta:
             :meta_ui:
                 :input_kind: generic-multiselect
                 :input_label: Industry
-                :data_key_name: partners_industry
+                :data_key_name: partners_industry[]
                 :options: [Social & Creative, Loyalty, DApps, Marketplace, Community, Sharing Economy]
         - partners_size:
             :meta_ui:

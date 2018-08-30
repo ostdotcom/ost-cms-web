@@ -3,206 +3,140 @@
 (function () {
 
   var parentNs = ns("cms"),
-    ostNs = ns("ost"),
-    oThis;
+      ostNs = ns("ost"),
+      oThis;
 
-  var OstFormBuilder = function (config) {
+  var OstFormBuilder = function ( config ) {
     oThis = this;
-    $.extend(oThis, config);
-
+    if( config && typeof config == 'object') {
+      $.extend(oThis, config);
+    }
     oThis.init();
   };
 
-  OstFormBuilder.prototype = {
 
-    init: function () {
+  OstFormBuilder.prototype = {
+    sPartials : "[data-partial-id]" ,
+    sForm     : "#generic_form" ,
+    sModalWrapper  : "#genericModal .modal-content",
+
+    formApi     : null,
+    formMethod  : 'POST',
+    formType    : null,
+
+    init: function ( ) {
+      oThis.registerPartials();
+    },
+
+    registerPartials : function(){
       // Register all partials.
       $("[data-partial-id]").each(function (index, el) {
-        var jEl = $(el);
-        var templateHtml = el.innerHTML;
-        var templateId = jEl.data("partialId");
+        var jEl = $(el),
+          templateHtml = el.innerHTML,
+          templateId = jEl.data("partialId");
         Handlebars.registerPartial(templateId, templateHtml);
         jEl.removeAttr("data-partial-id");
       });
-
-      oThis.registerHelpers();
     },
 
-    renderTemplate: function (jSelectorTemplate, context, jSelectorOutput) {
-      var template = Handlebars.compile($(jSelectorTemplate).text());
-      var html = template(context);
-      if (jSelectorOutput) {
-        $(jSelectorOutput).html(html);
-      }
-      oThis.initFileUploader();
-      oThis.bindColorPicker();
-      oThis.initSelectPicker();
-      oThis.initTagsInput();
-      return html;
+    buildCreateForm: function ( entityId, entitiesConfig) {
+      var buildConfig = oThis.getFormBuildConfig(entityId, entitiesConfig, true);
+      oThis.renderTemplate( buildConfig );
+      oThis.setFormType('Create');
     },
 
-    buildCreateForm: function (entityId) {
-      oThis.renderTemplate(
-        '#generic_form',
-        {
-          entity: meta_data['meta'][entityId]['fields'],
-          entityId: entityId,
-          action: '/api/content/create',
-          method: 'POST',
-          header: 'Create ' + $(oThis.selectedItem).text() + ' Record'
-        },
-        '#genericModal .modal-content'
-      );
-
-    },
-
-    buildEditForm: function (recordId) {
+    buildEditForm: function ( recordId, entityId, entitiesConfig ) {
       $.ajax({
         url: '/api/content/record?id=' + recordId,
         method: 'GET',
         success: function (response) {
-          oThis.renderTemplate(
-            '#generic_form',
-            {
-              entity: meta_data['meta'][entity_id]['fields'],
-              action: '/api/content/edit',
-              method: 'POST',
-              header: 'Edit ' + $(oThis.selectedItem).text() + ' Record',
-              data: response.data.record,
-              id: recordId,
-              entityId: entity_id
-            },
-            '#genericModal .modal-content'
-          );
+          var buildConfig = oThis.getFormBuildConfig( entityId, entitiesConfig, false, response, recordId );
+          oThis.renderTemplate( buildConfig );
         }
       });
+      oThis.setFormType('Edit');
     },
 
+    getFormBuildConfig: function( entityId, entitiesConfig, isNew, response, recordId ) {
+      var buildConfig = {
+        'jFormSelector' : oThis.getFormSelector(),
+        'context' : {
+          entityFields: oThis.getEntityFields( entityId, entitiesConfig ),
+          entityId: entityId,
+          action: oThis.getFormAction( true ),
+          method: oThis.getFormMethod(),
+          header: oThis.getFormHeader( true )
+        },
+        'sModalWrapper' : oThis.getModalWrapper()
+      };
+      if( !isNew ) {
+        buildConfig.context['data'] = response.data.record;
+        buildConfig.context['id'] = recordId;
+      }
+      return buildConfig;
+    },
 
-    registerHelpers: function () {
-      Handlebars.registerHelper("when", function (operand_1, operator, operand_2, options) {
-        var operators = {
-          '==': function (l, r) {
-            return l == r;
-          },
-          '!=': function (l, r) {
-            return l != r;
-          },
-          '>': function (l, r) {
-            return Number(l) > Number(r);
-          },
-          '<': function (l, r) {
-            return Number(l) < Number(r);
-          },
-          '||': function (l, r) {
-            return l || r;
-          },
-          '&&': function (l, r) {
-            return l && r;
-          },
-          '%': function (l, r) {
-            return (l % r) === 0;
-          }
-        }
-          , result = operators[operator](operand_1, operand_2);
+    getFormSelector : function(){
+      return oThis.sForm;
+    },
 
-        if (result) return options.fn(this);
-        else return options.inverse(this);
-      });
+    getEntityFields : function(entityId, entitiesConfig){
+      return entitiesConfig && entitiesConfig['meta'] && entitiesConfig['meta'][entityId] && entitiesConfig['meta'][entityId]['fields'];
+    },
 
-      Handlebars.registerHelper("math", function (lvalue, operator, rvalue, options) {
-        lvalue = parseFloat(lvalue);
-        rvalue = parseFloat(rvalue);
+    getFormAction: function( isNew ){
+      isNew ? oThis.formApi = '/api/content/create' : oThis.formApi = '/api/content/edit';
+      return oThis.formApi;
+    },
 
-        return {
-          "+": lvalue + rvalue,
-          "-": lvalue - rvalue,
-          "*": lvalue * rvalue,
-          "/": lvalue / rvalue,
-          "%": lvalue % rvalue
-        }[operator];
-      });
+    getFormMethod : function(){
+      return oThis.formMethod;
+    },
 
-      Handlebars.registerHelper('ifTooltip', function (tooltip, options) {
-        if (!!tooltip) {
-          return options.fn(this);
-        }
+    getFormHeader : function( isNew ){
+      var header = '';
+      isNew ? header += 'Create ': header += 'Edit ';
+      header += $(oThis.selectedItem).text() + ' Record';
+      return header;
+    },
 
-        return options.inverse(this);
-      });
+    getModalWrapper : function() {
+      return oThis.sModalWrapper;
+    },
 
-      var idCount = 1;
-      Handlebars.registerHelper('configurator_component_id', function (name, isSameId, options) {
-        if (isSameId !== true) {  //This should be exactly checked.
-          idCount++
-        }
-        if (name) {
-          return name + "_" + idCount;
-        } else {
-          return "no_name" + "_" + idCount;
-        }
-      });
+    renderTemplate: function ( config ) {
+      var jFormSelector = config.jFormSelector,
+        context       = config.context,
+        sModalWrapper = config.sModalWrapper,
+        html;
+      if (sModalWrapper) {
+        html = oThis.getMarkup(jFormSelector, context );
+        $(sModalWrapper).html(html);
+      }
+      oThis.bindEvents();
+    },
 
-      Handlebars.registerHelper('getAccept', function (data, options) {
-        if (typeof data == "string") {
-          return data;
-        } else if (data.constructor == Array) {
-          return data.join(' , ');
-        }
-        return "";
-      });
+    getMarkup : function( jSelectorTemplate, context ) {
+      var template = Handlebars.compile($(jSelectorTemplate).text()),
+          html = template(context);
+      return html;
+    },
 
-      Handlebars.registerHelper('ifFilePath', function (data, options) {
-        if (typeof data == "string") {
-          return options.fn(this);
-        }
-        return options.inverse(this);
-      });
+    bindEvents : function(){
+      oThis.initFileUploader();
+      oThis.bindColorPicker();
+      oThis.initSelectPicker();
+      oThis.initTagsInput();
+    },
 
-      Handlebars.registerHelper('is_required', function (data, options) {
-        if (data == 1) {
-          return "required";
-        } else {
-          return "";
-        }
-      });
+    setFormType : function( type ){
+      if( type ){
+        oThis.formType =  type ;
+      }
+    },
 
-      Handlebars.registerHelper('isImageUrl', function (data, options) {
-        if (data == "ost-input-file") {
-          return options.fn(this);
-        }
-        return options.inverse(this);
-      });
-
-      Handlebars.registerHelper('isColor', function (data, options) {
-        if (data == "generic-color-picker") {
-          return options.fn(this);
-        }
-        return options.inverse(this);
-      });
-
-      Handlebars.registerHelper('isText', function (data, options) {
-        if (data != "ost-input-file" && data != "generic-color-picker") {
-          return options.fn(this);
-        }
-        return options.inverse(this);
-      });
-
-      Handlebars.registerHelper('isSelected', function (value , values , options) {
-        console.log("value" , value);
-        console.log("values" , values);
-        if(values && values.indexOf(value) > -1  ){
-          return 'selected' ;
-        }else {
-          return "";
-        }
-      });
-
-      //FOR debugging purpose only
-      Handlebars.registerHelper('toJSONString', function (value  , options) {
-          return JSON.stringify( value );
-      });
-
+    getFormType : function( type ){
+      return oThis.formType ;
     },
 
     bindColorPicker: function (config) {
@@ -221,7 +155,7 @@
 
     initTagsInput: function( config ) {
       $('.tagsinput').tagsinput({
-        confirmKeys: [13, 32],
+        confirmKeys: [32],
         trimValue: true
       });
     }
