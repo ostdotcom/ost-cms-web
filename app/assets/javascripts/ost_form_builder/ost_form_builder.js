@@ -37,6 +37,7 @@
       oThis.initFileUploader();
       oThis.bindColorPicker();
       oThis.initSelectPicker();
+      oThis.initTagsInput();
       return html;
     },
 
@@ -216,6 +217,13 @@
 
     initSelectPicker: function() {
       $('.selectpicker').selectpicker();
+    },
+
+    initTagsInput: function( config ) {
+      $('.tagsinput').tagsinput({
+        confirmKeys: [13, 32],
+        trimValue: true
+      });
     }
   };
 
