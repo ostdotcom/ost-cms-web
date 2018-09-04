@@ -1,7 +1,7 @@
 ;
 (function (window , $) {
 
-  var oSTNs            = ns("ost"),
+  var oSTNs          = ns("cms"),
     handlebarHelper  = ns("ost.handlebarHelper")
   ;
 
@@ -18,14 +18,14 @@
   FileUploader.prototype = {
     sjElMocker: '.file-upload-mocker',
 
-    jEl       : null,
-    jElMocker : null ,
+    jEl             : null,
+    jElMocker       : null ,
     imageSrcPrefix  : null ,
     imageSrcPostFix : null ,
+    getSignedURLApi : null,
 
     generalErrorMsg     : "Something went wrong!",
 
-    dSignedUrl          : "get-signed-url",
     dPreUploadMarkup    : "pre-upload-markup",
 
     sParent             : ".ost-file-uploader-wrap",
@@ -56,7 +56,7 @@
       });
     },
 
-    initFileUploader : function(  ){
+    initFileUploader : function(){
       var oThis = this ,
         fileUploadConfig = {
           dataType : 'xml',
@@ -79,7 +79,7 @@
     },
 
     startUpload: function (  ) {
-      var oThis     = this,
+      var oThis   = this,
         jElMocker = oThis.jElMocker,
         jWrapper  = jElMocker.closest( oThis.sParent ).find( oThis.sLabelWrap),
         preMarkup = jWrapper.html(),
@@ -128,8 +128,8 @@
 
     getSignedUrl : function (  ) {
       var oThis   = this,
-        jElMocker     = oThis.jElMocker,
-        action  = oThis.getToSignedApi()
+        jElMocker = oThis.jElMocker,
+        action    = oThis.getToSignedApi()
       ;
       $.ajax({
         url     : action,
@@ -145,12 +145,11 @@
     },
 
     getToSignedApi : function ( ) {
-      var oThis       = this ,
-        jElMocker   = oThis.jElMocker,
-        toSignedApi = jElMocker.data( oThis.dSignedUrl ),
-        jForm
-      ;
-      return toSignedApi;
+      return this.config.getSignedURLApi;
+    },
+
+    setToSignedApi : function (  api ) {
+       this.config.getSignedURLApi= api;
     },
 
     getParams : function ( ) {
@@ -260,12 +259,6 @@
         .addClass( 'd-block' )
       ;
       jWrapper.html( jMarkup );
-    },
-
-    setToSignedApi : function (  api ) {
-      var oThis     = this ;
-
-      oThis.jElMocker.data(oThis.dSignedUrl, api );
     }
 
   };
@@ -286,7 +279,7 @@
       for( cnt = 0 ;  cnt < len ; cnt++ ) {
         jEl = jElements.eq( cnt );
         fileUploader = jEl.data( jqDataNameSpace )  ;
-        if ( !fileUploader || !fileUploader instanceof FileUploader ) {
+        if ( !fileUploader || !(fileUploader instanceof FileUploader) ) {
           fileUploader = new FileUploader( jEl , config );
           jEl.data( jqDataNameSpace , fileUploader );
         }

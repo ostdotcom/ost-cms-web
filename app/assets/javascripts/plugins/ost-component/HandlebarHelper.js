@@ -1,7 +1,7 @@
 ;
 (function (window ) {
 
-  var oSTNs = ns("ost"),
+  var oSTNs = ns("cms"),
     oThis;
 
   oSTNs.handlebarHelper = oThis = {
