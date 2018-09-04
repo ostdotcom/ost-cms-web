@@ -3,7 +3,6 @@
 (function () {
 
   var parentNs = ns("cms"),
-      ostNs = ns("ost"),
       oThis;
 
   var OstFormBuilder = function ( config ) {
@@ -16,9 +15,11 @@
 
 
   OstFormBuilder.prototype = {
-    sPartials : "[data-partial-id]" ,
-    sForm     : "#generic_form" ,
-    sModalWrapper  : "#genericModal .modal-content",
+    sPartials       : "[data-partial-id]" ,
+    sForm           : "#generic_form" ,
+    sModalWrapper   : "#genericModal .modal-content",
+
+    defaultFileUploadConfig :{ getSignedURLApi :"/api/content/get_signed_url" },
 
     formApi     : null,
     formMethod  : 'POST',
@@ -106,14 +107,14 @@
 
     renderTemplate: function ( config ) {
       var jFormSelector = config.jFormSelector,
-        context       = config.context,
-        sModalWrapper = config.sModalWrapper,
-        html;
+          context       = config.context,
+          sModalWrapper = config.sModalWrapper,
+          html;
       if (sModalWrapper) {
         html = oThis.getMarkup(jFormSelector, context );
         $(sModalWrapper).html(html);
       }
-      oThis.bindEvents();
+      oThis.bindEvents( context );
     },
 
     getMarkup : function( jSelectorTemplate, context ) {
@@ -122,11 +123,11 @@
       return html;
     },
 
-    bindEvents : function(){
-      oThis.initFileUploader();
-      oThis.bindColorPicker();
-      oThis.initSelectPicker();
-      oThis.initTagsInput();
+    bindEvents : function( config ){
+      oThis.initFileUploader( config );
+      oThis.bindColorPicker( config );
+      oThis.initSelectPicker(  );
+      oThis.initTagsInput(  );
     },
 
     setFormType : function( type ){
@@ -140,20 +141,19 @@
     },
 
     bindColorPicker: function (config) {
-      ostNs.colorPicker.initColorPicker('.color-picker', config);
+      parentNs.colorPicker.initColorPicker('.color-picker', config);
     },
 
     initFileUploader: function (config) {
-      ostNs.ostFileUploader.init('.file-uploader', config);
-      var fileUploader = $('.file-uploader').ostFileUploader();
-      fileUploader.setToSignedApi("/api/content/get_signed_url");
+      var fileUploaderConfig = config && config.getSignedURLApi || oThis.defaultFileUploadConfig;
+      parentNs.ostFileUploader.init('.file-uploader', fileUploaderConfig);
     },
 
     initSelectPicker: function() {
       $('.selectpicker').selectpicker();
     },
 
-    initTagsInput: function( config ) {
+    initTagsInput: function(  ) {
       $('.tagsinput').tagsinput({
         trimValue: true
       });
