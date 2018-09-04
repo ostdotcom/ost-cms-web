@@ -69,11 +69,12 @@
 <!-- /.container-fluid -->
 
 <% content_for :end_js do %>
-
   <%= render :partial => "/shared/ost_form_builder/all_partials_templates" %>
   <script type="text/javascript">
-    var meta_data = <%= raw @config_response.to_json %>;
-    var entity_id = <%= @entity_id %>;
+    cms.dashboard.init({
+      'meta_data' : '<%= raw @config_response.to_json %>' ,
+      'entity_id' : '<%= @entity_id %>'
+    });
   </script>
 <% end %>
 

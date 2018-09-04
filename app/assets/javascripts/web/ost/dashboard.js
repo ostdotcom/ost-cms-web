@@ -9,13 +9,16 @@
     listData: null,
     jSortable: $('#sortable'),
     jSidebar: $('.app-sidebar'),
-    selectedItem: "a.selected",
+    selectedItem: ".treeview-item.selected",
+    entityId: null,
 
     init: function (config) {
+      oThis.entityId = config.entity_id;
+      oThis.entitiesConfig = JSON.parse(config.meta_data);
+      oThis.ostFormBuilder = new cms.OstFormBuilder( { 'entitiesConfig' :config , 'selectedItem' : oThis.selectedItem } );
       oThis.bindEvents();
-      oThis.ostFormBuilder = new cms.OstFormBuilder({selectedItem: oThis.selectedItem});
       oThis.refresh();
-      oThis.initPublishedListData(entity_id);
+      oThis.initPublishedListData();
       oThis.getEntityConfig();
       oThis.selectSidebarMenu();
       oThis.hideSideBarMenuItem();
@@ -55,7 +58,7 @@
       });
 
       $('.j-create-link').on('click', function () {
-        oThis.ostFormBuilder.buildCreateForm(entity_id);
+        oThis.ostFormBuilder.buildCreateForm( oThis.entityId, oThis.entitiesConfig );
       });
 
       $('body').on('submit', '#entity_data_form', function (e) {
@@ -64,7 +67,7 @@
       });
 
       $('body').on('click', '.j-edit-link', function (e) {
-        oThis.ostFormBuilder.buildEditForm($(this).data('id'));
+        oThis.ostFormBuilder.buildEditForm($(this).data('id'), oThis.entityId, oThis.entitiesConfig);
       });
 
       $('body').on('click', '.j-delete-link', function (e) {
@@ -72,11 +75,11 @@
       });
 
       $('body').on('click', '.j-publish-changes-link', function (e) {
-        oThis.publish(entity_id);
+        oThis.publish();
       });
 
       $('body').on('click', '.j-reset-publish-link', function (e) {
-        oThis.resetPublish(entity_id);
+        oThis.resetPublish();
       });
 
     },
@@ -91,7 +94,7 @@
           recId = ui.item.data('recordId');
           prevElementId = ui.item.prev().data('recordId');
           nextElementId = ui.item.next().data('recordId');
-          oThis.sortRecords(entity_id, recId, prevElementId, nextElementId);
+          oThis.sortRecords( recId, prevElementId, nextElementId);
         }
       });
     },
@@ -112,15 +115,14 @@
         selectedParent = selectedItem.closest("li.treeview");
       selectedParent.addClass("is-expanded");
       selectedItem.addClass("selected");
-
     },
 
-    sortRecords: function (entityId, recordId, previous, next) {
+    sortRecords: function (recordId, previous, next) {
       $.ajax({
         url: '/api/content/sort',
         method: 'POST',
         data: {
-          entity_id: entityId,
+          entity_id: oThis.entityId,
           id: recordId,
           prev: previous,
           next: next
@@ -136,7 +138,7 @@
         url: '/api/content/active',
         method: 'GET',
         data: {
-          entity_id: entity_id
+          entity_id: oThis.entityId
         },
         success: function (response) {
           oThis.onRefresh(response);
@@ -198,7 +200,7 @@
           if (recordHeading && key == recordHeading) {
             heading = value;
           }
-          meta_data['meta'][entity_id]['fields'].forEach(function (attr_object) {
+          oThis.entitiesConfig['meta'][oThis.entityId]['fields'].forEach(function (attr_object) {
             if (attr_object[key]) {
               attrConfig = attr_object[key];
               return;
@@ -226,16 +228,15 @@
       });
     },
 
-    initPublishedListData: function (entityId) {
+    initPublishedListData: function () {
       $.ajax({
         url: '/api/published',
         method: 'GET',
         data: {
-          entity_id: entityId
+          entity_id: oThis.entityId
         },
         success: function (response) {
-          var recordHeading = oThis.getRecordHeading();
-          oThis.publishedListData = oThis.createMetaObject(response.data.list, recordHeading);
+          oThis.publishedListData = oThis.createMetaObject(response.data.list);
           var template = Handlebars.compile($('#published_list_view').text());
           var html = template({'published_list_data': oThis.publishedListData});
           $('#published_list').html(html);
@@ -243,28 +244,28 @@
       })
     },
 
-    publish: function (entityId) {
+    publish: function () {
       $.ajax({
         url: '/api/content/publish',
         method: 'POST',
         data: {
-          entity_id: entityId
+          entity_id: oThis.entityId
         },
         success: function () {
-          oThis.initPublishedListData(entityId);
+          oThis.initPublishedListData();
         }
       })
     },
 
-    resetPublish: function (entityId) {
+    resetPublish: function () {
       $.ajax({
         url: '/api/content/rollback',
         method: 'POST',
         data: {
-          entity_id: entityId
+          entity_id: oThis.entityId
         },
         success: function () {
-          oThis.initPublishedListData(entityId);
+          oThis.initPublishedListData();
           oThis.refresh();
         },
         error: function(res){
@@ -274,13 +275,12 @@
       })
     },
 
-
     resetErrors: function () {
       $(".is-error").text("");
     },
 
     getEntityConfig: function () {
-      return meta_data && meta_data['meta'][entity_id];
+      return oThis.entitiesConfig && oThis.entitiesConfig['meta'] && oThis.entitiesConfig['meta'][oThis.entityId];
     },
 
     getRecordHeading: function () {
@@ -299,8 +299,5 @@
 
   };
 
-  $(document).ready(function () {
-    oThis.init();
-  });
 
 })(window);

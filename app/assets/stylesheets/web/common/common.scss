@@ -48,3 +48,18 @@ a.treeview-item{
     background-color: $grey-bg;
   }
 }
+
+.bootstrap-tagsinput {
+  width: 100%;
+  .tag {
+    margin-right: 2px;
+    color: $white;
+  }
+  .label-info {
+    border-color: $yellow-400;
+    background-color: $yellow-400;
+    border-radius: $border-radius;
+    padding: .25rem;
+  }
+}
+

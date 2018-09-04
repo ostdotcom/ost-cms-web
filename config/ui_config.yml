@@ -131,7 +131,7 @@ meta:
                 :data_key_name: partners_description
         - partners_founders:
             :meta_ui:
-                :input_kind: generic-text
+                :input_kind: generic-tagsinput
                 :input_label: Founders
                 :data_key_name: partners_founders
         - partners_location:
