@@ -13,7 +13,7 @@ export OCW_BASIC_AUTH_USERNAME='ost'
 export OCW_BASIC_AUTH_PASSWORD='A$F^&n!@$ghf%7'
 
 # ost web information
-export OCW_OST_URL='http://developmentost.com:8080'
+export OCW_OST_URL='http://developmentost.com:8080/'
 
 # Sha256 salt
 export OCW_SHA256_SECRET_SALT='40a8e609f88f2f4fc15d9dda9035445a7577c3f94936eaae91a0793c'

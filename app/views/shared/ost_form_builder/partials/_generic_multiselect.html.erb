@@ -11,7 +11,8 @@
       {{/each}}
      >
     {{#each select_options}}
-    <option value="{{this}}" {{isSelected this ../data_key_value }}>{{this}}</option>
+
+    <option value="{{this.value}}" {{isSelected this.value ../data_key_value }}>{{this.name}}</option>
     {{/each}}
     </select>
     <div class="is-error" data-field-name="{{data_key_name}}" data-forname="{{data_key_name}}"></div>

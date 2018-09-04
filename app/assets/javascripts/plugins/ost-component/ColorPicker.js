@@ -7,7 +7,7 @@
   ;
 
   var colorPickerConfig =  {
-        showInput: false,
+        showInput: true,
         className: "color-picker",
         showInitial: true,
         showPalette: true,

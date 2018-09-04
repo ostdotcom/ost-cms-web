@@ -144,13 +144,36 @@ meta:
                 :input_kind: generic-multiselect
                 :input_label: Industry
                 :data_key_name: partners_industry[]
-                :options: [Social & Creative, Loyalty, DApps, Marketplace, Community, Sharing Economy]
+                :options:
+                  - name: Social & Creative
+                    value: social-creative
+                  - name: Loyalty
+                    value: loyalty
+                  - name: DApps
+                    value: dapps
+                  - name: Marketplace
+                    value: marketplace
+                  - name: Community
+                    value: community
+                  - name: Sharing Economy
+                    value: sharing-economy
         - partners_size:
             :meta_ui:
                 :input_kind: generic-select
                 :input_label: Size
                 :data_key_name: partners_size
-                :options: [Small, Medium, Large]
+                :options:
+                  - name: Startup
+                    value: start-up
+                  - name: Million User Platform
+                    value: large
+
+
+        - partners_sprite_index:
+            :meta_ui:
+                :input_kind: generic-number
+                :input_label: Sprite Index
+                :data_key_name: partners_sprite_index
         - partners_url:
             :meta_ui:
                 :input_kind: generic-link

@@ -155,7 +155,6 @@
 
     initTagsInput: function( config ) {
       $('.tagsinput').tagsinput({
-        confirmKeys: [32],
         trimValue: true
       });
     }

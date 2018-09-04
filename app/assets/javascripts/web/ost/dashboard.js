@@ -216,6 +216,7 @@
     },
 
     delete: function (recordId) {
+      confirm("Are you sure to delete this item?" ) &&
       $.ajax({
         url: '/api/content/delete',
         method: 'POST',
