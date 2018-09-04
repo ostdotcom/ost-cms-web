@@ -21,6 +21,11 @@ module GlobalConstant
         @cms_api ||= fetch_config.fetch('cms_api', {}).with_indifferent_access
       end
 
+      def ost_web
+        @ost_web ||= fetch_config.fetch('ost_web', {}).with_indifferent_access
+      end
+
+
       private
 
       def fetch_config

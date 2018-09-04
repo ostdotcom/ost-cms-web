@@ -10,7 +10,7 @@
       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Actions</a>
       <div class="dropdown-menu">
         <a class="dropdown-item j-create-link" href="#" data-toggle="modal" data-target="#genericModal">Create New</a>
-        <a class="dropdown-item" href="#">Preview Changes</a>
+        <a class="dropdown-item" href="/preview/<%= @entity_id %>" >Preview Changes</a>
         <div class="dropdown-divider"></div>
         <a class="dropdown-item j-reset-publish-link" href="#">Reset to Published Version</a>
         <a class="dropdown-item j-publish-changes-link" href="#">Publish Changes</a>
@@ -28,6 +28,30 @@
           <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="" tabindex="-1" role="dialog" aria-labelledby="genericModalLabel" aria-hidden="false">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+          </div>
+        </div>
+      </div>
+
+
+      <div class="modal" id="errorModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <!-- Modal body -->
+            <div class="modal-body error-message mx-auto py-5" style="color:#7a2826" >
+            </div>
+
+            <!-- Modal footer -->
+            <!--<div class="modal-footer">-->
+              <!--<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>-->
+            <!--</div>-->
+
           </div>
         </div>
       </div>

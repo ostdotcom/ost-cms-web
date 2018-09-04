@@ -11,3 +11,7 @@ constants:
   cms_api:
     open_timeout: 50
     read_timeout: 50  
+
+  ost_web:
+    url: <%= ENV['OCW_OST_URL'] %>
+    sha256_salt: <%= ENV['OCW_SHA256_SECRET_SALT']%>

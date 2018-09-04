@@ -6,3 +6,4 @@
 //= require plugins/ost-component/FileUploader
 //= require plugins/ost-component/Spectrum
 //= require plugins/ost-component/ColorPicker
+//= require plugins/bootstrap-datepicker/bootstrap-datepicker

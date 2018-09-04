@@ -60,6 +60,11 @@ meta:
                 :input_kind: generic-link
                 :input_label: Medium
                 :data_key_name: members_list_medium
+        - members_list_website:
+                  :meta_ui:
+                      :input_kind: generic-link
+                      :input_label: Website
+                      :data_key_name: members_list_website
         - members_list_description:
             :meta_ui:
                 :input_kind: generic-textarea
@@ -100,6 +105,11 @@ meta:
                 :input_kind: generic-link
                 :input_label: Medium
                 :data_key_name: advisors_list_medium
+        - advisors_list_website:
+            :meta_ui:
+                :input_kind: generic-link
+                :input_label: Website
+                :data_key_name: advisors_list_website
         - advisors_list_description:
             :meta_ui:
                 :input_kind: generic-textarea
@@ -133,7 +143,7 @@ meta:
             :meta_ui:
                 :input_kind: generic-multiselect
                 :input_label: Industry
-                :data_key_name: partners_industry
+                :data_key_name: partners_industry[]
                 :options: [Social & Creative, Loyalty, DApps, Marketplace, Community, Sharing Economy]
         - partners_size:
             :meta_ui:

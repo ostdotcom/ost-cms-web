@@ -1,6 +1,7 @@
 /*
  *= require web/common/common.scss
  *= require plugins/bootstrap_select/bootstrap-select.scss
+ *= require plugins/bootstrap-datepicker/bootstrap-datepicker.scss
  *= require plugins/ost-component/FileUploader.scss
  *= require plugins/ost-component/spectrum/spectrum.scss
  *= require plugins/ost-component/ErrorHandler.scss
