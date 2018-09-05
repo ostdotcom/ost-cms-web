@@ -48,7 +48,6 @@
           separator     = "-",
           displayVal    = year+ separator + month + separator + date
       ;
-      console.log("displayVal", displayVal);
       jEl.val( displayVal );
     },
 
@@ -66,7 +65,6 @@
           timeStamp     = Date.parse( val ),
           normalisedVal = timeStamp / normaliser
       ;
-      console.log(normalisedVal);
       jInput.val( normalisedVal );
     }
   };
