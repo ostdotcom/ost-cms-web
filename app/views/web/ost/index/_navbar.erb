@@ -1,3 +1,22 @@
+<%
+
+  page_preview_options = [
+      { value: "" ,
+        display_text: "Home Page "
+      },
+      { value: "team" ,
+        display_text: "Team Page"
+      },
+      { value: "partners" ,
+        display_text: "Partners Page"
+      },
+      { value: "careers" ,
+          display_text: "Careers Page"
+      }
+  ]
+
+%>
+
 <header class="app-header">
   <a class="app-header__logo" href="/dashboard/1">
     <div id="logo-group">
@@ -8,8 +27,20 @@
     </div>
   </a>
   <!-- Sidebar toggle button<a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>-->
+
   <!-- Navbar Right Menu-->
+
   <ul class="app-nav">
+    <li class="dropdown mt-1">
+      <select id="preview-page-options" class="selectpicker">
+        <% page_preview_options.each_with_index do|option, index| %>
+          <option  value="<%= option[:value] %>"><%= option[:display_text] %></option>
+        <% end %>
+      </select>
+    </li>
+    <li class="mt-1">
+      <button class="btn btn-primary" id="preview-page-btn" >Preview </button>
+    </li>
     <!-- User Menu-->
     <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu">
       <%= @current_user["first_name"]%>
@@ -21,3 +52,5 @@
     </li>
   </ul>
 </header>
+
+

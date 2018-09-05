@@ -1,7 +1,7 @@
 <script  type="text/x-handlebars-template" id="generic-date-picker" data-partial-id="generic-date-picker">
   <div class="form-group mb-0">
     <label for="{{data_key_name}}">{{input_label}}</label>
-    <input  type="date" class="cms-date-picker" name="{{data_key_name}}_mocker"
+    <input  type="date" class="cms-date-picker"
             {{#each validations}}
             {{#when @key '==' 'required'}}
             {{#when this '==' true}}required{{else}} {{/when}}
