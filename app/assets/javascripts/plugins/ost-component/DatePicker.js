@@ -38,9 +38,12 @@
 
     setViewInputValue : function ( jEl ) {
       var jInput  = jEl.parent().find(oThis.inputSelector),
-          val     = jInput.val()
+          val     = jInput.val(),
+          displayVal
       ;
-      console.log( val );
+      console.log( val ); 1537401600000
+      //2018-03-27
+      jEl.val( displayVal );
     },
 
     setFormInputValue : function ( jEl ) {
