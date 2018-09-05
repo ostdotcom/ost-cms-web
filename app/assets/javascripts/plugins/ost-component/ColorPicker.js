@@ -10,9 +10,7 @@
         showInput: true,
         className: "color-picker",
         showInitial: true,
-        showPalette: true,
         preferredFormat: "hex",
-        hideAfterPaletteSelect:true,
         change: function(color) {
           oThis.setValue( $(this) );
         }
