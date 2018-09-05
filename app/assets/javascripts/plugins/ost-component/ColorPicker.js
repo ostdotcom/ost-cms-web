@@ -10,9 +10,8 @@
         showInput: true,
         className: "color-picker",
         showInitial: true,
-        showPalette: true,
         preferredFormat: "hex",
-        hideAfterPaletteSelect:true,
+        appendTo: "parent",
         change: function(color) {
           oThis.setValue( $(this) );
         }
