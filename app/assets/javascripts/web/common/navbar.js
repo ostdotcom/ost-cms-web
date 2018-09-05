@@ -15,12 +15,12 @@
         var value = $("#preview-page-options").val();
         //console.log(value);
         $.ajax({
-          url: '/preview',
+          url: '/api/content/get_preview_url',
           method: 'GET',
           data:{'path': value},
           success: function (response) {
             console.log("** in success ** " + response);
-            window.open(response.url,'_blank');
+            window.open(response.data.url,'_blank');
           }
       });
       });
