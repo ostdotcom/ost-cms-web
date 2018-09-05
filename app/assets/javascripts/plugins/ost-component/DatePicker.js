@@ -41,7 +41,7 @@
           val     = jInput.val(),
           displayVal
       ;
-      console.log( val ); 1537401600000
+      console.log( val ); //1537401600000
       //2018-03-27
       jEl.val( displayVal );
     },
