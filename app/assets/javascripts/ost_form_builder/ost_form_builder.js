@@ -41,37 +41,50 @@
     },
 
     buildCreateForm: function ( entityId, entitiesConfig) {
-      var buildConfig = oThis.getFormBuildConfig(entityId, entitiesConfig, true);
+      oThis.setFormType('create');
+      var buildConfig = oThis.getFormBuildConfig(entityId, entitiesConfig);
       oThis.renderTemplate( buildConfig );
-      oThis.setFormType('Create');
     },
 
     buildEditForm: function ( recordId, entityId, entitiesConfig ) {
+      oThis.setFormType('edit');
       $.ajax({
         url: '/api/content/record?id=' + recordId,
         method: 'GET',
-        success: function (response) {
-          var buildConfig = oThis.getFormBuildConfig( entityId, entitiesConfig, false, response, recordId );
-          oThis.renderTemplate( buildConfig );
+        success: function ( response ) {
+          oThis.onEditGetSuccess(response , recordId , entityId, entitiesConfig ) ;
+        },
+        error: function () {
+          oThis.onEditGetError.apply( oThis ,  arguments )
         }
       });
-      oThis.setFormType('Edit');
     },
 
-    getFormBuildConfig: function( entityId, entitiesConfig, isNew, response, recordId ) {
+    onEditGetSuccess : function ( response, recordId , entityId, entitiesConfig) {
+      var buildConfig = oThis.getFormBuildConfig( entityId, entitiesConfig, response, recordId );
+      oThis.renderTemplate( buildConfig );
+    },
+
+    onEditGetError : function (jqXHR ,  error ) {
+      //TODO
+    },
+
+    getFormBuildConfig: function( entityId, entitiesConfig, response, recordId ) {
       var buildConfig = {
         'jFormSelector' : oThis.getFormSelector(),
         'context' : {
           entityFields: oThis.getEntityFields( entityId, entitiesConfig ),
           entityId: entityId,
-          action: oThis.getFormAction( true ),
+          action: oThis.getFormAction(),
           method: oThis.getFormMethod(),
-          header: oThis.getFormHeader( true )
+          header: oThis.getFormHeader()
         },
         'sModalWrapper' : oThis.getModalWrapper()
-      };
-      if( !isNew ) {
-        buildConfig.context['data'] = response.data.record;
+      } ,
+      formType = oThis.getFormType()
+      ;
+      if( formType == 'edit' ) {
+        buildConfig.context['data'] = response.data && response.data.record;
         buildConfig.context['id'] = recordId;
       }
       return buildConfig;
@@ -85,19 +98,22 @@
       return entitiesConfig && entitiesConfig['meta'] && entitiesConfig['meta'][entityId] && entitiesConfig['meta'][entityId]['fields'];
     },
 
-    getFormAction: function( isNew ){
-      isNew ? oThis.formApi = '/api/content/create' : oThis.formApi = '/api/content/edit';
-      return oThis.formApi;
+    getFormAction: function( ){
+      var formType = oThis.getFormType(),
+          formApiRoot = '/api/content/',
+          formApi = formApiRoot + formType
+      ;
+      return formApi;
     },
 
     getFormMethod : function(){
       return oThis.formMethod;
     },
 
-    getFormHeader : function( isNew ){
-      var header = '';
-      isNew ? header += 'Create ': header += 'Edit ';
-      header += $(oThis.selectedItem).text() + ' Record';
+    getFormHeader : function(  ){
+      var header = oThis.getFormType().toUpperCase()
+      ;
+      header += " " + $(oThis.selectedItem).text() + ' Record';
       return header;
     },
 
@@ -136,7 +152,7 @@
       }
     },
 
-    getFormType : function( type ){
+    getFormType : function( ){
       return oThis.formType ;
     },
 

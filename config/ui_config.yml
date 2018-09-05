@@ -199,11 +199,6 @@ meta:
                 :input_kind: generic-color-picker
                 :input_label: On Hover Background Color
                 :data_key_name: partners_on_hover_bgcolor
-        - partners_on_hover_imgcolor:
-            :meta_ui:
-                :input_kind: generic-color-picker
-                :input_label: On Hover Image Color
-                :data_key_name: partners_on_hover_imgcolor
 
 
     :5:
