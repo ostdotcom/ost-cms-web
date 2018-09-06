@@ -66,7 +66,10 @@
     },
 
     onEditGetError : function (jqXHR ,  error ) {
-      //TODO
+      var jModal = $("#displayErrorModal");
+      $('.modal').modal('hide');
+      parentNs.errorHelper.showError( jModal , error );
+      jModal.modal("show");
     },
 
     getFormBuildConfig: function( entityId, entitiesConfig, response, recordId ) {

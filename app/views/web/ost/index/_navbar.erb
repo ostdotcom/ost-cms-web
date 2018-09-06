@@ -39,7 +39,7 @@
       </select>
     </li>
     <li class="mt-1">
-      <button class="btn btn-primary" id="preview-page-btn" >Preview </button>
+      <button class="btn btn-primary" id="preview-page-btn" data-toggle="tooltip" data-placement="top" title="The preview is valid only for 5 minutes">Preview </button>
     </li>
     <!-- User Menu-->
     <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu">
@@ -52,5 +52,15 @@
     </li>
   </ul>
 </header>
+<% content_for :end_js do %>
+  <script type="text/javascript">
+
+    $(document).ready(function(){
+      $('[data-toggle="tooltip"]').tooltip();
+    });
+
+  </script>
+<% end %>
+
 
 

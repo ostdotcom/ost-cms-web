@@ -12,7 +12,7 @@
 
   oSTNs.datePicker = oThis = {
     defaultSelector : '.cms-date-picker',
-    inputSelector   : '.form-control',
+    inputSelector   : '.jdate-picker-input',
     events          : 'change.datepicker',
 
     getDatePickerConfig : function () {
@@ -48,6 +48,7 @@
           separator     = "-",
           displayVal    = year+ separator + month + separator + date
       ;
+      if( isNaN(year) || isNaN(month) || isNaN(date) ) return ;
       jEl.val( displayVal );
     },
 

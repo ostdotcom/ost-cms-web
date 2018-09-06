@@ -68,3 +68,14 @@ a.treeview-item{
   top: -9999px;
   left: -9999px;
 }
+
+.app-header {
+  .dropdown.bootstrap-select, #preview-page-btn {
+    margin-right: 20px;
+  }
+  .dropdown-toggle , #preview-page-btn{
+    padding-bottom: 8px;
+    padding-top: 8px;
+    margin-top: 4px;
+  }
+}

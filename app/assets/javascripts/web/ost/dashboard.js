@@ -159,31 +159,9 @@
           oThis.refresh();
         },
         error: function (error) {
-          if (error.responseJSON.err) {
-            var errorResponse = error.responseJSON.err.error_data
-          } else {
-            return;
-          }
-          for (var key in errorResponse) {
-            if (errorResponse[key].length > 0) {
-              var errorElement = $("[data-field-name='" + key + "']")
-              var errorText = oThis.getErrorText(errorResponse[key]);
-              errorElement.text(errorText);
-            }
-          }
+          oSTNs.errorHelper.showError( jForm , error);
         }
       })
-    },
-
-
-    getErrorText: function (errorResponse) {
-      var errorText = '';
-      errorResponse.forEach(function (error) {
-        for (var key in error) {
-          errorText += error[key];
-        }
-      });
-      return errorText;
     },
 
 
@@ -225,6 +203,12 @@
         },
         success: function () {
           oThis.refresh();
+        },
+        error: function (response) {
+          var jModal = $("#displayErrorModal");
+          $('.modal').modal('hide');
+          oSTNs.errorHelper.showError( jModal , response);
+          jModal.modal("show");
         }
       });
     },
@@ -270,14 +254,16 @@
           oThis.refresh();
         },
         error: function(res){
-          $("#errorModal").modal("show");
-          $("#errorModal .error-message").text(res.responseJSON.err.display_text)
+          var jModal = $("#displayErrorModal");
+          $('.modal').modal('hide');
+          oSTNs.errorHelper.showError( jModal , res);
+          jModal.modal("show");
         }
       })
     },
 
     resetErrors: function () {
-      $(".is-error").text("");
+      $(".error").text("");
     },
 
     getEntityConfig: function () {
