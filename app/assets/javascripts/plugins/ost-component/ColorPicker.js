@@ -11,6 +11,7 @@
         className: "color-picker",
         showInitial: true,
         preferredFormat: "hex",
+        appendTo: "parent",
         change: function(color) {
           oThis.setValue( $(this) );
         }

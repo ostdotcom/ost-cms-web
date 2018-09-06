@@ -67,6 +67,18 @@
     return "";
   });
 
+  Handlebars.registerHelper('getDate', function (val, options) {
+    var normaliser = 1000,
+    normalisedVal = parseInt(val) * normaliser,
+      dateObj       = new Date( normalisedVal ),
+      date          = (dateObj.getDate()),
+      month         = (dateObj.getMonth()+1),
+      year          = dateObj.getFullYear(),
+      separator     = "-";
+      return (date + separator + month + separator + year);
+
+  });
+
   Handlebars.registerHelper('ifFilePath', function (data, options) {
     if (typeof data == "string") {
       return options.fn(this);
@@ -96,8 +108,15 @@
     return options.inverse(this);
   });
 
+  Handlebars.registerHelper('isTimeStamp', function (data, options) {
+    if (data == "generic-date-picker") {
+      return options.fn(this);
+    }
+    return options.inverse(this);
+  });
+
   Handlebars.registerHelper('isText', function (data, options) {
-    if (data != "ost-input-file" && data != "generic-color-picker") {
+    if (data != "ost-input-file" && data != "generic-color-picker" && data != "generic-date-picker") {
       return options.fn(this);
     }
     return options.inverse(this);

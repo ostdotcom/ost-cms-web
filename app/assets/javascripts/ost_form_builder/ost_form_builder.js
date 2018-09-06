@@ -141,7 +141,8 @@
 
     bindEvents : function( config ){
       oThis.initFileUploader( config );
-      oThis.bindColorPicker( config );
+      oThis.intiColorPicker( config );
+      oThis.initDatePicker( config );
       oThis.initSelectPicker(  );
       oThis.initTagsInput(  );
     },
@@ -156,8 +157,12 @@
       return oThis.formType ;
     },
 
-    bindColorPicker: function (config) {
+    intiColorPicker: function (config) {
       parentNs.colorPicker.initColorPicker('.color-picker', config);
+    },
+
+    initDatePicker : function () {
+      parentNs.datePicker.init();
     },
 
     initFileUploader: function (config) {

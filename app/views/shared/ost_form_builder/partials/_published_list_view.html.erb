@@ -15,7 +15,11 @@
             {{#if this.display_value}}
               <div class="row pb-1">
                 <div class="col-2"><span class="text-capitalize font-weight-bold">{{this.display_label}}:</span></div>
+                {{#isTimeStamp this.input_kind}}
+                <div class="col-10"><span class="font-weight-light">{{getDate this.display_value}}</span></div>
+                {{else}}
                 <div class="col-10"><span class="font-weight-light">{{this.display_value}}</span></div>
+                {{/isTimeStamp}}
               </div>
             {{/if}}
           {{/each}}
