@@ -173,7 +173,11 @@ meta:
                     value: start-up
                   - name: Million User Platform
                     value: large
-
+        - partners_is_exited:
+            :meta_ui:
+                :input_kind: generic-radio-button
+                :input_label: Is exited
+                :data_key_name: partners_is_exited
 
         - partners_sprite_index:
             :meta_ui:

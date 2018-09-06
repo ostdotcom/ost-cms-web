@@ -215,7 +215,7 @@
 
     initPublishedListData: function () {
       $.ajax({
-        url: '/api/published',
+        url: '/api/content/published',
         method: 'GET',
         data: {
           entity_id: oThis.entityId

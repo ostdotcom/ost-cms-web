@@ -30,6 +30,9 @@
                       {{#isColor this.input_kind}}
                         <div style="height:20px;width:50px;background-color:{{this.display_value}};" />
                       {{/isColor}}
+                      {{#isTimeStamp this.input_kind}}
+                        {{getDate this.display_value}}
+                      {{/isTimeStamp}}
                     </div>
                   </div>
                 {{/if}}
