@@ -40,19 +40,19 @@
       });
     },
 
-    buildCreateForm: function ( entityId, entitiesConfig) {
+    buildCreateForm: function ( entityName, entitiesConfig) {
       oThis.setFormType('create');
-      var buildConfig = oThis.getFormBuildConfig(entityId, entitiesConfig);
+      var buildConfig = oThis.getFormBuildConfig(entityName, entitiesConfig);
       oThis.renderTemplate( buildConfig );
     },
 
-    buildEditForm: function ( recordId, entityId, entitiesConfig ) {
+    buildEditForm: function ( recordId, entityName, entitiesConfig ) {
       oThis.setFormType('edit');
       $.ajax({
         url: '/api/content/record?id=' + recordId,
         method: 'GET',
         success: function ( response ) {
-          oThis.onEditGetSuccess(response , recordId , entityId, entitiesConfig ) ;
+          oThis.onEditGetSuccess(response , recordId , entityName, entitiesConfig ) ;
         },
         error: function () {
           oThis.onEditGetError.apply( oThis ,  arguments )
@@ -60,8 +60,8 @@
       });
     },
 
-    onEditGetSuccess : function ( response, recordId , entityId, entitiesConfig) {
-      var buildConfig = oThis.getFormBuildConfig( entityId, entitiesConfig, response, recordId );
+    onEditGetSuccess : function ( response, recordId , entityName, entitiesConfig) {
+      var buildConfig = oThis.getFormBuildConfig( entityName, entitiesConfig, response, recordId );
       oThis.renderTemplate( buildConfig );
     },
 
@@ -72,12 +72,12 @@
       jModal.modal("show");
     },
 
-    getFormBuildConfig: function( entityId, entitiesConfig, response, recordId ) {
+    getFormBuildConfig: function( entityName, entitiesConfig, response, recordId ) {
       var buildConfig = {
         'jFormSelector' : oThis.getFormSelector(),
         'context' : {
-          entityFields: oThis.getEntityFields( entityId, entitiesConfig ),
-          entityId: entityId,
+          entityFields: oThis.getEntityFields( entityName, entitiesConfig ),
+          entityName: entityName,
           action: oThis.getFormAction(),
           method: oThis.getFormMethod(),
           header: oThis.getFormHeader()
@@ -97,8 +97,8 @@
       return oThis.sForm;
     },
 
-    getEntityFields : function(entityId, entitiesConfig){
-      return entitiesConfig && entitiesConfig['meta'] && entitiesConfig['meta'][entityId] && entitiesConfig['meta'][entityId]['fields'];
+    getEntityFields : function(entityName, entitiesConfig){
+      return entitiesConfig && entitiesConfig['meta'] && entitiesConfig['meta'][entityName] && entitiesConfig['meta'][entityName]['fields'];
     },
 
     getFormAction: function( ){

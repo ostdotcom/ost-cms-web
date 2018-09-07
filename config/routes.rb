@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   scope '', controller: 'web/ost' do
-    get '/dashboard/:id' => :dashboard
+    get '/dashboard/:name' => :dashboard
   end
 
   scope '', controller: 'web/signin' do
