@@ -15,7 +15,9 @@
     var jParent = (jqXHR.ost && jqXHR.ost.jParent ) ? jqXHR.ost.jParent : $("body")
         , msg   = ''
     ;
-    if (jqXHR.status === 0) {
+    if (jqXHR.responseJSON && jqXHR.responseJSON.err && jqXHR.responseJSON.err.display_text){
+      msg = jqXHR.responseJSON.err.display_text;
+    } else if (jqXHR.status === 0) {
       msg = 'Not able to connect to server. Please verify your internet connection.';
     } else if (jqXHR.status == 404) {
       msg = 'Requested page not found.';
@@ -30,8 +32,9 @@
     } else if (thrownError === 'abort') {
       msg = 'Ajax request aborted.';
     } else {
-      msg = 'Unable to connect to server.';
+      msg = 'Something went wrong.';
     }
+
 
     console.log("ajaxError", arguments, msg);
     if ( msg ) {
