@@ -42,9 +42,9 @@
           val           = jInput.val(),
           normalisedVal = parseInt(val) * normaliser,
           dateObj       = new Date( normalisedVal ),
-          date          = oThis.getNormalizedVal(dateObj.getDate()),
-          month         = oThis.getNormalizedVal(dateObj.getMonth()+1),
-          year          = dateObj.getFullYear(),
+          date          = oThis.getNormalizedVal(dateObj.getUTCDate()),
+          month         = oThis.getNormalizedVal(dateObj.getUTCMonth()+1),
+          year          = dateObj.getUTCFullYear(),
           separator     = "-",
           displayVal    = year+ separator + month + separator + date
       ;
@@ -63,7 +63,7 @@
     setFormInputValue : function ( jEl ) {
       var val           = jEl.val(),
           jInput        = jEl.parent().find(oThis.inputSelector),
-          timeStamp     = Date.parse( val ),
+          timeStamp     = Date.parse( val + " UTC" ),
           normalisedVal = timeStamp / normaliser
       ;
       jInput.val( normalisedVal );

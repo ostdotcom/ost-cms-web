@@ -67,16 +67,16 @@
     return "";
   });
 
+  var normaliser = 1000;
   Handlebars.registerHelper('getDate', function (val, options) {
-    var normaliser = 1000,
-    normalisedVal = parseInt(val) * normaliser,
-      dateObj       = new Date( normalisedVal ),
-      date          = (dateObj.getDate()),
-      month         = (dateObj.getMonth()+1),
-      year          = dateObj.getFullYear(),
-      separator     = "-";
-      return (date + separator + month + separator + year);
-
+    var normalisedVal = parseInt(val) * normaliser,
+        dateObj       = new Date( normalisedVal ),
+        date          = (dateObj.getUTCDate()),
+        month         = (dateObj.getUTCMonth()+1),
+        year          = dateObj.getUTCFullYear(),
+        separator     = "-";
+    if( isNaN(year) || isNaN(month) || isNaN(date) ) return "";
+    return (year+ separator + month + separator + date);
   });
 
   Handlebars.registerHelper('ifFilePath', function (data, options) {
