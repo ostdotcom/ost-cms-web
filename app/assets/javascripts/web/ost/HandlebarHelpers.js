@@ -94,34 +94,6 @@
     }
   });
 
-  Handlebars.registerHelper('isImageUrl', function (data, options) {
-    if (data == "ost-input-file") {
-      return options.fn(this);
-    }
-    return options.inverse(this);
-  });
-
-  Handlebars.registerHelper('isColor', function (data, options) {
-    if (data == "generic-color-picker") {
-      return options.fn(this);
-    }
-    return options.inverse(this);
-  });
-
-  Handlebars.registerHelper('isTimeStamp', function (data, options) {
-    if (data == "generic-date-picker") {
-      return options.fn(this);
-    }
-    return options.inverse(this);
-  });
-
-  Handlebars.registerHelper('isText', function (data, options) {
-    if (data != "ost-input-file" && data != "generic-color-picker" && data != "generic-date-picker") {
-      return options.fn(this);
-    }
-    return options.inverse(this);
-  });
-
   Handlebars.registerHelper('isSelected', function (value , values , options) {
     if(values && values.indexOf(value) > -1  ){
       return 'selected' ;

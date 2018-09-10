@@ -192,7 +192,8 @@
           });
           label = attrConfig['meta_ui']['input_label'];
           inputKind = attrConfig['meta_ui']['input_kind'];
-          record[key] = {'display_label': label, 'display_value': value, 'input_kind': inputKind};
+          console.log("record", record);
+          record[key] = new CMSRecordAttribute({'display_label': label, 'display_value': value, 'input_kind': inputKind});
         });
         list_item.heading = heading;
       });
@@ -307,6 +308,36 @@
         }
       });
     }
+
+  };
+
+  var CMSRecordAttribute =  oSTNs.CMSRecordAttribute = function ( recordAttribute ) {
+    var oThis = this;
+    Object.assign(oThis, recordAttribute);
+  };
+
+  CMSRecordAttribute.prototype = {
+    isImage: function () {
+      var oThis = this;
+      //TBD: This needs to change.
+      return 'ost-input-file' ===  oThis.input_kind;
+    },
+
+    isColor: function () {
+      var oThis = this;
+      return "generic-color-picker" === oThis.input_kind;
+    },
+
+    isTimeStamp: function () {
+      var oThis = this;
+      return "generic-date-picker" === oThis.input_kind;
+    },
+
+    isGenericLink: function () {
+      var oThis = this;
+      return "generic-link" === oThis.input_kind;
+    }
+
 
   };
 
