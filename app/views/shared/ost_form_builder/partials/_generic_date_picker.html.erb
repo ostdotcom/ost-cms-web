@@ -1,6 +1,6 @@
 <script  type="text/x-handlebars-template" id="generic-date-picker" data-partial-id="generic-date-picker">
   <div class="form-group mb-0">
-    <label for="{{data_key_name}}">{{input_label}}</label>
+    <label for="{{data_key_name}}">{{input_label}}</label> <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="bottom" title="{{tooltip_title}}" ></i>
     <input  type="date" class="cms-date-picker form-control"
             {{#each validations}}
             {{#when @key '==' 'required'}}

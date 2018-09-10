@@ -100,7 +100,7 @@ var news_list =
       news_list_date: "30 May 2018"
     },
     {
-      news_list_title: "Save the news_list_date: AMA with Jason Goldberg and Benjamin Bollen on 31 May 2018!",
+      news_list_title: "Save the date: AMA with Jason Goldberg and Benjamin Bollen on 31 May 2018!",
       news_list_image: "https://dxwfxs8b4lg24.cloudfront.net/ost/images/ost-news/ost-ama-medium.png",
       news_list_article_link: "https://medium.com/ostdotcom/save-the-date-ama-with-jason-goldberg-and-benjamin-bollen-on-31-may-2018-ba783caac523",
       news_list_date: "25 May 2018"
@@ -2065,7 +2065,7 @@ PopulateData.prototype = {
     if (index < 0) {
       return false;
     }
-    if (this.entityId == 1) {
+    if (this.entityId == "news_list") {
       var date = new Date(this.entityData[index]["news_list_date"]),
         utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
       this.entityData[index]["news_list_date"] = utcDate.getTime() / 1000;

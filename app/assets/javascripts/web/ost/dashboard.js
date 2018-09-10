@@ -244,7 +244,7 @@
 
     resetPublish: function () {
       $.ajax({
-        url: '/api/content/rollback',
+        url: '/api/content/reset_to_publish',
         method: 'POST',
         data: {
           entity_name: oThis.entityName

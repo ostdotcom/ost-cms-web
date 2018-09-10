@@ -9,7 +9,7 @@
     <div class="modal-body">
       {{#each entityFields}}
         {{#each this}}
-          {{> (lookup this.meta_ui 'input_kind') input_label=this.meta_ui.input_label data_key_name=this.meta_ui.data_key_name  validations=this.validations select_options=this.meta_ui.options data_key_value=(lookup ../../data @key)}}
+          {{> (lookup this.meta_ui 'input_kind') input_label=this.meta_ui.input_label data_key_name=this.meta_ui.data_key_name  validations=this.validations select_options=this.meta_ui.options tooltip_title=this.meta_ui.tooltip_title  data_key_value=(lookup ../../data @key)}}
         {{/each}}
       {{/each}}
       <input type="hidden" name="entity_name" value="{{entityName}}" />

@@ -22,7 +22,7 @@
                     <div class="col-2"><span class="text-capitalize font-weight-bold">{{this.display_label}}:</span></div>
                     <div class="col-10">
                       {{#isImageUrl this.input_kind}}
-                        <img height = 100px width = 100px src = "{{this.display_value}}"/>
+                        <img width = "30%" src = "{{this.display_value}}"/>
                       {{/isImageUrl}}
                       {{#isText this.input_kind}}
                         <span class="font-weight-light">{{{this.display_value}}}</span>
@@ -32,6 +32,9 @@
                       {{/isColor}}
                       {{#isTimeStamp this.input_kind}}
                         {{{getDate this.display_value}}}
+                      {{/isTimeStamp}}
+                      {{#isTimeStamp this.input_kind}}
+                      {{{getDate this.display_value}}}
                       {{/isTimeStamp}}
                     </div>
                   </div>

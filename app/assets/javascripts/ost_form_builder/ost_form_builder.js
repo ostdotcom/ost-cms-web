@@ -148,6 +148,7 @@
       oThis.initDatePicker( config );
       oThis.initSelectPicker(  );
       oThis.initTagsInput(  );
+      oThis.initTooltips();
     },
 
     setFormType : function( type ){
@@ -181,6 +182,12 @@
       $('.tagsinput').tagsinput({
         trimValue: true
       });
+    },
+
+    initTooltips: function(){
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+      })
     }
   };
 
