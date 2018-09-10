@@ -8,7 +8,7 @@ class Web::OstController < Web::BaseController
   # Edit entity Dashboard
   #
   def dashboard
-    @entity_id = params[:id] || 1
+    @entity_name = params[:name] || "news_list"
   end
 
 

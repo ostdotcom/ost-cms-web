@@ -1,5 +1,5 @@
 meta:
-    :1:
+    :news_list:
       :record_heading: news_list_title
       :fields:
         - news_list_title:
@@ -33,7 +33,7 @@ meta:
                 :input_label: Video Embed Url
                 :data_key_name: news_list_video_embed
 
-    :2:
+    :members_list:
       :record_heading: members_list_title
       :fields:
         - members_list_title:
@@ -78,7 +78,7 @@ meta:
                 :data_key_name: members_list_description
 
 
-    :3:
+    :advisors_list:
       :record_heading: advisors_list_title
       :fields:
         - advisors_list_title:
@@ -122,7 +122,7 @@ meta:
                 :input_label: Description
                 :data_key_name: advisors_list_description
 
-    :4:
+    :partners_list:
       :record_heading: partners_name
       :fields:
         - partners_name:
@@ -176,7 +176,7 @@ meta:
         - partners_is_exited:
             :meta_ui:
                 :input_kind: generic-radio-button
-                :input_label: Is exited
+                :input_label: Has exited
                 :data_key_name: partners_is_exited
 
         - partners_sprite_index:
@@ -211,7 +211,7 @@ meta:
                 :data_key_name: partners_on_hover_bgcolor
 
 
-    :5:
+    :berlin_career_list:
         :record_heading: careers_title
         :fields:
           - careers_title:
@@ -231,7 +231,7 @@ meta:
                   :input_label: Job Description Link
                   :data_key_name: careers_url
 
-    :6:
+    :pune_career_list:
         :record_heading: careers_title
         :fields:
           - careers_title:

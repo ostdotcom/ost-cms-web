@@ -10,10 +10,10 @@
     jSortable: $('#sortable'),
     jSidebar: $('.app-sidebar'),
     selectedItem: ".treeview-item.selected",
-    entityId: null,
+    entityName: null,
 
     init: function (config) {
-      oThis.entityId = config.entity_id;
+      oThis.entityName = config.entity_name;
       oThis.entitiesConfig = JSON.parse(config.meta_data);
       oThis.ostFormBuilder = new cms.OstFormBuilder( { 'entitiesConfig' :config , 'selectedItem' : oThis.selectedItem } );
       oThis.bindEvents();
@@ -58,7 +58,7 @@
       });
 
       $('.j-create-link').on('click', function () {
-        oThis.ostFormBuilder.buildCreateForm( oThis.entityId, oThis.entitiesConfig );
+        oThis.ostFormBuilder.buildCreateForm( oThis.entityName, oThis.entitiesConfig );
       });
 
       $('body').on('submit', '#entity_data_form', function (e) {
@@ -67,7 +67,7 @@
       });
 
       $('body').on('click', '.j-edit-link', function (e) {
-        oThis.ostFormBuilder.buildEditForm($(this).data('id'), oThis.entityId, oThis.entitiesConfig);
+        oThis.ostFormBuilder.buildEditForm($(this).data('id'), oThis.entityName, oThis.entitiesConfig);
       });
 
       $('body').on('click', '.j-delete-link', function (e) {
@@ -109,9 +109,9 @@
 
 
     selectSidebarMenu: function () {
-      var entityId = window.location.pathname,
-        entityId = entityId[entityId.length - 1],
-        selectedItem = oThis.jSidebar.find("[data-entity-id='" + entityId + "']"),
+      var entityName = window.location.pathname,
+        entityName = entityName.split("/").pop(),
+        selectedItem = oThis.jSidebar.find("[data-entity-id='" + entityName + "']"),
         selectedParent = selectedItem.closest("li.treeview");
       selectedParent.addClass("is-expanded");
       selectedItem.addClass("selected");
@@ -122,7 +122,7 @@
         url: '/api/content/sort',
         method: 'POST',
         data: {
-          entity_id: oThis.entityId,
+          entity_name: oThis.entityName,
           id: recordId,
           prev: previous,
           next: next
@@ -138,7 +138,7 @@
         url: '/api/content/active',
         method: 'GET',
         data: {
-          entity_id: oThis.entityId
+          entity_name: oThis.entityName
         },
         success: function (response) {
           oThis.onRefresh(response);
@@ -178,7 +178,7 @@
           if (recordHeading && key == recordHeading) {
             heading = value;
           }
-          oThis.entitiesConfig['meta'][oThis.entityId]['fields'].forEach(function (attr_object) {
+          oThis.entitiesConfig['meta'][oThis.entityName]['fields'].forEach(function (attr_object) {
             if (attr_object[key]) {
               attrConfig = attr_object[key];
               return;
@@ -219,7 +219,7 @@
         url: '/api/content/published',
         method: 'GET',
         data: {
-          entity_id: oThis.entityId
+          entity_name: oThis.entityName
         },
         success: function (response) {
           oThis.publishedListData = oThis.createMetaObject(response.data.list);
@@ -235,7 +235,7 @@
         url: '/api/content/publish',
         method: 'POST',
         data: {
-          entity_id: oThis.entityId
+          entity_name: oThis.entityName
         },
         success: function () {
           oThis.initPublishedListData();
@@ -255,7 +255,7 @@
         url: '/api/content/rollback',
         method: 'POST',
         data: {
-          entity_id: oThis.entityId
+          entity_name: oThis.entityName
         },
         success: function () {
           oThis.initPublishedListData();
@@ -276,7 +276,7 @@
     },
 
     getEntityConfig: function () {
-      return oThis.entitiesConfig && oThis.entitiesConfig['meta'] && oThis.entitiesConfig['meta'][oThis.entityId];
+      return oThis.entitiesConfig && oThis.entitiesConfig['meta'] && oThis.entitiesConfig['meta'][oThis.entityName];
     },
 
     getRecordHeading: function () {
