@@ -110,7 +110,7 @@
 
     selectSidebarMenu: function () {
       var entityName = window.location.pathname,
-        entityName = entityName[entityName.length - 1],
+        entityName = entityName.split("/").pop(),
         selectedItem = oThis.jSidebar.find("[data-entity-id='" + entityName + "']"),
         selectedParent = selectedItem.closest("li.treeview");
       selectedParent.addClass("is-expanded");
