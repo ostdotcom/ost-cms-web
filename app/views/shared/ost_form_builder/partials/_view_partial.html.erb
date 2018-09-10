@@ -1,0 +1,18 @@
+<div class="row pb-3">
+  <div class="col-12">
+    <h5 class="text-capitalize font-weight-bold mb-0">{{this.display_label}}:</h5>
+    {{#if this.isImage}}
+    <a href="{{this.display_value}}" target="_blank">{{this.display_value}}</a>
+    <br />
+    <img width="35%" src = "{{this.display_value}}"/>
+    {{else if isGenericLink}}
+    <a href="{{this.display_value}}" target="_blank">{{this.display_value}}</a>
+    {{else if isColor}}
+    <div style="height:20px;width:50px;background-color:{{this.display_value}};" />
+    {{else if isTimeStamp}}
+    {{{getDate this.display_value}}}
+    {{else}}
+    <span class="font-weight-light">{{{this.display_value}}}</span>
+    {{/if}}
+  </div>
+</div>

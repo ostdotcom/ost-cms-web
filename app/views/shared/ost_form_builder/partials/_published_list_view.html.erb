@@ -5,7 +5,7 @@
       <div class="card-header" id="listHeading">
         <h5 class="mb-0">
           <button class="btn btn-link px-0" data-toggle="collapse" data-target="#published_rec_{{this.id}}" aria-expanded="true" aria-controls="published_rec_{{this.id}}">
-            #{{math @index '+' 1}} {{this.heading}}
+            #{{math @index '+' 1}} {{{this.heading}}}
           </button>
         </h5>
       </div>
@@ -13,14 +13,7 @@
         <div class="card-body">
           {{#each this.record}}
             {{#if this.display_value}}
-              <div class="row pb-1">
-                <div class="col-2"><span class="text-capitalize font-weight-bold">{{this.display_label}}:</span></div>
-                {{#isTimeStamp this.input_kind}}
-                <div class="col-10"><span class="font-weight-light">{{getDate this.display_value}}</span></div>
-                {{else}}
-                <div class="col-10"><span class="font-weight-light">{{{this.display_value}}}</span></div>
-                {{/isTimeStamp}}
-              </div>
+              <%= render :partial => "/shared/ost_form_builder/partials/view_partial" %>
             {{/if}}
           {{/each}}
         </div>
