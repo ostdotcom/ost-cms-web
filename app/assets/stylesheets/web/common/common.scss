@@ -24,7 +24,7 @@
   background-color: $card-bg;
 }
 
-#accordion .card.draft-mode{
+.ui-sortable .card.draft-mode .card-header {
   cursor: move;
 }
 
