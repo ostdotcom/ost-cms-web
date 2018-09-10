@@ -1,4 +1,4 @@
-//= require web/ost/errorHelper
+//= require web/ost/responseHelper
 //= require ost_form_builder/ost_form_builder
 //= require web/ost/dashboard
 //= require web/ost/HandlebarHelpers

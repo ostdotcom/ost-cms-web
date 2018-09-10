@@ -155,11 +155,11 @@
         method: jForm.attr('method'),
         data: jForm.serialize(),
         success: function () {
-          $('#genericModal').modal('hide');
+          oSTNs.responseHelper.showSuccessModal("Record saved successfully!");
           oThis.refresh();
         },
         error: function (error) {
-          oSTNs.errorHelper.showError( jForm , error);
+          oSTNs.responseHelper.showError( jForm , error);
         }
       })
     },
@@ -202,12 +202,13 @@
           id: recordId
         },
         success: function () {
+          oSTNs.responseHelper.showSuccessModal(  "Record deleted successfully!");
           oThis.refresh();
         },
         error: function (response) {
           var jModal = $("#displayErrorModal");
           $('.modal').modal('hide');
-          oSTNs.errorHelper.showError( jModal , response);
+          oSTNs.responseHelper.showError( jModal , response);
           jModal.modal("show");
         }
       });
@@ -238,6 +239,13 @@
         },
         success: function () {
           oThis.initPublishedListData();
+          oSTNs.responseHelper.showSuccessModal( "Data published successfully !!");
+        },
+        error: function (response) {
+          var jModal = $("#displayErrorModal");
+          $('.modal').modal('hide');
+          oSTNs.responseHelper.showError( jModal , response);
+          jModal.modal("show");
         }
       })
     },
@@ -251,12 +259,13 @@
         },
         success: function () {
           oThis.initPublishedListData();
+          oSTNs.responseHelper.showSuccessModal( "Reset successful!");
           oThis.refresh();
         },
         error: function(res){
           var jModal = $("#displayErrorModal");
           $('.modal').modal('hide');
-          oSTNs.errorHelper.showError( jModal , res);
+          oSTNs.responseHelper.showError( jModal , res);
           jModal.modal("show");
         }
       })
