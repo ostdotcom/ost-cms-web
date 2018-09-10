@@ -66,9 +66,9 @@
     },
 
     onEditGetError : function (jqXHR ,  error ) {
-      var jModal = $("#displayErrorModal");
+      var jModal = $("#displayMsgModal");
       $('.modal').modal('hide');
-      parentNs.errorHelper.showError( jModal , error );
+      parentNs.requestHelper.showError( jModal , error );
       jModal.modal("show");
     },
 

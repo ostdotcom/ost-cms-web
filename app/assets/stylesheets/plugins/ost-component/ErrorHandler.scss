@@ -1,6 +1,13 @@
-.error{
-  font-size: 12px;
-  color: red;
-  height: 20px;
+@import "../../web/ost_theme/variables";
 
-}
+  .text-size-normal{
+    font-size: $font-size-base;
+  }
+  .error{
+    font-size: $font-size-smaller;
+    height: 12px;
+    color: $crimson;
+  }
+
+
+
