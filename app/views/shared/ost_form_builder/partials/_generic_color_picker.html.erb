@@ -1,6 +1,6 @@
 <script  type="text/x-handlebars-template" id="generic-color-picker" data-partial-id="generic-color-picker">
   <div class="form-group mb-0">
-    <label for="{{data_key_name}}">{{input_label}}</label> <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="bottom" title="{{tooltip_title}}" ></i>
+    <label for="{{data_key_name}}">{{input_label}}</label> <p class="small text-muted font-weight-light font-italic mb-1">{{tooltip_title}}</p>
     <input type="text" class="form-control color-picker" id="{{data_key_name}}" name="{{data_key_name}}" value="{{data_key_value}}"
            {{#each validations}}
            {{#when @key '==' 'required'}}

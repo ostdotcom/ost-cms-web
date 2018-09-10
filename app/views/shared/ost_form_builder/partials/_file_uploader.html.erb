@@ -1,7 +1,7 @@
 <script type="text/x-handlebars-template" id="ost-input-file" data-partial-id="ost-input-file">
 
   <div class="file-input-error-wrapper">
-  <label>{{input_label}}</label> <i class="fa fa-info-circle" data-toggle="tooltip" data-placement="bottom" title="{{tooltip_title}}" ></i>
+  <label>{{input_label}}</label> <p class="small text-muted font-weight-light font-italic mb-1">{{tooltip_title}}</p>
   <div class="row form-group  ost-file-uploader-wrap {{entityKey}} mb-0">
     <div class="col-10 align-self-center">
         <input type="text" {{isRequired validations.required}}  class=" mb-0 file-name" value="{{#ifFilePath data_key_value}}{{data_key_value}} {{/ifFilePath}}">
