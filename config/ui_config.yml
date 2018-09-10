@@ -29,7 +29,7 @@ meta:
         - news_list_date:
             :meta_ui:
                 :input_kind: generic-date-picker
-                :input_label: Date
+                :input_label: News Published Date
                 :data_key_name: news_list_date
                 :tooltip_title: News date is required field.
         - news_list_video_embed:

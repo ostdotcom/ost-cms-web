@@ -51,11 +51,19 @@
       $.ajax({
         url: '/api/content/record?id=' + recordId,
         method: 'GET',
+        beforeSend: function(){
+          parentNs.requestHelper.showLoadingModal("Opening edit form...");
+        },
         success: function ( response ) {
-          oThis.onEditGetSuccess(response , recordId , entityName, entitiesConfig ) ;
+          if( response.success ) {
+            $('.modal').modal('hide');
+            oThis.onEditGetSuccess(response , recordId , entityName, entitiesConfig ) ;
+          } else {
+            oThis.onEditGetError.apply( oThis ,  arguments );
+          }
         },
         error: function () {
-          oThis.onEditGetError.apply( oThis ,  arguments )
+          oThis.onEditGetError.apply( oThis ,  arguments );
         }
       });
     },

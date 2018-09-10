@@ -11,6 +11,9 @@
     jSidebar: $('.app-sidebar'),
     selectedItem: ".treeview-item.selected",
     entityName: null,
+    jDeleteModal: $("#deleteModal"),
+    jPublishModal: $("#publishModal"),
+    jResetModal: $("#resetModal"),
 
     init: function (config) {
       oThis.entityName = config.entity_name;
@@ -18,7 +21,7 @@
       oThis.ostFormBuilder = new cms.OstFormBuilder( { 'entitiesConfig' :config , 'selectedItem' : oThis.selectedItem } );
       oThis.bindEvents();
       oThis.refresh();
-      oThis.initPublishedListData();
+      oThis.initPublishedListData( true );
       oThis.getEntityConfig();
       oThis.selectSidebarMenu();
       oThis.hideSideBarMenuItem();
@@ -71,23 +74,49 @@
       });
 
       $('body').on('click', '.j-delete-link', function (e) {
-        oThis.delete($(this).data('id'));
+        oThis.showDeleteModal( $(this).data('id') );
+      });
+
+      $('body').on('click', '.delete-btn', function () {
+        var id = oThis.jDeleteModal.data('recordId');
+        oThis.delete(id);
       });
 
       $('body').on('click', '.j-publish-changes-link', function (e) {
+        oThis.showPublishModal();
+      });
+
+      $('body').on('click', '.publish-btn', function () {
         oThis.publish();
       });
 
       $('body').on('click', '.j-reset-publish-link', function (e) {
+        oThis.showResetModal();
+      });
+
+      $('body').on('click', '.reset-btn', function () {
         oThis.resetPublish();
       });
 
     },
 
+    showDeleteModal : function( id ){
+      oThis.jDeleteModal.data('recordId', id);
+      oThis.jDeleteModal.modal('show');
+    },
+
+    showResetModal : function(){
+      oThis.jResetModal.modal('show');
+    },
+
+    showPublishModal : function(){
+      oThis.jPublishModal.modal('show');
+    },
+
     bindSortable: function () {
       $('#accordion').sortable({
         revert: true,
-        stop: function (e, ui) {
+        update: function (e, ui) {
           $('#list .card').each(function (k) {
             $(this).find('.record-index').text(k + 1);
           });
@@ -127,8 +156,19 @@
           prev: previous,
           next: next
         },
-        success: function () {
-          oThis.refresh();
+        beforeSend: function(){
+          oSTNs.requestHelper.showLoadingModal( "Sorting in progress... " );
+        },
+        success: function ( res ) {
+          if(res.success) {
+            oThis.refresh();
+            $('.modal').modal('hide');
+          } else {
+            oSTNs.requestHelper.showErrorModal( res );
+          }
+        },
+        error: function ( error ) {
+          oSTNs.requestHelper.showErrorModal( error );
         }
       })
     },
@@ -141,7 +181,11 @@
           entity_name: oThis.entityName
         },
         success: function (response) {
-          oThis.onRefresh(response);
+          if(response.success) {
+            oThis.onRefresh(response);
+          } else {
+            oSTNs.requestHelper.showErrorModal( response );
+          }
         }
       })
     },
@@ -157,9 +201,13 @@
         beforeSend: function(){
           jForm.find('.btn-primary').text('Saving...');
         },
-        success: function () {
-          oSTNs.requestHelper.showSuccessModal("Record saved successfully!");
-          oThis.refresh();
+        success: function ( res ) {
+          if( res.success ){
+            oSTNs.requestHelper.showSuccessModal("Record saved successfully!");
+            oThis.refresh();
+          } else {
+            oSTNs.requestHelper.showError( jForm , res);
+          }
         },
         error: function (error) {
           oSTNs.requestHelper.showError( jForm , error);
@@ -201,7 +249,6 @@
     },
 
     delete: function (recordId) {
-      confirm("Are you sure to delete this item?" ) &&
       $.ajax({
         url: '/api/content/delete',
         method: 'POST',
@@ -211,31 +258,47 @@
         beforeSend: function(){
           oSTNs.requestHelper.showLoadingModal("Deleting ...");
         },
-        success: function () {
-          oSTNs.requestHelper.showSuccessModal(  "Record deleted successfully!");
-          oThis.refresh();
+        success: function ( res ) {
+          if( res.success ){
+            oSTNs.requestHelper.showSuccessModal(  "Record deleted successfully!");
+            oThis.refresh();
+          } else {
+            oSTNs.requestHelper.showErrorModal( res );
+          }
         },
-        error: function (response) {
-          var jModal = $("#requestErrorModal");
-          $('.modal').modal('hide');
-          oSTNs.requestHelper.showError( jModal , response);
-          jModal.modal("show");
+        error: function (error) {
+          oSTNs.requestHelper.showErrorModal( error );
         }
       });
     },
 
-    initPublishedListData: function () {
+    initPublishedListData: function ( showProcessingModal ) {
       $.ajax({
         url: '/api/content/published',
         method: 'GET',
         data: {
           entity_name: oThis.entityName
         },
+        beforeSend: function(){
+          if( showProcessingModal ){
+            oSTNs.requestHelper.showLoadingModal("Getting data, please wait...");
+          }
+        },
         success: function (response) {
-          oThis.publishedListData = oThis.createMetaObject(response.data.list);
-          var template = Handlebars.compile($('#published_list_view').text());
-          var html = template({'published_list_data': oThis.publishedListData});
-          $('#published_list').html(html);
+          if( response.success ) {
+            oThis.publishedListData = oThis.createMetaObject(response.data.list);
+            var template = Handlebars.compile($('#published_list_view').text());
+            var html = template({'published_list_data': oThis.publishedListData});
+            $('#published_list').html(html);
+            if( showProcessingModal ){
+              $('.modal').modal('hide');
+            }
+          } else {
+            oSTNs.requestHelper.showErrorModal( response );
+          }
+        },
+        error: function ( error ) {
+          oSTNs.requestHelper.showErrorModal( error );
         }
       })
     },
@@ -250,15 +313,16 @@
         beforeSend: function(){
           oSTNs.requestHelper.showLoadingModal("Publishing ...");
         },
-        success: function () {
-          oThis.initPublishedListData();
-          oSTNs.requestHelper.showSuccessModal( "Data published successfully !!");
+        success: function ( res ) {
+          if( res.success ) {
+            oSTNs.requestHelper.showSuccessModal( "Data published successfully !!");
+            oThis.initPublishedListData();
+          } else {
+            oSTNs.requestHelper.showErrorModal( res );
+          }
         },
-        error: function (response) {
-          var jModal = $("#requestErrorModal");
-          $('.modal').modal('hide');
-          oSTNs.requestHelper.showError( jModal , response);
-          jModal.modal("show");
+        error: function (  error ) {
+          oSTNs.requestHelper.showErrorModal( error );
         }
       })
     },
@@ -273,16 +337,17 @@
         beforeSend: function(){
           oSTNs.requestHelper.showLoadingModal("Going to the last publish version ...");
         },
-        success: function () {
-          oThis.initPublishedListData();
-          oSTNs.requestHelper.showSuccessModal( "Reset successful!");
-          oThis.refresh();
+        success: function ( res ) {
+          if( res.success ) {
+            oThis.initPublishedListData();
+            oSTNs.requestHelper.showSuccessModal( "Reset successful!");
+            oThis.refresh();
+          } else {
+            oSTNs.requestHelper.showErrorModal( res );
+          }
         },
-        error: function(res){
-          var jModal = $("#requestErrorModal");
-          $('.modal').modal('hide');
-          oSTNs.requestHelper.showError( jModal , res);
-          jModal.modal("show");
+        error: function( error ){
+          oSTNs.requestHelper.showErrorModal( error );
         }
       })
     },

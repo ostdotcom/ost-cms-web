@@ -14,7 +14,8 @@
 
 
     showError : function ( jWrapper , error ) {
-      var jWrapper      = jWrapper ||  defaultModalError ,
+      if(!jWrapper) return ;
+      var jWrapper      = jWrapper ,
           responseJson  = error && error.responseJSON,
           err           = responseJson && responseJson.err,
           errorData     = err && err['error_data'],
@@ -36,6 +37,13 @@
       }
     },
 
+    showErrorModal : function( error , jModal ){
+      var jModal = jModal || oThis.defaultModalError;
+      $('.modal').modal('hide');
+      oSTNs.requestHelper.showError( jModal , error );
+      jModal.modal("show");
+    },
+
     showSuccessModal : function( displayMsg, jModal ){
       var jModal      = jModal      ||  oThis.defaultModalSuccess,
           displayMsg  = displayMsg  || oThis.generalSuccessMsg,
@@ -44,6 +52,9 @@
       jEl.text(displayMsg) ;
       $('.modal').modal('hide');
       jModal.modal("show");
+      setTimeout( function () {
+        jModal.modal('hide');
+      } , 1000);
     },
 
     showLoadingModal : function( message , jModal ){
