@@ -68,7 +68,7 @@
     onEditGetError : function (jqXHR ,  error ) {
       var jModal = $("#displayMsgModal");
       $('.modal').modal('hide');
-      parentNs.responseHelper.showError( jModal , error );
+      parentNs.requestHelper.showError( jModal , error );
       jModal.modal("show");
     },
 

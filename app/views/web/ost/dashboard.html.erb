@@ -39,7 +39,7 @@
       </div>
 
 
-        <div class="modal" id="displayErrorModal">
+        <div class="modal" id="requestErrorModal">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-body error-message text-center py-5" >
@@ -54,17 +54,27 @@
           </div>
         </div>
       </div>
-      <div class="modal" id="displaySuccessModal">
+      <div class="modal" id="requestSuccessModal">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class=" modal-body success-message text-center py-5">
-              <svg class="icon " style="width:50px; height: 50px">
+              <svg class="icon" style="width:50px; height: 50px">
                 <switch>
                   <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#success-icon">
                   </use>
                 </switch>
               </svg>
               <div class="success_message text-size-normal"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal" id="requestProcessingModal" data-backdrop="static">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class=" modal-body text-center py-5">
+              <img src="https://dxwfxs8b4lg24.cloudfront.net/ost-kit/images/processed-loader-1.gif" style="width:50px; height: 50px"/>
+              <div class="text-size-normal processing-message mt-4"> Processing... </div>
             </div>
           </div>
         </div>

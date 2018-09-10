@@ -154,12 +154,18 @@
         url: jForm.attr('action'),
         method: jForm.attr('method'),
         data: jForm.serialize(),
+        beforeSend: function(){
+          jForm.find('.btn-primary').text('Saving...');
+        },
         success: function () {
-          oSTNs.responseHelper.showSuccessModal("Record saved successfully!");
+          oSTNs.requestHelper.showSuccessModal("Record saved successfully!");
           oThis.refresh();
         },
         error: function (error) {
-          oSTNs.responseHelper.showError( jForm , error);
+          oSTNs.requestHelper.showError( jForm , error);
+        },
+        complete: function () {
+          jForm.find('.btn-primary').text('Save');
         }
       })
     },
@@ -201,14 +207,17 @@
         data: {
           id: recordId
         },
+        beforeSend: function(){
+          oSTNs.requestHelper.showLoadingModal("Deleting ...");
+        },
         success: function () {
-          oSTNs.responseHelper.showSuccessModal(  "Record deleted successfully!");
+          oSTNs.requestHelper.showSuccessModal(  "Record deleted successfully!");
           oThis.refresh();
         },
         error: function (response) {
-          var jModal = $("#displayErrorModal");
+          var jModal = $("#requestErrorModal");
           $('.modal').modal('hide');
-          oSTNs.responseHelper.showError( jModal , response);
+          oSTNs.requestHelper.showError( jModal , response);
           jModal.modal("show");
         }
       });
@@ -237,14 +246,17 @@
         data: {
           entity_name: oThis.entityName
         },
+        beforeSend: function(){
+          oSTNs.requestHelper.showLoadingModal("Publishing ...");
+        },
         success: function () {
           oThis.initPublishedListData();
-          oSTNs.responseHelper.showSuccessModal( "Data published successfully !!");
+          oSTNs.requestHelper.showSuccessModal( "Data published successfully !!");
         },
         error: function (response) {
-          var jModal = $("#displayErrorModal");
+          var jModal = $("#requestErrorModal");
           $('.modal').modal('hide');
-          oSTNs.responseHelper.showError( jModal , response);
+          oSTNs.requestHelper.showError( jModal , response);
           jModal.modal("show");
         }
       })
@@ -257,15 +269,18 @@
         data: {
           entity_name: oThis.entityName
         },
+        beforeSend: function(){
+          oSTNs.requestHelper.showLoadingModal("Going to the last publish version ...");
+        },
         success: function () {
           oThis.initPublishedListData();
-          oSTNs.responseHelper.showSuccessModal( "Reset successful!");
+          oSTNs.requestHelper.showSuccessModal( "Reset successful!");
           oThis.refresh();
         },
         error: function(res){
-          var jModal = $("#displayErrorModal");
+          var jModal = $("#requestErrorModal");
           $('.modal').modal('hide');
-          oSTNs.responseHelper.showError( jModal , res);
+          oSTNs.requestHelper.showError( jModal , res);
           jModal.modal("show");
         }
       })

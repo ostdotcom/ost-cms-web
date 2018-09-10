@@ -4,12 +4,14 @@
   var oSTNs = ns("cms"),
     oThis;
 
-  oSTNs.responseHelper = oThis = {
+  oSTNs.requestHelper = oThis = {
 
-    generalErrorMsg     : "Something went wrong!",
-    generalSuccessMsg   : "Successful",
-    defaultModalSuccess : $("#displaySuccessModal"),
-    defaultModalError   : $("#displayErrorModal"),
+    generalErrorMsg       : "Something went wrong!",
+    generalSuccessMsg     : "Successful",
+    defaultModalSuccess   : $("#requestSuccessModal"),
+    defaultModalError     : $("#requestErrorModal"),
+    defaultModalLoading   : $("#requestProcessingModal"),
+
 
     showError : function ( jWrapper , error ) {
       var jWrapper      = jWrapper ||  defaultModalError ,
@@ -41,6 +43,16 @@
       ;
       jEl.text(displayMsg) ;
       $('.modal').modal('hide');
+      jModal.modal("show");
+    },
+
+    showLoadingModal : function( message , jModal ){
+      $('.modal').modal('hide');
+      var jModal  = jModal  || oThis.defaultModalLoading
+      ;
+      if( message ){
+        jModal.find('.processing-message').html( message );
+      }
       jModal.modal("show");
     },
 
