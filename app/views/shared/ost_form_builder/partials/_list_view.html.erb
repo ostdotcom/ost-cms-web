@@ -2,8 +2,8 @@
     <div id="accordion">
       {{#each list_data}}
         <div class="card mb-3 draft-mode" data-record-id="{{this.id}}">
-          <span class="ml-2"><i class="fa fa-ellipsis-v" aria-hidden="true"></i></span>
-          <div class="card-header pt-0" id="listHeading">
+          <i class="fa fa-ellipsis-v drag-icon" aria-hidden="true"></i>
+          <div class="card-header pt-4" id="listHeading">
             <h5 class="mb-0">
               <button class="btn btn-link px-0 pt-0" data-toggle="collapse" data-target="#record_{{this.id}}" aria-expanded="false" aria-controls="record_{{this.id}}">
                 #<span class="record-index">{{math @index '+' 1}}</span> {{{this.heading}}}

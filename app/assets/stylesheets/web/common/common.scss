@@ -10,7 +10,9 @@
   .logo-text{
     height: 40px;
     font-family: "Quasimoda", Source Sans Pro, sans-serif;
-    color: #34445b;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 34px;
   }
 }
 
@@ -26,6 +28,12 @@
 
 .ui-sortable .card.draft-mode .card-header {
   cursor: move;
+
+}
+.drag-icon {
+  position: absolute;
+  top: 26px;
+  left: 6px;
 }
 
 .j-edit-link, .j-delete-link{
