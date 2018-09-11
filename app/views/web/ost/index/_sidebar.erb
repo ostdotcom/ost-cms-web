@@ -3,6 +3,7 @@
       home_page: {
           page_label: "Home Page",
           page_icon_class: "fa-home",
+          preview_path: '',
           lists: [news_ol: {
                 list_label: "News",
                 id: "news_list"
@@ -11,6 +12,7 @@
       team_page: {
           page_label: "Team Page",
           page_icon_class: "fa-users",
+          preview_path: 'team',
           lists: [{team_ol: {
                     list_label: "Members Team",
                     id: "members_list"
@@ -24,15 +26,17 @@
       partners_page:{
           page_label: "Partners Page",
           page_icon_class: "fa-users",
-            lists:
-                [{partners_ol: {
-                  list_label: "Partners",
-                  id: "partners_list"
-                }}]
+          preview_path: 'partners',
+          lists:
+              [{partners_ol: {
+                list_label: "Partners",
+                id: "partners_list"
+              }}]
       },
       careers_page: {
           page_label: "Careers Page",
           page_icon_class: "fa-graduation-cap",
+          preview_path: 'careers',
           lists: [{berlin_careers_ol: {
                     list_label: "Berlin Careers",
                      id: "berlin_career_list"
@@ -47,7 +51,7 @@
   }
 
 %>
-
+<% selected_path = '' %>
 <aside class="app-sidebar">
   <ul class="app-menu">
     <% meta_info.each do |key, data | %>
@@ -55,7 +59,12 @@
         <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa <%=data[:page_icon_class] %>"></i><span class="app-menu__label"><%= data[:page_label] %></span><i class="treeview-indicator fa fa-angle-right"></i></a>
         <ul class="treeview-menu">
           <% data[:lists].each do |list_item | %>
-            <% rec_id = list_item.values[0][:id].to_s.to_sym %>
+            <%
+              rec_id = list_item.values[0][:id].to_s.to_sym
+              if list_item.values[0][:id] == request.path.split('/')[-1]
+                selected_path = data[:preview_path]
+              end
+            %>
             <% if @config_response["meta"][rec_id] %>
               <li><a class="treeview-item pl-5" data-entity-id="<%= list_item.values[0][:id] %>" href="/dashboard/<%= list_item.values[0][:id] %>"><%= list_item.values[0][:list_label] %></a>
               </li>
@@ -63,6 +72,12 @@
           <% end%>
         </ul>
       </li>
-    <% end %>
+  <% end %>
   </ul>
 </aside>
+
+<% content_for :end_js do %>
+  <script>
+    $('#preview-page-options').selectpicker('val', '<%= selected_path %>');
+  </script>
+<% end %>
