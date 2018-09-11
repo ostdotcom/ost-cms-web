@@ -5,13 +5,21 @@
           <i class="fa fa-ellipsis-v drag-icon" aria-hidden="true"></i>
           <div class="card-header pt-4" id="listHeading">
             <h5 class="mb-0">
-              <button class="btn btn-link px-0 pt-0" data-toggle="collapse" data-target="#record_{{this.id}}" aria-expanded="false" aria-controls="record_{{this.id}}">
-                #<span class="record-index">{{math @index '+' 1}}</span> {{{this.heading}}}
-              </button>
-              <span class="float-right align-text-top">
-                  <a class="j-edit-link mb-3 mr-2" name="Edit" data-toggle="modal" data-target="#genericModal" data-id="{{this.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                  <a class="j-delete-link mb-3" name="Delete" data-id="{{this.id}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
-              </span>
+              <div class="row">
+                <div class="col-10">
+                  <button class="btn btn-link px-0 pt-0 text-truncate" style="max-width: 100%;"
+                          data-toggle="collapse" data-target="#record_{{this.id}}"
+                          aria-expanded="false" aria-controls="record_{{this.id}}">
+                    #<span class="record-index">{{math @index '+' 1}}</span> {{{this.heading}}}
+                  </button>
+                </div>
+                <div class="col-2">
+                  <span class="float-right align-text-top">
+                      <a class="j-edit-link mb-3 mr-2" name="Edit" data-toggle="modal"  data-id="{{this.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                      <a class="j-delete-link mb-3" name="Delete" data-id="{{this.id}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                  </span>
+                </div>
+              </div>
             </h5>
           </div>
           <div id="record_{{this.id}}" class="collapse hide" aria-labelledby="listHeading" data-parent="#accordion">
