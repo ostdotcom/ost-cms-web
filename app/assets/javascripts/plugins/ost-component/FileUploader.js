@@ -46,7 +46,7 @@
       ;
       if( !jElMocker ) return ;
 
-      $(oThis.sFileLabel).keypress(function(event){
+      $(oThis.sFileLabel).on('keydown', function(event){
         event.preventDefault();
       });
 
