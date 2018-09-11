@@ -40,7 +40,7 @@ meta:
                 :tooltip_title: Optional. If added, plays video in lightbox.
 
     :members_list:
-      :record_heading: members_list_title
+      :record_heading: members_list_name
       :fields:
         - members_list_title:
             :meta_ui:
@@ -93,7 +93,7 @@ meta:
 
 
     :advisors_list:
-      :record_heading: advisors_list_title
+      :record_heading: advisors_list_name
       :fields:
         - advisors_list_title:
             :meta_ui:
