@@ -21,12 +21,13 @@
       return configCopy ;
     },
 
-    init : function (selector , events ) {
+    init : function ( config, selector , events  ) {
       var selector =  selector || oThis.defaultSelector ,
           events   =  events || oThis.events,
           jEls     = $(selector),
           cnt , len = jEls.length
       ;
+      oThis.setValidations(jEls, config);
 
       for( cnt = 0 ;  cnt < len ; cnt++ ){
         oThis.setViewInputValue( jEls.eq( cnt ) );
@@ -67,7 +68,32 @@
           normalisedVal = timeStamp / normaliser
       ;
       jInput.val( normalisedVal );
+    },
+
+    setValidations : function (jEls, config) {
+      var maxDate = config.max ? config.max : oThis.getToday(),
+        minDate = config.min ? config.min : "2016-01-01";
+
+      jEls.attr("max", maxDate);
+      jEls.attr("min", minDate);
+    },
+
+    getToday : function(){
+      var today = new Date();
+      var dd = today.getDate();
+      var mm = today.getMonth()+1; //January is 0!
+      var yyyy = today.getFullYear();
+      if(dd<10){
+        dd='0'+dd
+      }
+      if(mm<10){
+        mm='0'+mm
+      }
+      return  yyyy+'-'+mm+'-'+dd;
     }
+
+
+
   };
 
 })(window );

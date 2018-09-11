@@ -153,7 +153,7 @@
     bindEvents : function( config ){
       oThis.initFileUploader( config );
       oThis.intiColorPicker( config );
-      oThis.initDatePicker( config );
+      oThis.initDatePicker( {min: "2016-01-01"} );
       oThis.initSelectPicker(  );
       oThis.initTagsInput(  );
       oThis.initTooltips();
@@ -173,8 +173,8 @@
       parentNs.colorPicker.initColorPicker('.color-picker', config);
     },
 
-    initDatePicker : function () {
-      parentNs.datePicker.init();
+    initDatePicker : function ( config  ) {
+      parentNs.datePicker.init(config);
     },
 
     initFileUploader: function (config) {
