@@ -101,3 +101,23 @@ a.treeview-item{
   }
 }
 
+
+.content-wrapper{
+  overflow: auto;
+  background-color: #fbfbfb;
+  height: calc(100vh - 130px);
+  .card{
+    overflow: hidden;
+  }
+}
+
+.nav-tabs{
+  .nav-link{
+    &.active{
+      background-color: #fbfbfb;
+      border-color: #dee2e6 #dee2e6 transparent;
+    }
+  }
+}
+
+
