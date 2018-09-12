@@ -11,10 +11,12 @@
             Browse
       </label>
       <input id="{{generateId true}}" class="file-upload-mocker not-in-view" type='file' name="{{data_key_name}}_mocker"
-             {{#validations.min_bytes}} data-min-bytes="{{this}}" {{/validations.min_bytes}}
-      {{#validations.max_bytes}} data-max-bytes="{{this}}" {{/validations.max_bytes}}
-      {{#validations.accept}} data-accept="{{getAccept this}}" {{/validations.accept}}
-      data-get-signed-url={{get_signed_url}} >
+            {{#validations.width_weight}} data-width-weight="{{this}}" {{/validations.width_weight}}
+            {{#validations.height_weight}} data-height-weight="{{this}}" {{/validations.height_weight}}
+            {{#validations.min_bytes}} data-min-bytes="{{this}}" {{/validations.min_bytes}}
+            {{#validations.max_bytes}} data-max-bytes="{{this}}" {{/validations.max_bytes}}
+            {{#validations.accept}} data-accept="{{getAccept this}}" {{/validations.accept}}
+            data-get-signed-url={{get_signed_url}} >
 
       <input class="not-in-view file-uploader" name="{{data_key_name}}" value="{{data_key_value}}" type="text"
              {{isRequired validations.required}} />

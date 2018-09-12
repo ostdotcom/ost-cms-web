@@ -1,23 +1,25 @@
 ;
 (function (window , $) {
 
-  var oSTNs          = ns("cms"),
-    handlebarHelper  = ns("ost.handlebarHelper")
+  var oSTNs             = ns("cms"),
+      handlebarHelper   = ns("ost.handlebarHelper"),
+      _URL  = window.URL || window.webkitURL
   ;
 
   function FileUploader( jEl , config ) {
     var oThis = this
     ;
-    oThis.config    = config ;
-    oThis.jEl       = jEl ;
-    oThis.jElMocker = jEl.parent().find(oThis.sjElMocker);
+    oThis.config          = config ;
+    oThis.jEl             = jEl ;
+    oThis.jElMocker       = jEl.parent().find(oThis.sjElMocker);
+    oThis.imageInstance   = new Image();
     oThis.initFileUploader( );
     oThis.bindButtonActions( );
   }
 
   FileUploader.prototype = {
     sjElMocker: '.file-upload-mocker',
-
+    imageInstance   : null,
     jEl             : null,
     jElMocker       : null ,
     imageSrcPrefix  : null ,
@@ -94,16 +96,17 @@
     },
 
     isValid : function () {
-      var oThis   = this,
-        jElMocker = oThis.jElMocker,
-        jTarget   = jElMocker[0] ,
-        file      = jTarget.files[0] ,
-        size      = file.size,
-        name      = file.name,
-        type      = file.type,
-        minBytes  = jElMocker.data('min-bytes'),
-        maxBytes  = jElMocker.data('max-bytes'),
-        accept    = jElMocker.data('accept').split(","),
+      var oThis     = this,
+        jElMocker   = oThis.jElMocker,
+        jTarget     = jElMocker[0] ,
+        file        = jTarget.files[0] ,
+        size        = file.size,
+        name        = file.name,
+        type        = file.type,
+        minBytes    = jElMocker.data('min-bytes'),
+        maxBytes    = jElMocker.data('max-bytes'),
+        accept      = jElMocker.data('accept').split(","),
+        aspectRatio = oThis.getAspectRatio(),
         validFile = true,
         maxMb ,
         errorMsg
@@ -123,7 +126,40 @@
         oThis.showError( errorMsg  ) ;
       }
 
+      if( aspectRatio ){
+        var height , width ,
+            roundedWR , roundedHR
+        ;
+        oThis.imageInstance.onload = function () {
+          width  = this.width;
+          height = this.height;
+          roundedWR = Math.ceil(  width * aspectRatio['height'] );
+          roundedHR = Math.ceil(  height * aspectRatio['width'] );
+          if( roundedWR != roundedHR ){
+            errorMsg = name +' invalid aspect ratio';
+            oThis.showError( errorMsg  ) ;
+            validFile = false;
+          }
+        };
+        oThis.imageInstance.src = _URL.createObjectURL( file );
+      }
+
       return validFile ;
+    },
+
+    getAspectRatio : function () {
+      var oThis       = this,
+        jElMocker     = oThis.jElMocker ,
+        widthWeight   = jElMocker.data('width-weight'),
+        heightWeight  = jElMocker.data('height-weight'),
+        ratio = null
+      ;
+      if(  widthWeight && heightWeight ){
+        ratio = {} ;
+        ratio['width']  = widthWeight;
+        ratio['height'] = heightWeight;
+      }
+      return ratio ;
     },
 
     getSignedUrl : function (  ) {
