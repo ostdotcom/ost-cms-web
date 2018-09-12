@@ -131,8 +131,9 @@
             roundedWR , roundedHR
         ;
         oThis.imageInstance.onload = function () {
-          width  = this.width;
-          height = this.height;
+          var oImg = this;
+          width  = oImg.width;
+          height = oImg.height;
           roundedWR = Math.ceil(  width * aspectRatio['height'] );
           roundedHR = Math.ceil(  height * aspectRatio['width'] );
           if( roundedWR != roundedHR ){
