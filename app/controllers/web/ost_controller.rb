@@ -24,7 +24,7 @@ class Web::OstController < Web::BaseController
       ui_yaml["meta"][key][:fields].map! {
         |field_name|
           field_name.each do | key_1, value_1|
-          field_name[key_1]["validations"] = @config_response.data["meta"][key.to_s][key_1.to_s]["validations"]
+          field_name[key_1]["validations"] = field_name[key_1]["validations"].present?  ?  field_name[key_1]["validations"].merge(@config_response.data["meta"][key.to_s][key_1.to_s]["validations"])  :  @config_response.data["meta"][key.to_s][key_1.to_s]["validations"]
           field_name[key_1]["data_key_name"] =  @config_response.data["meta"][key.to_s][key_1.to_s]["data_key_name"]
 
           end

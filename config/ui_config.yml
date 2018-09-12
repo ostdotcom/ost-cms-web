@@ -20,6 +20,9 @@ meta:
                 :input_label: Image
                 :tooltip_title: Required. Make sure aspect ratio is right and image size is optimized by UX.
                 :data_key_name: news_list_image
+            validations:
+                width_weight: 16
+                height_weight: 9
         - news_list_article_link:
             :meta_ui:
                 :input_kind: generic-link
