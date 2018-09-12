@@ -3,10 +3,10 @@
     {{#each published_list_data}}
     <div class="card mb-3 published-mode">
       <div class="card-header" id="listHeading">
-        <h5 class="mb-0">
-          <button class="btn btn-link px-0" data-toggle="collapse" data-target="#published_rec_{{this.id}}" aria-expanded="true" aria-controls="published_rec_{{this.id}}">
+        <h5 class="mb-0 text-truncate">
+          <div class="btn btn-link text-truncate px-0" data-toggle="collapse" data-target="#published_rec_{{this.id}}" aria-expanded="true" aria-controls="published_rec_{{this.id}}">
             #{{math @index '+' 1}} {{{this.heading}}}
-          </button>
+          </div>
         </h5>
       </div>
       <div id="published_rec_{{this.id}}" class="collapse show" aria-labelledby="listHeading" data-parent="#accordion">

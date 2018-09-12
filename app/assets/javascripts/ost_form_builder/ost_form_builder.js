@@ -71,6 +71,7 @@
     onEditGetSuccess : function ( response, recordId , entityName, entitiesConfig) {
       var buildConfig = oThis.getFormBuildConfig( entityName, entitiesConfig, response, recordId );
       oThis.renderTemplate( buildConfig );
+      $('#genericModal').modal('show');
     },
 
     onEditGetError : function (jqXHR ,  error ) {
