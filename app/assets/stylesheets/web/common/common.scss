@@ -80,6 +80,12 @@ a.treeview-item{
 .app-header {
   .dropdown.bootstrap-select, #preview-page-btn {
     margin-right: 20px;
+       .dropdown-toggle {
+        &.bs-placeholder {
+          color: #000;
+        }
+      }
+
   }
   .dropdown-toggle , #preview-page-btn{
     padding-bottom: 8px;
@@ -94,3 +100,4 @@ a.treeview-item{
     overflow-y: scroll;
   }
 }
+
