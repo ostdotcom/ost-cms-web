@@ -42,7 +42,7 @@ meta:
             :meta_ui:
                 :input_kind: generic-link
                 :input_label: Article Link
-                :tooltip_title: Optional.
+                :tooltip_title: Either Article Link or Video Embed Url is required.
                 :data_key_name: news_list_article_link
         - news_list_date:
             :meta_ui:
@@ -55,7 +55,7 @@ meta:
                 :input_kind: generic-link
                 :input_label: Video Embed Url
                 :data_key_name: news_list_video_embed
-                :tooltip_title: Optional. If added, plays video in lightbox.
+                :tooltip_title: Either Article Link or Video Embed Url is required. If added, plays video in lightbox.
 
     :members_list:
       :record_heading: members_list_name
