@@ -1,0 +1,39 @@
+@import "../../web/ost_theme/variables";
+
+.tinymce-wrap{
+  .mce-panel{
+    box-shadow: none!important;
+    border: 0 solid #d3e3e5;
+    border-radius: $border-radius-sm;
+  }
+  .mce-container{
+    display: block;
+    overflow: hidden;
+    background-color: $grey-bg;
+  }
+  .mce-btn-group{
+    .mce-btn{
+      width: 25%;
+      margin-left: 0;
+      text-align: center;
+      background-color: transparent;
+      border: 1px solid transparent;
+      i{
+        color: $cyanish-gray;
+      }
+      &.mce-active{
+        background: transparent;
+        button{
+          background: transparent;
+        }
+        i{
+          color: $blue-900;
+        }
+      }
+    }
+  }
+}
+
+.mce-widget.mce-tooltip {
+  display: none !important;
+}

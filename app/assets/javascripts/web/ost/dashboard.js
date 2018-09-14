@@ -17,7 +17,9 @@
 
     init: function (config) {
       oThis.entityName = config.entity_name;
+      console.log("oThis.entity_name" , oThis.entityName );
       oThis.entitiesConfig = JSON.parse(config.meta_data);
+      console.log("oThis.entitiesConfig" , oThis.entitiesConfig );
       oThis.ostFormBuilder = new cms.OstFormBuilder( { 'entitiesConfig' :config , 'selectedItem' : oThis.selectedItem } );
       oThis.bindEvents();
       oThis.refresh();

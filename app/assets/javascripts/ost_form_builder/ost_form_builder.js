@@ -158,6 +158,7 @@
       oThis.initSelectPicker(  );
       oThis.initTagsInput(  );
       oThis.initTooltips();
+      oThis.initRichTextEditor( config );
     },
 
     setFormType : function( type ){
@@ -181,6 +182,10 @@
     initFileUploader: function (config) {
       var fileUploaderConfig = config && config.getSignedURLApi || oThis.defaultFileUploadConfig;
       parentNs.ostFileUploader.init('.file-uploader', fileUploaderConfig);
+    },
+
+    initRichTextEditor : function ( config ) {
+      parentNs.richTextEditor.initTinyMc('.tinymce-editor' );
     },
 
     initSelectPicker: function() {

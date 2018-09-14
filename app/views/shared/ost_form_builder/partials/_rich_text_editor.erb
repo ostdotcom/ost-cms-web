@@ -1,0 +1,27 @@
+<script type="text/x-handlebars-template" id="ost-rich-text-editor" data-partial-id="ost-rich-text-editor">
+  <div class="row form-group tinymce-wrap">
+    <div class="col-12">
+      <div class="row">
+        <div class="col-8">
+          <div class="form-label align-items-center">
+            <label class="align-middle mb-0 label-counter">
+              {{input_label}}
+            </label>
+            <p class="small text-muted font-weight-light font-italic mb-1">{{tooltip_title}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 text-right" >
+      <textarea class="tinymce-editor form-control" name="{{data_key_name}}" id="{{generateId}}"
+                {{#each validations}}
+                {{#when @key '==' 'required'}}
+                {{#when this '==' true}}required{{else}} {{/when}}
+                {{else}}
+                {{@key}}="{{this}}"
+                {{/when}}
+                {{/each}}>{{data_key_value}}</textarea>
+    </div>
+    <div class="error" data-field-name="{{data_key_name}}" data-forname="{{data_key_name}}"></div>
+  </div>
+</script>

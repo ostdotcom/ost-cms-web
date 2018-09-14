@@ -4,7 +4,7 @@ meta:
       :fields:
         - banner_html:
             :meta_ui:
-                :input_kind: generic-text
+                :input_kind: ost-rich-text-editor
                 :input_label: Banner Html
                 :tooltip_title: Required. Max length 130 characters.
                 :data_key_name: banner_html

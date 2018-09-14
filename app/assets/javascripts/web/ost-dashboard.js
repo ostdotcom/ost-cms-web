@@ -6,6 +6,7 @@
 //= require plugins/jquery-file-upload/jquery.fileupload
 //= require plugins/ost-component/HandlebarHelper
 //= require plugins/ost-component/FileUploader
+//= require plugins/ost-component/RichTextEditor
 //= require plugins/ost-component/Spectrum
 //= require plugins/ost-component/ColorPicker
 //= require plugins/ost-component/DatePicker
