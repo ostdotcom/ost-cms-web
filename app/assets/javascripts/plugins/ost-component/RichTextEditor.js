@@ -146,6 +146,13 @@
       }
       tinyMceInitConfig['selector'] = selector;
       tinymce.init(  tinyMceInitConfig );
+
+      //This code is explicit to bootstrap modal handling.
+      $('body').off('focusin.tinymce').on('focusin.tinymce', function(e) {
+        if ($(e.target).closest(".mce-window").length) {
+          e.stopImmediatePropagation();
+        }
+      });
     }
   };
 
