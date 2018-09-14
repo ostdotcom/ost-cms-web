@@ -158,9 +158,10 @@
           prev: previous,
           next: next
         },
-        beforeSend: function(){
-          oSTNs.requestHelper.showLoadingModal( "Sorting in progress... " );
-        },
+        // beforeSend: function(){
+        //   oSTNs.requestHelper.showLoadingModal( "Sorting in progress... " );
+        // },
+        "ostProgress": ".loader-wrapper",
         success: function ( res ) {
           if(res.success) {
             oThis.refresh();
@@ -257,9 +258,10 @@
         data: {
           id: recordId
         },
-        beforeSend: function(){
-          oSTNs.requestHelper.showLoadingModal("Deleting ...");
-        },
+        // beforeSend: function(){
+        //   oSTNs.requestHelper.showLoadingModal("Deleting ...");
+        // },
+        "ostProgress": ".loader-wrapper",
         success: function ( res ) {
           if( res.success ){
             oSTNs.requestHelper.showSuccessModal(  "Record deleted successfully!");
@@ -275,34 +277,34 @@
     },
 
     initPublishedListData: function ( showProcessingModal ) {
-      $.ajax({
-        url: '/api/content/published',
-        method: 'GET',
-        data: {
-          entity_name: oThis.entityName
-        },
-        beforeSend: function(){
-          if( showProcessingModal ){
-            oSTNs.requestHelper.showLoadingModal("Getting data, please wait...");
-          }
-        },
-        success: function (response) {
-          if( response.success ) {
-            oThis.publishedListData = oThis.createMetaObject(response.data.list);
-            var template = Handlebars.compile($('#published_list_view').text());
-            var html = template({'published_list_data': oThis.publishedListData});
-            $('#published_list').html(html);
-            if( showProcessingModal ){
-              $('.modal').modal('hide');
+      var ajaxConfig = {
+          url: '/api/content/published',
+          method: 'GET',
+          data: {
+            entity_name: oThis.entityName
+          },
+          success: function (response) {
+            if( response.success ) {
+              oThis.publishedListData = oThis.createMetaObject(response.data.list);
+              var template = Handlebars.compile($('#published_list_view').text());
+              var html = template({'published_list_data': oThis.publishedListData});
+              $('#published_list').html(html);
+              if( showProcessingModal ){
+                $('.modal').modal('hide');
+              }
+            } else {
+              oSTNs.requestHelper.showErrorModal( response );
             }
-          } else {
-            oSTNs.requestHelper.showErrorModal( response );
+          },
+          error: function ( error ) {
+            oSTNs.requestHelper.showErrorModal( error );
           }
-        },
-        error: function ( error ) {
-          oSTNs.requestHelper.showErrorModal( error );
-        }
-      })
+        };
+
+      if( showProcessingModal ){
+        ajaxConfig["ostProgress"] =  ".loader-wrapper";
+      }
+      $.ajax( ajaxConfig );
     },
 
     publish: function () {
@@ -312,9 +314,10 @@
         data: {
           entity_name: oThis.entityName
         },
-        beforeSend: function(){
-          oSTNs.requestHelper.showLoadingModal("Publishing ...");
-        },
+        // beforeSend: function(){
+        //   oSTNs.requestHelper.showLoadingModal("Publishing ...");
+        // },
+        "ostProgress": ".loader-wrapper",
         success: function ( res ) {
           if( res.success ) {
             oSTNs.requestHelper.showSuccessModal( "Data published successfully !!");
@@ -336,9 +339,10 @@
         data: {
           entity_name: oThis.entityName
         },
-        beforeSend: function(){
-          oSTNs.requestHelper.showLoadingModal("Going to the last publish version ...");
-        },
+        // beforeSend: function(){
+        //   oSTNs.requestHelper.showLoadingModal("Going to the last publish version ...");
+        // },
+        "ostProgress": ".loader-wrapper",
         success: function ( res ) {
           if( res.success ) {
             oThis.initPublishedListData();

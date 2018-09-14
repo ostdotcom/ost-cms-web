@@ -120,4 +120,19 @@ a.treeview-item{
   }
 }
 
+.loader-overlay {
+  position: fixed;
+  left: 0;
+  top:0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  z-index: 9999;
+  opacity: 0.5;
+  display: none;
+  .loader-wrapper{
+    width: 800px;
+    padding-top: 300px;
+  }
+}
 

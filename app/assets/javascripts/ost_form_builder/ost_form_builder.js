@@ -49,13 +49,18 @@
     buildEditForm: function ( recordId, entityName, entitiesConfig ) {
       oThis.setFormType('edit');
       $.ajax({
-        url: '/api/content/record?id=' + recordId,
-        method: 'GET',
-        beforeSend: function(){
-          parentNs.requestHelper.showLoadingModal("Opening edit form...");
+        url: '/api/content/record/',
+        data:{
+          "id": recordId
         },
+        method: 'GET',
+        // beforeSend: function(){
+        //   parentNs.requestHelper.showLoadingModal("Opening edit form...");
+        // },
+        "ostProgress": ".loader-wrapper",
         success: function ( response ) {
           if( response.success ) {
+
             $('.modal').modal('hide');
             oThis.onEditGetSuccess(response , recordId , entityName, entitiesConfig ) ;
           } else {

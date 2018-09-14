@@ -75,6 +75,8 @@
 
   <%= render :partial => "/shared/web/common/fav_icons" %>
   <%= render :partial => "/shared/web/common/svgs" %>
+  <%= render :partial => "/shared/web/common/progressBar" %>
+
 
 </head>
 
@@ -85,7 +87,9 @@
   <div class="app-content h-100">
     <%= yield %>
   </div>
-
+  <div class="loader-overlay ">
+    <div class="loader-wrapper m-auto "></div>
+  </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>

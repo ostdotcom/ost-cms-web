@@ -7,6 +7,13 @@
     if ( csrf_token ) {
       jqXHR.setRequestHeader('X-CSRF-Token', csrf_token);  
     }
+
+    console.log("I am here!");
+    var progressOption = options.ostProgress || originalOptions.ostProgress;
+    if ( progressOption ) {
+      $(window.document).trigger('ostProgressNeeded', [options, originalOptions, jqXHR]);
+    }
+
   });
 
   
