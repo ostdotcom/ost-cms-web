@@ -44,9 +44,8 @@
       };
     },
 
-    updateProgressPercent(progress){
+    updateProgressPercent: function(progress){
       var oThis = this;
-      console.log('progress:', progress);
       oThis.jProgressAnimate.css({"width": progress + "%"});
     },
 
