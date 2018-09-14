@@ -11,14 +11,14 @@
     ;
     oThis.config          = config ;
     oThis.jEl             = jEl ;
-    oThis.jElMocker       = jEl.parent().find(oThis.sjElMocker);
+    oThis.jElMocker       = jEl.parent().find(oThis.sElMocker);
     oThis.imageInstance   = new Image();
     oThis.initFileUploader( );
     oThis.bindButtonActions( );
   }
 
   FileUploader.prototype = {
-    sjElMocker: '.file-upload-mocker',
+    sElMocker       : '.file-upload-mocker',
     imageInstance   : null,
     jEl             : null,
     jElMocker       : null ,
@@ -88,6 +88,7 @@
         jMarkup   = $( oThis.sProcessingIcon ).html()
       ;
       oThis.resetError();
+      oThis.jEl.val("");
       if(  oThis.isValid() ){
         jElMocker.data( oThis.dPreUploadMarkup , preMarkup );
         jWrapper.html( jMarkup );
