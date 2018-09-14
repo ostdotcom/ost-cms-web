@@ -78,6 +78,9 @@ meta:
                 :input_label: Image
                 :data_key_name: members_list_image
                 :tooltip_title: Required. Make sure aspect ratio is right and image size is optimized by UX.
+             validations:
+                 width_weight: 1
+                 height_weight: 1
         - members_list_linkedIn:
              :meta_ui:
                 :input_kind: generic-link
@@ -131,6 +134,9 @@ meta:
                 :input_label: Image
                 :data_key_name: advisors_list_image
                 :tooltip_title: Required. Make sure aspect ratio is right and image size is optimized by UX.
+             validations:
+                 width_weight: 1
+                 height_weight: 1
         - advisors_list_linkedIn:
              :meta_ui:
                 :input_kind: generic-link
