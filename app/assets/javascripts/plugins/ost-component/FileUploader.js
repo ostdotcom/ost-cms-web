@@ -129,15 +129,19 @@
 
       if( aspectRatio ){
         var height , width ,
-            roundedWR , roundedHR
+            roundedWR , roundedHR,
+            ratioTolerance , raitoDiff
         ;
         oThis.imageInstance.onload = function () {
           var oImg = this;
           width  = oImg.width;
           height = oImg.height;
+          ratioTolerance = width * 0.01 ;
           roundedWR = Math.ceil(  width * aspectRatio['height'] );
           roundedHR = Math.ceil(  height * aspectRatio['width'] );
-          if( roundedWR != roundedHR ){
+          raitoDiff = Math.abs( roundedWR - roundedHR ) ;
+          console.log("Image upload - width " , width , " height ",  height , " aspectRatio['width'] " , aspectRatio['width'] , " aspectRatio['height'] " ,  aspectRatio['height'] , " roundedWR " , roundedWR , " roundedHR " , roundedHR  , " raitoDiff " , raitoDiff , " ratioTolerance " , ratioTolerance);
+          if( raitoDiff >  ratioTolerance ){
             errorMsg = name +' invalid aspect ratio';
             oThis.showError( errorMsg  ) ;
             validFile = false;
