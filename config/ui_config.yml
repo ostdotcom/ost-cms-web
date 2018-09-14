@@ -1,4 +1,19 @@
 meta:
+    :uber_banner:
+      :record_heading: banner_html
+      :fields:
+        - banner_html:
+            :meta_ui:
+                :input_kind: generic-text
+                :input_label: Banner Html
+                :tooltip_title: Required. Max length 130 characters.
+                :data_key_name: banner_html
+        - banner_background_color:
+            :meta_ui:
+                :input_kind: generic-color-picker
+                :input_label: Banner Background Color
+                :tooltip_title: Required.
+                :data_key_name: banner_background_color
     :news_list:
       :record_heading: news_list_title
       :fields:
