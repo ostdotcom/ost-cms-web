@@ -3,12 +3,16 @@
   <div class="file-input-error-wrapper">
   <label>{{input_label}}</label> <p class="small text-muted font-weight-light font-italic mb-1">{{tooltip_title}}</p>
   <div class="row form-group  ost-file-uploader-wrap {{entityKey}} mb-0">
-    <div class="col-10 align-self-center">
-        <input type="text" {{isRequired validations.required}}  class=" mb-0 file-name" value="{{#ifFilePath data_key_value}}{{data_key_value}} {{/ifFilePath}}">
-    </div>
-    <div class="col-2 text-right label-wrapper d-flex">
-      <label class="input-label-wrapper mb-0 mx-auto pt-1" for="{{generateId data_key_name}}" title="{{title}}">
-            Browse
+    <div class="col-12 text-right label-wrapper d-flex" >
+      <label class="input-label-wrapper text-left" for="{{generateId data_key_name}}" title="{{title}}">
+        {{#data_key_value}}
+        <img class="file-uploaded-img h-100 float-left" src="{{this}}" />
+        {{else}}
+        <div class="image-placeholder h-100 float-left">
+          <div class="place-holder">Image</div>
+        </div>
+        {{/data_key_value}}
+        <div class="btn-secondary btn p-2 ml-3 float-left">Browse</div>
       </label>
       <input id="{{generateId true}}" class="file-upload-mocker not-in-view" type='file' name="{{data_key_name}}_mocker"
             {{#validations.width_weight}} data-width-weight="{{this}}" {{/validations.width_weight}}
@@ -31,16 +35,13 @@
 </script>
 
 <script type="unknown" id="j-processing-icon">
-  <img class="img-fluid processing-icon" width="25px" height="25px" src="https://dxwfxs8b4lg24.cloudfront.net/ost-kit/images/processed-loader-1.gif"/>
+  <img class="img-fluid processing-icon mt-5 ml-5" width="40px" height="40px"
+    src="https://dxwfxs8b4lg24.cloudfront.net/ost-kit/images/processed-loader-1.gif"/>
 </script>
 
 <script type="text/x-handlebars-template" id="uploaded-image-wrap">
-  <img class="file-uploaded-img" src="{{img_src}}" height="25" width="25" />
-  <svg class="edit-svg align-middle">
-    <switch>
-      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#edit-icon"></use>
-    </switch>
-  </svg>
+  <img class="file-uploaded-img h-100 float-left" src="{{img_src}}" />
+  <div class="btn-secondary btn p-2  ml-3 float-left">Browse</div>
 </script>
 
 <% content_for :ost_components do %>

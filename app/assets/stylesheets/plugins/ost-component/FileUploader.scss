@@ -1,11 +1,5 @@
 @import "../../web/ost_theme/variables";
 .ost-file-uploader-wrap {
-   border: 1px solid #ced4da;
-   border-radius: 4px;
-   margin: 0px;
-
-   height: 38px;
-
   .file-name{
     font-size: 14px;
     border: none;
@@ -13,17 +7,33 @@
     outline: none;
     color: transparent;
     text-shadow: 0 0 0 #9ba0a5;
-
-
   }
-  .label-wrapper{
-    color: #495057;
-    background-color: #e9ecef;
+
+  .label-wrapper {
+    height: 150px;
   }
+
   .edit-svg, .upload-svg {
-    height: 15px;
-    width: 15px;
+    height: 40px;
+    width: 40px;
     cursor: pointer;
+  }
+
+  .image-placeholder {
+    background-color: #eee;
+    display: flex;
+    margin: 5px;
+    width: 200px;
+
+    .place-holder {
+      align-self: center;
+      text-align: center;
+      width: 100%;
+    }
+  }
+
+  .btn-secondary {
+    margin-top: 55px;
   }
 }
 

@@ -2,7 +2,7 @@
 (function (window , $) {
 
   var oSTNs             = ns("cms"),
-      handlebarHelper   = ns("ost.handlebarHelper"),
+      handlebarHelper   = ns("cms.handlebarHelper"),
       _URL  = window.URL || window.webkitURL
   ;
 
@@ -80,14 +80,22 @@
       oThis.jElMocker.fileupload( fileUploadConfig );
     },
 
+    setPerUploadData : function () {
+      var oThis   = this,
+          jElMocker = oThis.jElMocker,
+          jWrapper  = jElMocker.closest( oThis.sParent ).find( oThis.sLabelWrap ),
+          preMarkup = jWrapper.html()
+      ;
+      jElMocker.data( oThis.dPreUploadMarkup , preMarkup );
+    },
+
     startUpload: function (  ) {
       var oThis   = this,
         jElMocker = oThis.jElMocker,
-        jWrapper  = jElMocker.closest( oThis.sParent ).find( oThis.sLabelWrap),
-        preMarkup = jWrapper.html(),
+        jWrapper  = jElMocker.closest( oThis.sParent ).find( oThis.sLabelWrap ),
         jMarkup   = $( oThis.sProcessingIcon ).html()
       ;
-      jElMocker.data( oThis.dPreUploadMarkup , preMarkup );
+      oThis.setPerUploadData();
       jWrapper.html( jMarkup );
       oThis.getSignedUrl();
     },
@@ -257,26 +265,15 @@
 
     s3FileUploadSuccess : function ( data  ) {
       var oThis     = this,
-        jElMocker = oThis.jElMocker ,
-        imgSrc    = oThis.imageSrcPrefix + "/" + oThis.imageSrcPostFix,
-        jWrapper  = jElMocker.closest( oThis.sParent ).find( oThis.sLabelWrap ),
-        jLable = jElMocker.closest( oThis.sParent ).find( oThis.sFileLabel )
-       // jMarkup   = handlebarHelper.getMarkup( oThis.sUploadedImageWrap ,  {'img_src' : imgSrc } )
-      ;
-      jWrapper.html("Browse");
-      jLable.val( imgSrc );
-      oThis.jEl.val( imgSrc ) ;
-    },
-
-    updateImageDisplay : function (   ) {
-      var oThis     = this,
-        jElMocker = oThis.jElMocker ,
-        curFiles  = jElMocker[0].files[0],
-        imgSrc    = window.URL.createObjectURL( curFiles ),
-        jWrapper  = jElMocker.closest( oThis.sParent ).find( oThis.sLabelWrap),
-        jMarkup   = handlebarHelper.getMarkup( oThis.sUploadedImageWrap ,  {'img_src' : imgSrc } )
+          jElMocker = oThis.jElMocker ,
+          imgSrc    = oThis.imageSrcPrefix + "/" + oThis.imageSrcPostFix,
+          jWrapper  = jElMocker.closest( oThis.sParent ).find( oThis.sLabelWrap ),
+          jLable    = jElMocker.closest( oThis.sParent ).find( oThis.sFileLabel ),
+          jMarkup   = handlebarHelper.getMarkup( oThis.sUploadedImageWrap  ,   {'img_src' : imgSrc }  )
       ;
       jWrapper.html( jMarkup );
+      oThis.jEl.val( imgSrc ) ;
+      oThis.setPerUploadData();
     },
 
     resetError : function (  ) {
@@ -300,7 +297,7 @@
     showError : function ( errMessage  ) {
       var oThis     = this,
         jElMocker = oThis.jElMocker,
-        jWrapper  = jElMocker.closest( oThis.sParent ).find( oThis.sLabelWrap),
+        jWrapper  = jElMocker.closest( oThis.sParent ).find( oThis.sLabelWrap ),
         jMarkup   = jElMocker.data( oThis.dPreUploadMarkup )
       ;
       jElMocker.closest( oThis.errorWrapper ).find(".invalid-feedback")
