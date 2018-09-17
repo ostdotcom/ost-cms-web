@@ -138,7 +138,7 @@
           var oImg = this;
           width  = oImg.width;
           height = oImg.height;
-          ratioTolerance = width * 0.01 ;
+          ratioTolerance = width * 0.03 ;
           roundedWR = Math.ceil(  width * aspectRatio['height'] );
           roundedHR = Math.ceil(  height * aspectRatio['width'] );
           raitoDiff = Math.abs( roundedWR - roundedHR ) ;
