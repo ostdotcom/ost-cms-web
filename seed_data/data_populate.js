@@ -493,12 +493,12 @@ var news_list =
 for (var i = 0; i < news_list.length; i++){
   if (news_list[i]['article_link'] ) {
     news_list[i]['news_list_link'] =  news_list[i]['article_link'];
-    news_list[i]['news_list_link_type'] =  "article_link";
+    news_list[i]['news_list_link_type'] =  "article-link";
     delete news_list[i]["article_link"];
   }
   else if (news_list[i]['video_embed']){
     news_list[i]['news_list_link'] =  news_list[i]['video_embed'];
-    news_list[i]['news_list_link_type'] =  "video_embed_url";
+    news_list[i]['news_list_link_type'] =  "video-embed-url";
     delete news_list[i]["video_embed"];
   }
 }

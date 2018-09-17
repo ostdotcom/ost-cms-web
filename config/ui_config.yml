@@ -42,7 +42,7 @@ meta:
             :meta_ui:
                 :input_kind: generic-link
                 :input_label: Link
-                :tooltip_title: Required. Article Link or Video Embed Url.
+                :tooltip_title: Required. Article Link or Video Embed Url (format https://www.youtube.com/embed/qz8LhpKCsw0?rel=0&autoplay=1)
                 :data_key_name: news_list_link
         - news_list_link_type:
             :meta_ui:
