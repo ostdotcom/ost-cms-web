@@ -38,25 +38,29 @@ meta:
             validations:
                 width_weight: 16
                 height_weight: 9
-        - news_list_article_link:
+        - news_list_link:
             :meta_ui:
                 :input_kind: generic-link
-                :input_label: Article Link
-                :tooltip_title: Either Article Link or Video Embed Url is required.
-                :data_key_name: news_list_article_link
+                :input_label: Link
+                :tooltip_title: Required. Article Link or Video Embed Url.
+                :data_key_name: news_list_link
+        - news_list_link_type:
+            :meta_ui:
+                :input_kind: generic-select
+                :input_label: Link Type
+                :data_key_name: news_list_link_type
+                :options:
+                  - name: Article Link
+                    value: article-link
+                  - name: Video Embed Url
+                    value: video-embed-url
+                :tooltip_title: Required. Type of link.
         - news_list_date:
             :meta_ui:
                 :input_kind: generic-date-picker
                 :input_label: News Published Date
                 :data_key_name: news_list_date
                 :tooltip_title: Required.
-        - news_list_video_embed:
-            :meta_ui:
-                :input_kind: generic-link
-                :input_label: Video Embed Url
-                :data_key_name: news_list_video_embed
-                :tooltip_title: Either Article Link or Video Embed Url is required. If added, plays video in lightbox.
-
     :members_list:
       :record_heading: members_list_name
       :fields:
