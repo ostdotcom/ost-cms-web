@@ -245,6 +245,7 @@
           console.log("record", record);
           record[key] = new CMSRecordAttribute({'display_label': label, 'display_value': value, 'input_kind': inputKind});
         });
+        heading = $('<span>'+heading+'</span>').text(); // Strip html to text
         list_item.heading = heading;
       });
       return configList;
@@ -364,7 +365,7 @@
 
     getRecordHeading: function () {
       var config = oThis.getEntityConfig();
-      return config && config['record_heading'];
+      return config && config['record_heading'] ;
     },
 
     hideSideBarMenuItem: function () {

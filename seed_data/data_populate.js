@@ -507,16 +507,15 @@ for (var i = 0; i < news_list.length; i++){
 
 
 var core_team =
-  [
-    {
-      members_list_name: "Jason Goldberg",
-      members_list_title: "Chief Executive Officer",
-      members_list_image: "https://d36lai1ppm9dxu.cloudfront.net/assets/image/team/Jason-Goldberg.png",
-      members_list_linkedIn: 'https://www.linkedin.com/in/jasonsethgoldberg/',
-      members_list_twitter: 'https://twitter.com/betashop/',
-      members_list_medium: 'https://medium.com/@betashop/',
-      members_list_description: "Jason Goldberg is a veteran internet entrepreneur with an 18 year history of scaling products to millions of users. Since 2016 Jason’s passion has been to drive mainstream consumer adoption of blockchain technologies. Jason splits time between Berlin, Germany, Pune, India, and Hong Kong."
-    },
+  [{
+    members_list_name: "Jason Goldberg",
+    members_list_title: "Chief Executive Officer",
+    members_list_image: "https://d36lai1ppm9dxu.cloudfront.net/assets/image/team/Jason-Goldberg.png",
+    members_list_linkedIn: 'https://www.linkedin.com/in/jasonsethgoldberg/',
+    members_list_twitter: 'https://twitter.com/betashop/',
+    members_list_medium: 'https://medium.com/@betashop/',
+    members_list_description: "Jason Goldberg is a veteran internet entrepreneur with an 18 year history of scaling products to millions of users. Since 2016 Jason’s passion has been to drive mainstream consumer adoption of blockchain technologies. Jason splits time between Berlin, Germany, Pune, India, and Hong Kong."
+  },
     {
       members_list_name: "Sunil Khedar",
       members_list_title: "Chief Technology Officer",
@@ -543,11 +542,12 @@ var core_team =
     },
     {
       members_list_name: "Chris Dark",
-      members_list_title: "Chief Commercial Office",
+      members_list_title: "Chief Commercial Officer and GM APAC",
       members_list_image: "https://d36lai1ppm9dxu.cloudfront.net/assets/image/team/Chris-Dark.png",
       members_list_linkedIn: 'https://www.linkedin.com/in/chrisdark/',
       members_list_twitter: "https://twitter.com/darky999",
-      members_list_description: 'Chris is President International at C2FO. Based in the C2FO Hong Kong office, Chris is responsible for C2FO business in EMEA, Asia-Pacific and LATAM. Prior to C2FO, Chris held key leadership positions at Atomico, AOL (advertising.com) and Bain & Co. Chris is a former entrepreneur and the Founder of GameReplays.org, an early eSports community founded in 2002.'
+      members_list_medium: "https://medium.com/@chrisdark",
+      members_list_description: 'Chris is an experienced entrepreneur and investor in both B2B and B2C businesses. He was previously President International at C2FO, prior to this he held key leadership positions at Atomico, AOL (advertising.com) and Bain & Co. Chris is also the Founder of GameReplays.org, an early eSports community. He remains Vice Chairman APAC for C2FO, and is an advisor to Kenetic Capital and Oriente.'
     },
     {
       members_list_name: "Francesco Pacella",
@@ -555,13 +555,6 @@ var core_team =
       members_list_image: "https://d36lai1ppm9dxu.cloudfront.net/assets/image/team/Francesco-Pacella.png",
       members_list_linkedIn: 'https://www.linkedin.com/in/francescopacella/',
       members_list_description: 'Francesco "Frankie" Pacella is a Product and Marketing Manager with 5 years of experience. He developed and scaled a number of projects and companies on the tech scene across Europe and Asia focusing on growth, engagement, monetization, and analytics.'
-    },
-    {
-      members_list_name: "Adeola Ogunwole",
-      members_list_title: "Vice President of Marketing",
-      members_list_image: "https://d36lai1ppm9dxu.cloudfront.net/assets/image/team/Adeola-Ogunwole.png",
-      members_list_linkedIn: 'https://www.linkedin.com/in/adeolaogunwole/',
-      members_list_description: "Adeola Ogunwole is a marketing executive, former founder and math nerd obsessed with answering “what”, “why” and “how” through data-driven narratives rooted in customer insights. She brings over 15 years experience leading global marketing teams. Her previous roles include senior marketing and strategy roles at Hult International Business School, Apollo Education, Quinstreet, and General Mills."
     },
     {
       members_list_name: "Jason Banks",
@@ -922,6 +915,13 @@ var core_team =
       members_list_description: "As an ex-engineer and ex-investment banker, Jean is passionate about the latest trends in Fintech. He joins OST with over 14 years of professional experience and will lead Business Development efforts in Asia, building partnerships and helping companies unlock their growth potential. Jean holds a MS in Electrical Engineering from Caltech, and a MBA from the University of Chicago."
     },
     {
+      members_list_name: "Adeola Ogunwole",
+      members_list_title: "Senior Marketing Advisor",
+      members_list_image: "https://d36lai1ppm9dxu.cloudfront.net/assets/image/team/Adeola-Ogunwole.png",
+      members_list_linkedIn: 'https://www.linkedin.com/in/adeolaogunwole/',
+      members_list_description: "Adeola Ogunwole is a marketing executive, former founder and math nerd obsessed with answering “what”, “why” and “how” through data-driven narratives rooted in customer insights. She brings over 15 years experience leading global marketing teams. Her previous roles include senior marketing and strategy roles at Hult International Business School, Apollo Education, Quinstreet, and General Mills."
+    },
+    {
       members_list_name: "Martin Schenck",
       members_list_title: "Senior Blockchain Engineer",
       members_list_image: "https://d36lai1ppm9dxu.cloudfront.net/assets/image/team/Martin.png",
@@ -941,8 +941,18 @@ var core_team =
       members_list_image: "https://d36lai1ppm9dxu.cloudfront.net/assets/image/team/Preshita-Shirke.png",
       members_list_linkedIn: 'https://www.linkedin.com/in/preshita-shirke-1109a0aa/',
       members_list_description: "A computer science engineering graduate from VJTI, Mumbai, Preshita has extensive 3 year working experience in frontend technologies. When not following her passion of learning and exploring new technologies she spends her time cooking and travelling."
-    }
+    },
+    {
+      members_list_name: "Jose Mota",
+      members_list_title: "Marketing Manager & Host of OST LIVE",
+      members_list_image: "https://d36lai1ppm9dxu.cloudfront.net/assets/image/team/Jose-Mota.png",
+      members_list_linkedIn: 'https://www.linkedin.com/in/josemotaq/',
+      members_list_twitter: "https://twitter.com/JosemotaQ",
+      members_list_medium: "https://medium.com/@JosemotaQ",
+      members_list_description: 'Jose Mota is a driven marketer and podcast creative from Southern California. He earned his BA in Business Administration from California State University, Fullerton. Jose was previously the host of Daily Crypto, a cryptocurrency world news podcast with over 85k monthly downloads. He now specializes in podcast programming and growth marketing, generating creative content for OST LIVE.'
+    },
   ];
+
 
 var advisor_team =
   [
@@ -2061,6 +2071,11 @@ var pune_careers =
       careers_title: "Technical Product Manager",
       careers_url: "https://recruit.zoho.com/recruit/ViewJob.na?digest=ZmrHtYbqDUPdk8.eRn7Z1nzMTcfcPMW5N0nRAyc4B8g-&embedsource=Embed",
       careers_description: "OST “Simple Token” is looking for technical product managers who are passionate about bridging blockchain technology and real world problems. We’re specifically looking for business owners with deep technical knowledge: technical product managers who think holistically about the product, the underlying technology, and who can function as mini CEO’s of their product lines, with complete ownership over project plans, deliverables timelines, specs, user experience, business cases, customer validation, and usage metrics.",
+    },
+    {
+      careers_title: "Quality Assurance Automation Engineer",
+      careers_url: "https://recruit.zoho.com/recruit/ViewJob.na?digest=ZmrHtYbqDUPdk8.eRn7Z1nWftZEJA4EYYXCAtCLjyZw-&embedsource=Embed",
+      careers_description: "OST “Simple Token” is looking for API Automation QA Engineers with a passion for blockchain technology and decentralized systems to join the engineering team. Looking out for individuals who are super passionate about driving adoption of Ethereum and digital currency to the world and enacting consumer-app tokenization.",
     },
 
   ];
