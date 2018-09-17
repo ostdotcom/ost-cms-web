@@ -54,7 +54,7 @@
 
 
       jElMocker.off('change').on('change' , function ( e ) {
-        oThis.startUpload( );
+        oThis.checkValidAndUpload( );
       });
     },
 
@@ -87,31 +87,33 @@
         preMarkup = jWrapper.html(),
         jMarkup   = $( oThis.sProcessingIcon ).html()
       ;
-      oThis.resetError();
-      oThis.jEl.val("");
-      if(  oThis.isValid() ){
-        jElMocker.data( oThis.dPreUploadMarkup , preMarkup );
-        jWrapper.html( jMarkup );
-        oThis.getSignedUrl();
-      }
+      jElMocker.data( oThis.dPreUploadMarkup , preMarkup );
+      jWrapper.html( jMarkup );
+      oThis.getSignedUrl();
     },
 
-    isValid : function () {
+    checkValidAndUpload : function () {
       var oThis     = this,
-        jElMocker   = oThis.jElMocker,
-        jTarget     = jElMocker[0] ,
-        file        = jTarget.files[0] ,
-        size        = file.size,
-        name        = file.name,
-        type        = file.type,
-        minBytes    = jElMocker.data('min-bytes'),
-        maxBytes    = jElMocker.data('max-bytes'),
-        accept      = jElMocker.data('accept').split(","),
-        aspectRatio = oThis.getAspectRatio(),
-        validFile = true,
-        maxMb ,
-        errorMsg
+          jElMocker   = oThis.jElMocker,
+          jTarget     = jElMocker[0] ,
+          file         = jTarget.files[0]
       ;
+
+      if( !file ) return ;
+      var size        = file && file.size,
+          name        = file && file.name,
+          type        = file && file.type,
+          minBytes    = jElMocker.data('min-bytes'),
+          maxBytes    = jElMocker.data('max-bytes'),
+          accept      = jElMocker.data('accept').split(","),
+          aspectRatio = oThis.getAspectRatio(),
+          validFile = true,
+          maxMb ,
+          errorMsg
+      ;
+
+      oThis.resetError();
+
       if( minBytes && size <= minBytes ){
         validFile =  false;
         errorMsg = name + ' file size too small';
@@ -144,13 +146,18 @@
           if( raitoDiff >  ratioTolerance ){
             errorMsg = name +' invalid aspect ratio';
             oThis.showError( errorMsg  ) ;
-            validFile = false;
+          }else {
+            oThis.startUpload();
           }
         };
         oThis.imageInstance.src = _URL.createObjectURL( file );
+        return ;
       }
 
-      return validFile ;
+      if( validFile ){
+        oThis.startUpload();
+      }
+
     },
 
     getAspectRatio : function () {
