@@ -269,7 +269,7 @@
           imgSrc    = oThis.imageSrcPrefix + "/" + oThis.imageSrcPostFix,
           jWrapper  = jElMocker.closest( oThis.sParent ).find( oThis.sLabelWrap ),
           jLable    = jElMocker.closest( oThis.sParent ).find( oThis.sFileLabel ),
-          jMarkup   = handlebarHelper.getMarkup( oThis.sUploadedImageWrap  ,   {'img_src' : imgSrc }  )
+          jMarkup   = handlebarHelper.getMarkup( oThis.sUploadedImageWrap  ,   {'img_src' : oThis.imageInstance.src }  )
       ;
       jWrapper.html( jMarkup );
       oThis.jEl.val( imgSrc ) ;
