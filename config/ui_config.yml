@@ -14,6 +14,12 @@ meta:
                 :input_label: Banner Background Color
                 :tooltip_title: Required.
                 :data_key_name: banner_background_color
+        - banner_enabled_flag:
+            :meta_ui:
+                :input_kind: generic-radio-button
+                :input_label: Banner Enabled
+                :tooltip_title: Required. Banner should be shown or not.
+                :data_key_name: banner_enabled_flag
     :news_list:
       :record_heading: news_list_title
       :fields:
