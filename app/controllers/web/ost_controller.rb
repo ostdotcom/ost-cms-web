@@ -17,19 +17,20 @@ class Web::OstController < Web::BaseController
   # Get entity edit dashboard configurations
   #
   def get_entity_ui_config
-    ui_yaml = YAML.load_file(Rails.root.to_s + '/config/ui_config.yml')
-    @config_response = CmsApi::Request::EntityConfig.new(GlobalConstant::Base.root_url, request.cookies, {"User-Agent" => http_user_agent}).get_config
+    ui_yaml = YAML.load_file(Rails.root.to_s + '/config/ui_config.yml')["meta"][params[:name].to_sym]
+    @config_response = CmsApi::Request::EntityConfig.new(GlobalConstant::Base.root_url, request.cookies, {"User-Agent" => http_user_agent}, params[:name]).get_config
+    puts ( " hdbhdbchbcdbchdbcd #{@config_response.inspect}")
+    ui_yaml["entity_type"] = @config_response.data["entity_type"]
+    ui_yaml["entity_name"] = @config_response.data["entity_name"]
 
-    ui_yaml["meta"].each do |key, value |
-      ui_yaml["meta"][key][:fields].map! {
+      ui_yaml[:fields].map! {
         |field_name|
           field_name.each do | key_1, value_1|
-          field_name[key_1]["validations"] = field_name[key_1]["validations"].present?  ?  field_name[key_1]["validations"].merge(@config_response.data["meta"][key.to_s][key_1.to_s]["validations"])  :  @config_response.data["meta"][key.to_s][key_1.to_s]["validations"]
-          field_name[key_1]["data_key_name"] =  @config_response.data["meta"][key.to_s][key_1.to_s]["data_key_name"]
-
+          field_name[key_1]["validations"] = field_name[key_1]["validations"].present?  ?  field_name[key_1]["validations"].merge(@config_response.data["fields"][key_1.to_s]["validations"])  :  @config_response.data["fields"][key_1.to_s]["validations"]
+          field_name[key_1]["data_key_name"] =  @config_response.data["fields"][key_1.to_s]["data_key_name"]
           end
       }
-    end
+    puts "ui_yaml #{ui_yaml}"
     @config_response = ui_yaml
 
   end
