@@ -10,7 +10,10 @@ constants:
 
   cms_api:
     open_timeout: 50
-    read_timeout: 50  
+    read_timeout: 50
+
+  cms_web:
+    default_entity: 'uber_banner'
 
   ost_web:
     url: <%= ENV['OCW_OST_URL'] %>

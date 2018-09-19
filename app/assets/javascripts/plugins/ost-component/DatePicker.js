@@ -74,7 +74,9 @@
       var maxDate = config.max ? config.max : oThis.getToday(),
         minDate = config.min ? config.min : "2016-01-01";
 
-      jEls.attr("max", maxDate);
+      if(!$(".cms-date-picker").attr("max")) {
+        jEls.attr("max", maxDate);
+      }
       jEls.attr("min", minDate);
     },
 

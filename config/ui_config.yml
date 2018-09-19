@@ -20,6 +20,44 @@ meta:
                 :input_label: Banner Enabled
                 :tooltip_title: Required. Banner should be shown or not.
                 :data_key_name: banner_enabled_flag
+    :upcoming_events_list:
+      :record_heading: event_name
+      :fields:
+        - event_name:
+            :meta_ui:
+                :input_kind: generic-text
+                :input_label: Event Name
+                :tooltip_title: Required. Max length 40 characters.
+                :data_key_name: event_name
+        - event_desc:
+            :meta_ui:
+                :input_kind: generic-textarea
+                :input_label: Event Description
+                :tooltip_title: Required. Max length 40 characters and min 3 characters.
+                :data_key_name: event_desc
+        - event_icon:
+            :meta_ui:
+                :input_kind: generic-select
+                :input_label: Event Icon
+                :options:
+                  - name: Podcast Icon
+                    value: events-podcast-icon
+                  - name: Events Icon
+                    value: events-event-icon
+                :tooltip_title: Required.
+                :data_key_name: event_icon
+        - event_date:
+            :meta_ui:
+                :input_kind: generic-date-picker
+                :input_label: Event Date
+                :tooltip_title: Required.
+                :data_key_name: event_date
+        - event_link:
+            :meta_ui:
+                :input_kind: generic-link
+                :input_label: Event Link
+                :tooltip_title: Required.
+                :data_key_name: event_link
     :news_list:
       :record_heading: news_list_title
       :fields:
