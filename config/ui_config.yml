@@ -27,13 +27,13 @@ meta:
             :meta_ui:
                 :input_kind: generic-text
                 :input_label: Event Name
-                :tooltip_title: Required. Max length 70 characters.
+                :tooltip_title: Required. Max length 40 characters.
                 :data_key_name: event_name
         - event_desc:
             :meta_ui:
                 :input_kind: generic-textarea
                 :input_label: Event Description
-                :tooltip_title: Required. Max length 100 characters and min 20 characters.
+                :tooltip_title: Required. Max length 40 characters and min 3 characters.
                 :data_key_name: event_desc
         - event_icon:
             :meta_ui:
