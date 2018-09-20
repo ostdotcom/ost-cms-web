@@ -20,13 +20,13 @@
                 {{/news_list_image}}
                 <div class="px-2 py-2">
                   {{#news_list_title}}
-                    <div style="font-weight: 600;">{{{display_value}}}</div>
+                  <div style="font-weight: 600;">{{{display_value}}}</div>
                   {{/news_list_title}}
-                  {{#news_list_description}}
-                    <div class="pt-2">{{{display_value}}}</div>
-                  {{/news_list_description}}
                 </div>
               </a>
+              {{#news_list_description}}
+              <div class="px-2 py-2">{{{display_value}}}</div>
+              {{/news_list_description}}
               {{#news_list_date}}
               <div class="px-2 py-1" style="border-top: solid 1px #e9f1f2;font-size: 10px;">
                 {{getDisplayDate display_value null}}
