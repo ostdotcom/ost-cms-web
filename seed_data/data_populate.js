@@ -2180,13 +2180,11 @@ PopulateData.prototype = {
       data: Object.assign(this.entityData[index], {entity_name: this.entityId}),
       type: "POST",
       success: function (res) {
-        console.log("Hey, I am in success");
         console.log(res);
         index--;
         oThis.perform(index)
       },
       error: function (res) {
-        console.error("I am in error response", res);
         index--;
         oThis.perform(index)
       }

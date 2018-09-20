@@ -1,32 +1,55 @@
 ;
 (function (window) {
 
-  var oSTNs = ns("cms"),
-    oThis;
+  var oSTNs           = ns("cms"),
+      oThis;
 
   oSTNs.dashboard = oThis = {
-    ostFormBuilder: null,
-    listData: null,
-    jSortable: $('#sortable'),
-    jSidebar: $('.app-sidebar'),
-    selectedItem: ".treeview-item.selected",
-    entityName: null,
-    jDeleteModal: $("#deleteModal"),
-    jPublishModal: $("#publishModal"),
-    jResetModal: $("#resetModal"),
+
+    entityName           : null,
+    entityType           : null,
+
+    ostFormBuilder        : null,
+
+    sortApi               : '/api/content/sort' ,
+    refreshApi            : '/api/content/active',
+    deleteApi             : '/api/content/delete',
+    publishApi            : '/api/content/publish',
+    publishedApi          : '/api/content/published',
+    resetApi              : '/api/content/reset_to_publish',
+
+    sDraftTemplate        : '#draft_entity_list',
+    sDraftWrapper         : '#list',
+
+    sPublishedTemplate    : '#published_list_view',
+    sPublishedWrapper     : '#published_list' ,
+
+    selectedItem          : ".treeview-item.selected",
+    sSortableElements     : '.jSortable-elements',
+
+    jSidebar              : $('.app-sidebar'),
+    jDeleteModal          : $("#deleteModal"),
+    jPublishModal         : $("#publishModal"),
+    jResetModal           : $("#resetModal"),
 
     init: function (config) {
-      oThis.entityName = config.entity_name;
-      console.log("oThis.entity_name" , oThis.entityName );
-      oThis.entitiesConfig = JSON.parse(config.meta_data);
-      console.log("oThis.entitiesConfig" , oThis.entitiesConfig );
-      oThis.ostFormBuilder = new cms.OstFormBuilder( { 'entitiesConfig' :config , 'selectedItem' : oThis.selectedItem } );
+      oThis.initializeData( config );
+      oThis.buildForm( config );
       oThis.bindEvents();
       oThis.refresh();
       oThis.initPublishedListData( true );
       oThis.getEntityConfig();
       oThis.selectSidebarMenu();
       oThis.hideSideBarMenuItem();
+    },
+
+    initializeData: function ( config ) {
+      oThis.entityName = config.entity_name;
+      oThis.entitiesConfig = JSON.parse(config.meta_data);
+    },
+
+    buildForm: function ( config ) {
+      oThis.ostFormBuilder = new cms.OstFormBuilder( { 'entitiesConfig' :config , 'selectedItem' : oThis.selectedItem } );
     },
 
     bindEvents: function () {
@@ -116,7 +139,8 @@
     },
 
     bindSortable: function () {
-      $('#accordion').sortable({
+      var recId , prevElementId , nextElementId ;
+      $( oThis.sSortableElements ).sortable({
         revert: true,
         update: function (e, ui) {
           $('#list .card').each(function (k) {
@@ -125,32 +149,41 @@
           recId = ui.item.data('recordId');
           prevElementId = ui.item.prev().data('recordId');
           nextElementId = ui.item.next().data('recordId');
-          oThis.sortRecords( recId, prevElementId, nextElementId);
+          oThis.sortRecords( recId, prevElementId, nextElementId );
         }
       });
     },
 
     onRefresh: function (response) {
-      oThis.listData = oThis.createMetaObject(response.data.list);
-      var template = Handlebars.compile($('#list_view').text());
-      var html = template({'list_data': oThis.listData});
-      $('#list').html(html);
+      var listData  =  oThis.createMetaObject(response.data.list) ,
+          sTemplate = oThis.getDraftTemplate(),
+          markup    =  oSTNs.handlebarHelper.getMarkup(  sTemplate  ,  {'list_data':listData} )
+      ;
+      $(oThis.sDraftWrapper).html( markup );
       oThis.bindSortable();
     },
 
+    getDraftTemplate : function () {
+      var sTemplate   = '#draft_'+ oThis.entityName ,
+          jTemplate   = $( sTemplate )
+      ;
+      if( jTemplate && jTemplate .length == 1 ){
+        return sTemplate ;
+      }
+      return oThis.sDraftTemplate;
+    },
 
     selectSidebarMenu: function () {
-      var entityName = window.location.pathname,
-        entityName = entityName.split("/").pop(),
-        selectedItem = oThis.jSidebar.find("[data-entity-id='" + entityName + "']"),
-        selectedParent = selectedItem.closest("li.treeview");
+      var selectedItem    = oThis.jSidebar.find("[data-entity-id='" + oThis.entityName + "']"),
+          selectedParent  = selectedItem.closest("li.treeview")
+      ;
       selectedParent.addClass("is-expanded");
       selectedItem.addClass("selected");
     },
 
     sortRecords: function (recordId, previous, next) {
       $.ajax({
-        url: '/api/content/sort',
+        url: oThis.sortApi,
         method: 'POST',
         data: {
           entity_name: oThis.entityName,
@@ -177,7 +210,7 @@
 
     refresh: function () {
       $.ajax({
-        url: '/api/content/active',
+        url: oThis.refreshApi,
         method: 'GET',
         data: {
           entity_name: oThis.entityName
@@ -191,7 +224,6 @@
         }
       })
     },
-
 
     submitForm: function () {
       var jForm = $('#entity_data_form');
@@ -242,7 +274,6 @@
           });
           label = attrConfig['meta_ui']['input_label'];
           inputKind = attrConfig['meta_ui']['input_kind'];
-          console.log("record", record);
           record[key] = new CMSRecordAttribute({'display_label': label, 'display_value': value, 'input_kind': inputKind});
         });
         heading = $('<span>'+heading+'</span>').text(); // Strip html to text
@@ -253,7 +284,7 @@
 
     delete: function (recordId) {
       $.ajax({
-        url: '/api/content/delete',
+        url: oThis.deleteApi,
         method: 'POST',
         data: {
           id: recordId
@@ -277,7 +308,7 @@
 
     initPublishedListData: function ( showProcessingModal ) {
       $.ajax({
-        url: '/api/content/published',
+        url: oThis.publishedApi,
         method: 'GET',
         data: {
           entity_name: oThis.entityName
@@ -289,13 +320,10 @@
         },
         success: function (response) {
           if( response.success ) {
-            oThis.publishedListData = oThis.createMetaObject(response.data.list);
-            var template = Handlebars.compile($('#published_list_view').text());
-            var html = template({'published_list_data': oThis.publishedListData});
-            $('#published_list').html(html);
             if( showProcessingModal ){
               $('.modal').modal('hide');
             }
+            oThis.onGetPublishDataSuccess( response );
           } else {
             oSTNs.requestHelper.showErrorModal( response );
           }
@@ -306,9 +334,27 @@
       })
     },
 
+    onGetPublishDataSuccess : function ( response  ) {
+      var publishedListData =  oThis.createMetaObject(response.data.list) ,
+          markup            =  oSTNs.handlebarHelper.getMarkup( oThis.getPublishTemplate() ,  {'published_list_data': publishedListData})
+      ;
+      $(oThis.sPublishedWrapper).html(markup);
+    },
+
+    getPublishTemplate : function () {
+      var sEntityPublishTemplate = "#published_" + oThis.entityName ,
+          jEntityPublishTemplate = $( sEntityPublishTemplate )
+      ;
+      if( jEntityPublishTemplate && jEntityPublishTemplate.length == 1 ) {
+        return sEntityPublishTemplate ;
+      } else {
+        return oThis.sPublishedTemplate ;
+      }
+    },
+
     publish: function () {
       $.ajax({
-        url: '/api/content/publish',
+        url: oThis.publishApi,
         method: 'POST',
         data: {
           entity_name: oThis.entityName
@@ -332,7 +378,7 @@
 
     resetPublish: function () {
       $.ajax({
-        url: '/api/content/reset_to_publish',
+        url: oThis.resetApi,
         method: 'POST',
         data: {
           entity_name: oThis.entityName
