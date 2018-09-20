@@ -19,10 +19,7 @@ class Web::OstController < Web::BaseController
   def get_entity_ui_config
     ui_yaml = YAML.load_file(Rails.root.to_s + '/config/ui_config.yml')["meta"][params[:name].to_sym]
     @config_response = CmsApi::Request::EntityConfig.new(GlobalConstant::Base.root_url, request.cookies, {"User-Agent" => http_user_agent}, params[:name]).get_config
-    puts ( " hdbhdbchbcdbchdbcd #{@config_response.inspect}")
-    ui_yaml["entity_type"] = @config_response.data["entity_type"]
-    ui_yaml["entity_name"] = @config_response.data["entity_name"]
-
+    ui_yaml[:meta] = @config_response.data["meta"]
       ui_yaml[:fields].map! {
         |field_name|
           field_name.each do | key_1, value_1|
@@ -30,7 +27,6 @@ class Web::OstController < Web::BaseController
           field_name[key_1]["data_key_name"] =  @config_response.data["fields"][key_1.to_s]["data_key_name"]
           end
       }
-    puts "ui_yaml #{ui_yaml}"
     @config_response = ui_yaml
 
   end

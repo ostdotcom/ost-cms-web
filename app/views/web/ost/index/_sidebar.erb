@@ -71,10 +71,8 @@
                 selected_path = data[:preview_path]
               end
             %>
-            <% if @config_response["meta"][rec_id] %>
               <li><a class="treeview-item pl-5" data-entity-id="<%= list_item.values[0][:id] %>" href="/dashboard/<%= list_item.values[0][:id] %>"><%= list_item.values[0][:list_label] %></a>
               </li>
-            <%end%>
           <% end%>
         </ul>
       </li>
