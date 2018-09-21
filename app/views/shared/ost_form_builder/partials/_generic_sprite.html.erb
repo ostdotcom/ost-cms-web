@@ -1,0 +1,40 @@
+<script  type="text/x-handlebars-template" id="generic-sprite" data-partial-id="generic-sprite">
+  <div class="form-group mb-0 row">
+    <div class="col-12 col-md-4">
+      <label for="{{data_key_name}}">{{input_label}}</label> <p class="small text-muted font-weight-light font-italic mb-1">{{tooltip_title}}</p>
+      <input type="number" class="form-control" id="{{data_key_name}}" name="{{data_key_name}}" value="{{{data_key_value}}}"
+             {{#each validations}}
+             {{#when @key '==' 'required'}}
+      {{#when this '==' true}}required{{else}} {{/when}}
+      {{else}}
+      {{@key}}="{{this}}"
+      {{/when}}
+      {{/each}}
+      />
+      <div class="error" data-field-name="{{data_key_name}}" data-forname="{{data_key_name}}"></div>
+    </div>
+    <div class="col-12 col-md-8">
+      <div class="sprite-wrapper">
+        {{getSprite "partners_sprite" "partners_bw_2x" "partners_bw_2x_item_height" "150"}}
+        <style>
+          .sprite-display{
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            position: absolute;
+            height: 150px
+          }
+        </style>
+        <span class="sprite-display"></span>
+      </div>
+    </div>
+  </div>
+</script>
+
+<% content_for :end_js do %>
+  <script type="text/javascript">
+    cms.spriteComponent.init();
+  </script>
+<%end%>
