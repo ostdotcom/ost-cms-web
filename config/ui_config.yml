@@ -1,7 +1,7 @@
 meta:
     :uber_banner:
         :meta_ui:
-            :title_key: banner_html
+            :title: Uber Banner
         :fields:
             - banner_html:
                 :input_kind: ost-rich-text-editor

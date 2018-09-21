@@ -34,7 +34,7 @@
 
     init: function (config) {
       oThis.initializeData( config );
-      oThis.buildForm( config );
+      oThis.buildForm( );
       oThis.bindEvents();
       oThis.refresh();
       oThis.initPublishedListData( true );
@@ -44,14 +44,14 @@
     },
 
     initializeData: function ( config ) {
-      oThis.entityName = config.meta_data.meta.entity_name;
-      console.log("oThis.entity_name" , oThis.entityName );
-      oThis.entityConfig = config.meta_data;
-      console.log("oThis.entityConfig" , oThis.entityConfig );
+      if( config ){
+        $.extend( oThis , config ) ;
+      }
+      oThis.entityName = oThis.entityConfig.meta.entity_name;
     },
 
-    buildForm: function ( config ) {
-      oThis.ostFormBuilder = new cms.OstFormBuilder( { 'entityConfig' :config , 'selectedItem' : oThis.selectedItem } );
+    buildForm: function ( ) {
+      oThis.ostFormBuilder = new cms.OstFormBuilder( { 'entityConfig' : oThis.entityConfig , 'selectedItem' : oThis.selectedItem } );
     },
 
     bindEvents: function () {
@@ -256,18 +256,16 @@
 
 
     createMetaObject: function (list) {
-      var configList = Object.assign({}, list),
-        heading, attrConfig,
-        recordHeading = oThis.getRecordHeading();
+      var configList = list.slice( 0 ),
+          heading, attrConfig
+      ;
 
       $.each(configList, function (key, list_item) {
         var record = list_item.record,
           label,
           inputKind;
+        list_item.heading = oThis.getRecordHeading( record );
         $.each(record, function (key, value) {
-          if (recordHeading && key == recordHeading) {
-            heading = value;
-          }
           oThis.entityConfig['fields'].forEach(function (attr_object) {
             if (attr_object[key]) {
               attrConfig = attr_object[key];
@@ -278,8 +276,6 @@
           inputKind = attrConfig['input_kind'];
           record[key] = new CMSRecordAttribute({'display_label': label, 'display_value': value, 'input_kind': inputKind});
         });
-        heading = $('<span>'+heading+'</span>').text(); // Strip html to text
-        list_item.heading = heading;
       });
       return configList;
     },
@@ -411,9 +407,29 @@
       return oThis.entityConfig;
     },
 
-    getRecordHeading: function () {
-      var config = oThis.getEntityConfig();
-      return config && config['meta_ui']['title_key'] ;
+    getRecordTitleKey: function() {
+      var config = oThis.getEntityConfig(),
+        metaUI = config && config.meta_ui
+      ;
+      return metaUI && metaUI['title_key'] ;
+    },
+
+    getRecordTitle: function() {
+      var config = oThis.getEntityConfig(),
+        metaUI = config && config.meta_ui
+      ;
+      return metaUI && metaUI['title'] ;
+    },
+
+    getRecordHeading: function( record ) {
+      var recordHeading;
+      if( oThis.getRecordTitleKey() ) {
+        recordHeading = record[oThis.getRecordTitleKey()];
+      } else{
+        recordHeading = oThis.getRecordTitle();
+      }
+      recordHeading = $('<span>'+recordHeading+'</span>').text(); // Strip html to text
+      return recordHeading;
     },
 
     hideSideBarMenuItem: function () {
