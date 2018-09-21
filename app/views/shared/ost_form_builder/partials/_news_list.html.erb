@@ -1,0 +1,56 @@
+<script type="text/x-handlebars-template" id="draft_news_list">
+  <div id="accordion" class="jSortable-elements">
+    {{#each list_data}}
+    <div class="card mb-3 draft-mode" data-record-id="{{this.id}}">
+      <i class="fa fa-ellipsis-v drag-icon" aria-hidden="true"></i>
+      <div class="card-header pt-4" id="listHeading">
+        <h5 class="mb-0">
+          <div class="row">
+            <div class="col-10">
+              <button class="btn btn-link text-truncate px-0 pt-0 text-truncate" style="max-width: 100%;"
+                      data-toggle="collapse" data-target="#record_{{this.id}}"
+                      aria-expanded="false" aria-controls="record_{{this.id}}">
+                #<span class="record-index">{{math @index '+' 1}}</span> {{{this.heading}}}
+              </button>
+            </div>
+            <div class="col-2">
+                  <span class="float-right align-text-top">
+                      <a class="j-edit-link mb-3 mr-2" name="Edit" data-toggle="modal"  data-id="{{this.id}}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                      <a class="j-delete-link mb-3" name="Delete" data-id="{{this.id}}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                  </span>
+            </div>
+          </div>
+        </h5>
+      </div>
+      <div id="record_{{this.id}}" class="collapse hide" aria-labelledby="listHeading" data-parent="#accordion">
+        <div class="card-body">
+          {{#this.record}}
+            <div class="row">
+              <div class="col-4 p-0" style="box-shadow: 0 2px 2px 0 rgba(0,0,0,0.1);">
+                  <a href="{{news_list_link.display_value}}" target="_blank">
+                    {{#news_list_image}}
+                      <img src="{{display_value}}"class="img-fluid">
+                    {{/news_list_image}}
+                    <div class="px-2 py-2">
+                      {{#news_list_title}}
+                      <div style="font-weight: 600;">{{{display_value}}}</div>
+                      {{/news_list_title}}
+                    </div>
+                  </a>
+                {{#news_list_description}}
+                  <div class="px-2 py-2">{{{display_value}}}</div>
+                {{/news_list_description}}
+                {{#news_list_date}}
+                  <div class="px-2 py-1" style="border-top: solid 1px #e9f1f2;font-size: 10px;">
+                    {{getDisplayDate display_value null}}
+                  </div>
+                {{/news_list_date}}
+              </div>
+            </div>
+          {{/this.record}}
+        </div>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+</script>

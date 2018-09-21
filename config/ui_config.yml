@@ -253,7 +253,7 @@ meta:
                 :input_kind: generic-number
                 :input_label: Sprite Index
                 :data_key_name: partners_sprite_index
-                :tooltip_title: Sprite index of partner logo
+                :tooltip_title: Sprite index of partner logo (starting from 0)
             - partners_url:
                 :input_kind: generic-link
                 :input_label: URL

@@ -8,7 +8,7 @@ class Web::OstController < Web::BaseController
   # Edit entity Dashboard
   #
   def dashboard
-    @entity_name = params[:name] || "news_list"
+    @entity_name = params[:name] || GlobalConstant::Base.cms_web['default_entity']
   end
 
 

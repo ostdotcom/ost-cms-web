@@ -504,6 +504,45 @@ for (var i = 0; i < news_list.length; i++){
 }
 
 
+events_list = [
+  {
+    event_name: "OST LIVE",
+    event_desc: "People of OST: Paul Kuveke",
+    event_icon: "events-podcast-icon",
+    event_date: "17 Sep 2018",
+    event_link: "http://youtube.com/OSTdotcom"
+  },
+  {
+    event_name: "OST LIVE",
+    event_desc: "Guest: Thomas Power",
+    event_icon: "events-podcast-icon",
+    event_date: "19 Sep 2018",
+    event_link: "http://youtube.com/OSTdotcom"
+  },
+  {
+    event_name: "OST at Web3 Summit",
+    event_desc: "Berlin",
+    event_icon: "events-event-icon",
+    event_date: "22 Oct 2018",
+    event_link: "https://web3summit.com/"
+  },
+  {
+    event_name: "OST at Fellowship of Ethereum Magicians",
+    event_desc: "Prague",
+    event_icon: "events-event-icon",
+    event_date: "28 Oct 2018",
+    event_link: "https://www.picatic.com/ethmagicians-prague-2018"
+  },
+  {
+    event_name: "OST at DevCon 4",
+    event_desc: "Prague",
+    event_icon: "events-event-icon",
+    event_date: "30 Oct 2018",
+    event_link: "https://devcon4.ethereum.org/"
+  }
+]
+
+
 
 
 var core_team =
@@ -1051,7 +1090,39 @@ var advisor_team =
   ];
 
 var partners =
-  [
+  [ {
+    partners_name: "PassKit",
+    partners_industry: [
+      "loyalty"
+    ],
+    partners_size: "large",
+    partners_on_hover_bgcolor: "#40C4FF",
+    on_hover_imgcolor: "classname",
+    partners_sprite_index: 30,
+    partners_is_exited: false,
+    partners_description: "PassKit provides businesses with the tools and infrastructure to create engaging programs that foster true loyalty. Thousands of business worldwide use PassKit to connect and engage with over 250 million people worldwide. PassKit’s customers include some of the best businesses across retail, hospitality, travel, insurance, F&B, telecommunications and financial services, including Best Western International, DFS, Swire, FWD Insurance, Now Health, AIS, Heathrow Airport, and Azul Airways.",
+    partners_location: "Hongkong",
+    partners_url: "https://passkit.com/",
+    partners_founders: [
+      {
+        partners_name: "Paul Tomes"
+      },
+      {
+        partners_name: "Nick Murray"
+      }
+    ],
+    social: [
+      {
+        partners_name: "Twitter",
+        link: "https://twitter.com/PassKit"
+      },
+      {
+        partners_name: "LinkedIn",
+        link: "https://www.linkedin.com/company/passkit/"
+      }
+    ]
+
+    },
     {
       partners_name: "Unsplash",
       partners_industry: [
@@ -2099,18 +2170,21 @@ PopulateData.prototype = {
         utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
       this.entityData[index]["news_list_date"] = utcDate.getTime() / 1000;
     }
+    if (this.entityId == "upcoming_events_list") {
+      var date = new Date(this.entityData[index]["event_date"]),
+        utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+      this.entityData[index]["event_date"] = utcDate.getTime() / 1000;
+    }
     $.ajax({
       url: "/api/content/create",
       data: Object.assign(this.entityData[index], {entity_name: this.entityId}),
       type: "POST",
       success: function (res) {
-        console.log("Hey, I am in success");
         console.log(res);
         index--;
         oThis.perform(index)
       },
       error: function (res) {
-        console.error("I am in error response", res);
         index--;
         oThis.perform(index)
       }
