@@ -79,13 +79,13 @@
     return (year+ separator + month + separator + date);
   });
 
-  Handlebars.registerHelper('getDisplayDate', function (val, config , options) {
+  Handlebars.registerHelper('getDisplayDate', function (val, language , config , options) {
     var normalisedVal = parseInt(val) * normaliser ,
         dateObj       = new Date( normalisedVal ),
-        date          = (dateObj.getUTCDate()),
+        lang          = language || 'en-US',
         config        = config || {day: 'numeric',month:'long',year:'numeric'}
     ;
-    return dateObj.toLocaleDateString('en-US', config);
+    return dateObj.toLocaleDateString(lang, config);
   });
 
 
