@@ -320,6 +320,7 @@ meta:
                 :input_label: Sprite Index
                 :data_key_name: partners_sprite_index
                 :tooltip_title: Sprite index of partner logo (starting from 0)
+            validations:
                 :entity_name: partners_sprite
                 :image_key: partners_bw_2x
                 :sprite_count: partners_blocks_in_sprite

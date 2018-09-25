@@ -11,7 +11,7 @@
 
     registerGetSprite: function(){
 
-      Handlebars.registerHelper('getSprite', function( entity_name, image_key, companies_count,  options ) {
+      Handlebars.registerHelper('getSprite', function( entity_name, image_key, sprite_count,  options ) {
         $.ajax({
           url: '/api/content/active',
           method: 'GET',
