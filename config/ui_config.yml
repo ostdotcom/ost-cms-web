@@ -225,48 +225,31 @@ meta:
                 :input_label: BW 1x sprite image
                 :tooltip_title: Required. Black and white 1x sprite image for grid (non-retina)
                 :data_key_name: partners_bw_1x
-        - partners_bw_1x_item_height:
-            :meta_ui:
-                :input_kind: generic-number
-                :input_label: Item height in px of BW 1x
-                :data_key_name: partners_bw_1x_item_height
-                :tooltip_title: Item height of a single item in px for BW 1x sprite image
         - partners_bw_2x:
             :meta_ui:
                 :input_kind: ost-input-file
                 :input_label: BW 2x sprite image
                 :tooltip_title: Required. Black and white 2x sprite image for grid (retina)
                 :data_key_name: partners_bw_2x
-        - partners_bw_2x_item_height:
-            :meta_ui:
-                :input_kind: generic-number
-                :input_label: Item height in px of BW 2x
-                :data_key_name: partners_bw_2x_item_height
-                :tooltip_title: Item height of a single item in px for BW 2x sprite image
         - partners_color_1x:
             :meta_ui:
                 :input_kind: ost-input-file
                 :input_label: Color 1x sprite image
                 :tooltip_title: Required. Color 1x sprite image for detail (non-retina)
                 :data_key_name: partners_color_1x
-        - partners_color_1x_item_height:
-            :meta_ui:
-                :input_kind: generic-number
-                :input_label: Item height in px of Color 1x
-                :data_key_name: partners_color_1x_item_height
-                :tooltip_title: Item height of a single item in px for Color 1x sprite image
         - partners_color_2x:
             :meta_ui:
                 :input_kind: ost-input-file
                 :input_label: Color 2x sprite image
                 :tooltip_title: Required. Color 2x sprite image for detail (retina)
                 :data_key_name: partners_color_2x
-        - partners_color_2x_item_height:
+        - partners_blocks_in_sprite:
             :meta_ui:
                 :input_kind: generic-number
-                :input_label: Item height in px of Color 2x
-                :data_key_name: partners_color_2x_item_height
-                :tooltip_title: Item height of a single item in px for Color 2x sprite image
+                :data_key_name: partners_blocks_in_sprite
+                :input_label: Number of companies
+                :tooltip_title: Required. Number of partner companies in sprite
+                :data_key_name: partners_blocks_in_sprite
 
     :partners_list:
       :record_heading: partners_name

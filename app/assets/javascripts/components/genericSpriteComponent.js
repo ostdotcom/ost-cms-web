@@ -11,7 +11,7 @@
 
     registerGetSprite: function(){
 
-      Handlebars.registerHelper('getSprite', function( entity_name, image_key, height_key, height,  options ) {
+      Handlebars.registerHelper('getSprite', function( entity_name, image_key, companies_count,  options ) {
         $.ajax({
           url: '/api/content/active',
           method: 'GET',
@@ -21,11 +21,12 @@
           success: function (response) {
             var jSpriteWrapper = $(".sprite-wrapper");
             jSpriteWrapper.append('<img src="'+response.data.list[0].record[image_key]+'"  />');
-            oThis.partners_sprite_length = jSpriteWrapper.find('img')[0].height / parseInt(height);
+            oThis.partners_sprite_length = response.data.list[0].record[companies_count]     //jSpriteWrapper.find('img')[0].height / parseInt(height);
             jSpriteWrapper.find('.sprite-display').css( "background-image", "url("+response.data.list[0].record[image_key]+")");
             oThis.changeSpriteCSS();
             oThis.bindEvent();
             jSpriteWrapper.find('img').remove();
+            $("#partners_blocks_in_sprite").val(oThis.partners_sprite_length)
           }
         });
       });
