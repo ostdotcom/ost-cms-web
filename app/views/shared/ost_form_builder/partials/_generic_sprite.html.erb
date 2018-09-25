@@ -2,7 +2,7 @@
   <div class="form-group mb-0 row">
     <div class="col-12 col-md-4">
       <label for="{{data_key_name}}">{{input_label}}</label> <p class="small text-muted font-weight-light font-italic mb-1">{{tooltip_title}}</p>
-      <input type="number" class="form-control" id="{{data_key_name}}" name="{{data_key_name}}" value="{{{data_key_value}}}"
+      <input type="number" class="form-control sprite-index" id="{{data_key_name}}" name="{{data_key_name}}" value="{{{data_key_value}}}"
              {{#each validations}}
              {{#when @key '==' 'required'}}
       {{#when this '==' true}}required{{else}} {{/when}}
@@ -15,7 +15,8 @@
     </div>
     <div class="col-12 col-md-8">
       <div class="sprite-wrapper">
-        {{getSprite "partners_sprite" "partners_bw_2x" "partners_blocks_in_sprite"}}
+        {{getSprite entity_name image_key sprite_count }}
+
         <style>
           .sprite-display{
             top: 0;
