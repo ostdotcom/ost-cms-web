@@ -95,6 +95,51 @@ meta:
                 :input_label: News Published Date
                 :data_key_name: news_list_date
                 :tooltip_title: Required.
+
+    :exchanges_sprite:
+        :meta_ui:
+            :title: Exchange sprite
+        :fields:
+            - exchanges_1x:
+                :input_kind: ost-input-file
+                :input_label: 1x sprite image
+                :tooltip_title: Required. 1x sprite image for grid (non-retina)
+                :data_key_name: exchanges_1x
+            - exchanges_2x:
+                :input_kind: ost-input-file
+                :input_label:  2x sprite image
+                :tooltip_title: Required. 2x sprite image (retina)
+                :data_key_name: exchanges_2x
+            - exchanges_blocks_in_sprite:
+                :input_kind: generic-number
+                :input_label: Number of exchanges
+                :tooltip_title: Required. Number of exchanges companies in sprite
+                :data_key_name: exchanges_blocks_in_sprite
+    :exchanges_list:
+        :meta_ui:
+            :title_key: exchanges_name
+        :fields:
+            - exchanges_name:
+                :input_kind: generic-text
+                :input_label: Exchange name
+                :tooltip_title: Required. Max length 30 characters.
+                :data_key_name: exchanges_name
+            - exchanges_list_link:
+                :input_kind: generic-link
+                :input_label: Exchange URL
+                :tooltip_title: Required.
+                :data_key_name: exchanges_list_link
+            - exchanges_sprite_index:
+                :input_kind: generic-sprite
+                :input_label: Sprite Index
+                :tooltip_title: Sprite index of exchange logos (starting from 0)
+                :data_key_name: exchanges_sprite_index
+                validations:
+                    :entity_name: exchanges_sprite
+                    :image_key: exchanges_2x
+                    :sprite_count: exchanges_blocks_in_sprite
+
+
     :members_list:
         :meta_ui:
             :title_key: members_list_name
@@ -218,7 +263,6 @@ meta:
             :data_key_name: partners_color_2x
         - partners_blocks_in_sprite:
             :input_kind: generic-number
-            :data_key_name: partners_blocks_in_sprite
             :input_label: Number of companies
             :tooltip_title: Required. Number of partner companies in sprite
             :data_key_name: partners_blocks_in_sprite
