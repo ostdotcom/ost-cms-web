@@ -194,7 +194,7 @@ meta:
 
     :partners_sprite:
       :meta_ui:
-          :title_key: partners_bw_1x
+          :title: Partners sprite
       :fields:
         - partners_bw_1x:
             :input_kind: ost-input-file
