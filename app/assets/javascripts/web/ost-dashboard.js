@@ -10,4 +10,5 @@
 //= require plugins/ost-component/Spectrum
 //= require plugins/ost-component/ColorPicker
 //= require plugins/ost-component/DatePicker
+//= require components/genericSpriteComponent
 

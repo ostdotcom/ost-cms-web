@@ -39,10 +39,16 @@
           page_icon_class: "fa-handshake-o",
           preview_path: 'partners',
           lists:
-              [{partners_ol: {
-                list_label: "Partners",
-                id: "partners_list"
-              }}]
+              [
+               {partners_sprite_ol: {
+                list_label: "Partners Sprite",
+                id: "partners_sprite"
+              }},
+               {partners_ol: {
+                   list_label: "Partners",
+                   id: "partners_list"
+               }}
+              ]
       },
       careers_page: {
           page_label: "Careers Page",
@@ -76,10 +82,8 @@
                 selected_path = data[:preview_path]
               end
             %>
-            <% if @config_response["meta"][rec_id] %>
               <li><a class="treeview-item pl-5" data-entity-id="<%= list_item.values[0][:id] %>" href="/dashboard/<%= list_item.values[0][:id] %>"><%= list_item.values[0][:list_label] %></a>
               </li>
-            <%end%>
           <% end%>
         </ul>
       </li>

@@ -107,7 +107,7 @@
     },
 
     getEntityFields : function(entityName, entitiesConfig){
-      return entitiesConfig && entitiesConfig['meta'] && entitiesConfig['meta'][entityName] && entitiesConfig['meta'][entityName]['fields'];
+      return entitiesConfig['fields'];
     },
 
     getFormAction: function( ){
