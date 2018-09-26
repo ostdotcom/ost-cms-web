@@ -134,8 +134,7 @@
   <%= render :partial => "/shared/svg_sprite" %>
   <script type="text/javascript">
     cms.dashboard.init({
-      'meta_data' : '<%= raw @config_response.to_json %>' ,
-      'entity_name' : '<%= @entity_name %>'
+      'entityConfig' : <%= raw @config_response.to_json %>
     });
 
   </script>

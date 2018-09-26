@@ -1,42 +1,38 @@
 meta:
     :uber_banner:
-      :record_heading: banner_html
-      :fields:
-        - banner_html:
-            :meta_ui:
+        :meta_ui:
+            :title: Uber Banner
+        :fields:
+            - banner_html:
                 :input_kind: ost-rich-text-editor
                 :input_label: Banner Html
                 :tooltip_title: Required. Max length 130 characters.
                 :data_key_name: banner_html
-        - banner_background_color:
-            :meta_ui:
+            - banner_background_color:
                 :input_kind: generic-color-picker
                 :input_label: Banner Background Color
                 :tooltip_title: Required.
                 :data_key_name: banner_background_color
-        - banner_enabled_flag:
-            :meta_ui:
+            - banner_enabled_flag:
                 :input_kind: generic-radio-button
                 :input_label: Banner Enabled
                 :tooltip_title: Required. Banner should be shown or not.
                 :data_key_name: banner_enabled_flag
     :upcoming_events_list:
-      :record_heading: event_name
-      :fields:
-        - event_name:
-            :meta_ui:
+        :meta_ui:
+            :title_key: event_name
+        :fields:
+            - event_name:
                 :input_kind: generic-text
                 :input_label: Event Name
                 :tooltip_title: Required. Max length 40 characters.
                 :data_key_name: event_name
-        - event_desc:
-            :meta_ui:
+            - event_desc:
                 :input_kind: generic-textarea
                 :input_label: Event Description
                 :tooltip_title: Required. Max length 40 characters and min 3 characters.
                 :data_key_name: event_desc
-        - event_icon:
-            :meta_ui:
+            - event_icon:
                 :input_kind: generic-select
                 :input_label: Event Icon
                 :options:
@@ -46,50 +42,45 @@ meta:
                     value: events-event-icon
                 :tooltip_title: Required.
                 :data_key_name: event_icon
-        - event_date:
-            :meta_ui:
+            - event_date:
                 :input_kind: generic-date-picker
                 :input_label: Event Date
                 :tooltip_title: Required.
                 :data_key_name: event_date
-        - event_link:
-            :meta_ui:
+            - event_link:
                 :input_kind: generic-link
                 :input_label: Event Link
                 :tooltip_title: Required.
                 :data_key_name: event_link
+
     :news_list:
-      :record_heading: news_list_title
-      :fields:
-        - news_list_title:
-            :meta_ui:
+        :meta_ui:
+            :title_key: news_list_title
+        :fields:
+            - news_list_title:
                 :input_kind: generic-text
                 :input_label: Title
                 :tooltip_title: Required. Max length 130 characters.
                 :data_key_name: news_list_title
-        - news_list_description:
-            :meta_ui:
+            - news_list_description:
                 :input_kind: generic-textarea
                 :input_label: Description
                 :tooltip_title: Optional. If present, max length 500 characters and min 40 characters.
                 :data_key_name: news_list_description
-        - news_list_image:
-            :meta_ui:
+            - news_list_image:
                 :input_kind: ost-input-file
                 :input_label: Image
                 :tooltip_title: Required. Make sure aspect ratio is right and image size is optimized by UX.
                 :data_key_name: news_list_image
-            validations:
-                width_weight: 16
-                height_weight: 9
-        - news_list_link:
-            :meta_ui:
+                validations:
+                    width_weight: 16
+                    height_weight: 9
+            - news_list_link:
                 :input_kind: generic-link
                 :input_label: Link
                 :tooltip_title: Required. Article Link or Video Embed Url (format https://www.youtube.com/embed/qz8LhpKCsw0?rel=0&autoplay=1)
                 :data_key_name: news_list_link
-        - news_list_link_type:
-            :meta_ui:
+            - news_list_link_type:
                 :input_kind: generic-select
                 :input_label: Link Type
                 :data_key_name: news_list_link_type
@@ -99,62 +90,54 @@ meta:
                   - name: Video Embed Url
                     value: video-embed-url
                 :tooltip_title: Required. Type of link.
-        - news_list_date:
-            :meta_ui:
+            - news_list_date:
                 :input_kind: generic-date-picker
                 :input_label: News Published Date
                 :data_key_name: news_list_date
                 :tooltip_title: Required.
     :members_list:
-      :record_heading: members_list_name
-      :fields:
-        - members_list_title:
-            :meta_ui:
+        :meta_ui:
+            :title_key: members_list_name
+        :fields:
+            - members_list_title:
                 :input_kind: generic-text
                 :input_label: Title
                 :data_key_name: members_list_title
                 :tooltip_title: Required. Max length 50 characters.
-        - members_list_name:
-             :meta_ui:
+            - members_list_name:
                 :input_kind: generic-text
                 :input_label: Name
                 :data_key_name: members_list_name
                 :tooltip_title: Required. Max length 40 characters.
-        - members_list_image:
-             :meta_ui:
+            - members_list_image:
                 :input_kind: ost-input-file
                 :input_label: Image
                 :data_key_name: members_list_image
                 :tooltip_title: Required. Make sure aspect ratio is right and image size is optimized by UX.
-             validations:
-                 width_weight: 1
-                 height_weight: 1
-        - members_list_linkedIn:
-             :meta_ui:
+                validations:
+                    width_weight: 1
+                    height_weight: 1
+            - members_list_linkedIn:
                 :input_kind: generic-link
                 :input_label: LinkedIn
                 :data_key_name: members_list_linkedIn
                 :tooltip_title: Optional
-        - members_list_twitter:
-            :meta_ui:
+            - members_list_twitter:
                 :input_kind: generic-link
                 :input_label: Twitter
                 :data_key_name: members_list_twitter
                 :tooltip_title: Optional
-        - members_list_medium:
-            :meta_ui:
+            - members_list_medium:
                 :input_kind: generic-link
                 :input_label: Medium
                 :data_key_name: members_list_medium
                 :tooltip_title: Optional
-        - members_list_website:
-            :meta_ui:
+            - members_list_website:
                 :input_kind: generic-link
                 :input_label: Website
                 :data_key_name: members_list_website
                 :tooltip_title: Optional
-        - members_list_description:
-            :meta_ui:
+            - members_list_description:
                 :input_kind: generic-textarea
                 :input_label: Description
                 :data_key_name: members_list_description
@@ -162,124 +145,109 @@ meta:
 
 
     :advisors_list:
-      :record_heading: advisors_list_name
-      :fields:
-        - advisors_list_title:
-            :meta_ui:
-                :input_kind: generic-text
-                :input_label: Title
-                :data_key_name: advisors_list_title
-                :tooltip_title: Required. Max length 30 characters.
-        - advisors_list_name:
-             :meta_ui:
-                :input_kind: generic-text
-                :input_label: Name
-                :data_key_name: advisors_list_name
-                :tooltip_title: Required. Max length 40 characters.
-        - advisors_list_image:
-             :meta_ui:
-                :input_kind: ost-input-file
-                :input_label: Image
-                :data_key_name: advisors_list_image
-                :tooltip_title: Required. Make sure aspect ratio is right and image size is optimized by UX.
-             validations:
-                 width_weight: 1
-                 height_weight: 1
-        - advisors_list_linkedIn:
-             :meta_ui:
-                :input_kind: generic-link
-                :input_label: LinkedIn
-                :data_key_name: advisors_list_linkedIn
-                :tooltip_title: Optional
-        - advisors_list_twitter:
-            :meta_ui:
-                :input_kind: generic-link
-                :input_label: Twitter
-                :data_key_name: advisors_list_twitter
-                :tooltip_title: Optional
-        - advisors_list_medium:
-            :meta_ui:
-                :input_kind: generic-link
-                :input_label: Medium
-                :data_key_name: advisors_list_medium
-                :tooltip_title: Optional
-        - advisors_list_website:
-            :meta_ui:
-                :input_kind: generic-link
-                :input_label: Website
-                :data_key_name: advisors_list_website
-                :tooltip_title: Optional
-        - advisors_list_description:
-            :meta_ui:
-                :input_kind: generic-textarea
-                :input_label: Description
-                :data_key_name: advisors_list_description
-                :tooltip_title: Required. Max length 550 characters.
+           :meta_ui:
+               :title_key: advisors_list_name
+           :fields:
+               - advisors_list_title:
+                   :input_kind: generic-text
+                   :input_label: Title
+                   :data_key_name: advisors_list_title
+                   :tooltip_title: Required. Max length 30 characters.
+               - advisors_list_name:
+                   :input_kind: generic-text
+                   :input_label: Name
+                   :data_key_name: advisors_list_name
+                   :tooltip_title: Required. Max length 40 characters.
+               - advisors_list_image:
+                   :input_kind: ost-input-file
+                   :input_label: Image
+                   :data_key_name: advisors_list_image
+                   :tooltip_title: Required. Make sure aspect ratio is right and image size is optimized by UX.
+                   validations:
+                       width_weight: 1
+                       height_weight: 1
+               - advisors_list_linkedIn:
+                   :input_kind: generic-link
+                   :input_label: LinkedIn
+                   :data_key_name: advisors_list_linkedIn
+                   :tooltip_title: Optional
+               - advisors_list_twitter:
+                   :input_kind: generic-link
+                   :input_label: Twitter
+                   :data_key_name: advisors_list_twitter
+                   :tooltip_title: Optional
+               - advisors_list_medium:
+                   :input_kind: generic-link
+                   :input_label: Medium
+                   :data_key_name: advisors_list_medium
+                   :tooltip_title: Optional
+               - advisors_list_website:
+                   :input_kind: generic-link
+                   :input_label: Website
+                   :data_key_name: advisors_list_website
+                   :tooltip_title: Optional
+               - advisors_list_description:
+                   :input_kind: generic-textarea
+                   :input_label: Description
+                   :data_key_name: advisors_list_description
+                   :tooltip_title: Required. Max length 550 characters.
 
     :partners_sprite:
-      :record_heading: partners_bw_1x
+      :meta_ui:
+          :title_key: partners_bw_1x
       :fields:
         - partners_bw_1x:
-            :meta_ui:
-                :input_kind: ost-input-file
-                :input_label: BW 1x sprite image
-                :tooltip_title: Required. Black and white 1x sprite image for grid (non-retina)
-                :data_key_name: partners_bw_1x
+            :input_kind: ost-input-file
+            :input_label: BW 1x sprite image
+            :tooltip_title: Required. Black and white 1x sprite image for grid (non-retina)
+            :data_key_name: partners_bw_1x
         - partners_bw_2x:
-            :meta_ui:
-                :input_kind: ost-input-file
-                :input_label: BW 2x sprite image
-                :tooltip_title: Required. Black and white 2x sprite image for grid (retina)
-                :data_key_name: partners_bw_2x
+            :input_kind: ost-input-file
+            :input_label: BW 2x sprite image
+            :tooltip_title: Required. Black and white 2x sprite image for grid (retina)
+            :data_key_name: partners_bw_2x
         - partners_color_1x:
-            :meta_ui:
-                :input_kind: ost-input-file
-                :input_label: Color 1x sprite image
-                :tooltip_title: Required. Color 1x sprite image for detail (non-retina)
-                :data_key_name: partners_color_1x
+            :input_kind: ost-input-file
+            :input_label: Color 1x sprite image
+            :tooltip_title: Required. Color 1x sprite image for detail (non-retina)
+            :data_key_name: partners_color_1x
         - partners_color_2x:
-            :meta_ui:
-                :input_kind: ost-input-file
-                :input_label: Color 2x sprite image
-                :tooltip_title: Required. Color 2x sprite image for detail (retina)
-                :data_key_name: partners_color_2x
+            :input_kind: ost-input-file
+            :input_label: Color 2x sprite image
+            :tooltip_title: Required. Color 2x sprite image for detail (retina)
+            :data_key_name: partners_color_2x
         - partners_blocks_in_sprite:
-            :meta_ui:
-                :input_kind: generic-number
-                :data_key_name: partners_blocks_in_sprite
-                :input_label: Number of companies
-                :tooltip_title: Required. Number of partner companies in sprite
-                :data_key_name: partners_blocks_in_sprite
+            :input_kind: generic-number
+            :data_key_name: partners_blocks_in_sprite
+            :input_label: Number of companies
+            :tooltip_title: Required. Number of partner companies in sprite
+            :data_key_name: partners_blocks_in_sprite
 
     :partners_list:
-      :record_heading: partners_name
-      :fields:
-        - partners_name:
-            :meta_ui:
+        :meta_ui:
+           :title_key: partners_name
+        :fields:
+            - partners_name:
                 :input_kind: generic-text
                 :input_label: Name
                 :data_key_name: partners_name
                 :tooltip_title: Required. Max length 50 characters.
-        - partners_description:
-            :meta_ui:
+            - partners_description:
                 :input_kind: generic-textarea
                 :input_label: Description
                 :data_key_name: partners_description
                 :tooltip_title: Required. Max length 700 characters.
-        - partners_founders:
-            :meta_ui:
+            - partners_founders:
                 :input_kind: generic-tagsinput
                 :input_label: Founders
                 :data_key_name: partners_founders
                 :tooltip_title: Optional
-        - partners_location:
-            :meta_ui:
+            - partners_location:
                 :input_kind: generic-text
                 :input_label: Location
                 :data_key_name: partners_location
                 :tooltip_title: Optional
-        - partners_industry:
-            :meta_ui:
+            - partners_industry:
                 :input_kind: generic-multiselect
                 :input_label: Industry
                 :data_key_name: partners_industry[]
@@ -297,8 +265,7 @@ meta:
                   - name: Sharing Economy
                     value: sharing-economy
                 :tooltip_title: Required
-        - partners_size:
-            :meta_ui:
+            - partners_size:
                 :input_kind: generic-select
                 :input_label: Size
                 :data_key_name: partners_size
@@ -308,48 +275,41 @@ meta:
                   - name: Million User Platform
                     value: large
                 :tooltip_title: Required
-        - partners_is_exited:
-            :meta_ui:
+            - partners_is_exited:
                 :input_kind: generic-radio-button
                 :input_label: Has exited
                 :data_key_name: partners_is_exited
                 :tooltip_title: Has Partner exited?
-        - partners_sprite_index:
-            :meta_ui:
+            - partners_sprite_index:
                 :input_kind: generic-sprite
                 :input_label: Sprite Index
                 :data_key_name: partners_sprite_index
                 :tooltip_title: Sprite index of partner logo (starting from 0)
-            validations:
-                :entity_name: partners_sprite
-                :image_key: partners_bw_2x
-                :sprite_count: partners_blocks_in_sprite
-        - partners_url:
-            :meta_ui:
+                validations:
+                    :entity_name: partners_sprite
+                    :image_key: partners_bw_2x
+                    :sprite_count: partners_blocks_in_sprite
+            - partners_url:
                 :input_kind: generic-link
                 :input_label: URL
                 :data_key_name: partners_url
                 :tooltip_title: Optional
-        - partners_twitter:
-            :meta_ui:
+            - partners_twitter:
                 :input_kind: generic-link
                 :input_label: Twitter URL
                 :data_key_name: partners_twitter
                 :tooltip_title: Optional
-        - partners_medium:
-            :meta_ui:
+            - partners_medium:
                 :input_kind: generic-link
                 :input_label: Medium URL
                 :data_key_name: partners_medium
                 :tooltip_title: Optional
-        - partners_linkedin:
-            :meta_ui:
+            - partners_linkedin:
                 :input_kind: generic-link
                 :input_label: LinkedIn URL
                 :data_key_name: partners_linkedin
                 :tooltip_title: Optional
-        - partners_on_hover_bgcolor:
-            :meta_ui:
+            - partners_on_hover_bgcolor:
                 :input_kind: generic-color-picker
                 :input_label: On Hover Background Color
                 :data_key_name: partners_on_hover_bgcolor
@@ -357,46 +317,41 @@ meta:
 
 
     :berlin_career_list:
-        :record_heading: careers_title
+        :meta_ui:
+           :title_key: careers_title
         :fields:
-          - careers_title:
-              :meta_ui:
-                  :input_kind: generic-text
-                  :input_label: Title
-                  :data_key_name: careers_title
-                  :tooltip_title: Required
-          - careers_description:
-                :meta_ui:
-                    :input_kind: generic-textarea
-                    :input_label: Description
-                    :data_key_name: careers_description
-                    :tooltip_title: Required
-          - careers_url:
-              :meta_ui:
-                  :input_kind: generic-link
-                  :input_label: Job Description Link
-                  :data_key_name: careers_url
-                  :tooltip_title: Required
+            - careers_title:
+                :input_kind: generic-text
+                :input_label: Title
+                :data_key_name: careers_title
+                :tooltip_title: Required
+            - careers_description:
+                :input_kind: generic-textarea
+                :input_label: Description
+                :data_key_name: careers_description
+                :tooltip_title: Required
+            - careers_url:
+                :input_kind: generic-link
+                :input_label: Job Description Link
+                :data_key_name: careers_url
+                :tooltip_title: Required
 
     :pune_career_list:
-        :record_heading: careers_title
+        :meta_ui:
+           :title_key: careers_title
         :fields:
-          - careers_title:
-              :meta_ui:
-                  :input_kind: generic-text
-                  :input_label: Title
-                  :data_key_name: careers_title
-                  :tooltip_title: Required. Max length 80 characters.
-
-          - careers_description:
-                :meta_ui:
-                    :input_kind: generic-textarea
-                    :input_label: Description
-                    :data_key_name: careers_description
-                    :tooltip_title: Required. Max length 700 characters.
-          - careers_url:
-              :meta_ui:
-                  :input_kind: generic-link
-                  :input_label: Job Description Link
-                  :data_key_name: careers_url
-                  :tooltip_title: Required
+            - careers_title:
+                :input_kind: generic-text
+                :input_label: Title
+                :data_key_name: careers_title
+                :tooltip_title: Required. Max length 80 characters.
+            - careers_description:
+                :input_kind: generic-textarea
+                :input_label: Description
+                :data_key_name: careers_description
+                :tooltip_title: Required. Max length 700 characters.
+            - careers_url:
+                :input_kind: generic-link
+                :input_label: Job Description Link
+                :data_key_name: careers_url
+                :tooltip_title: Required

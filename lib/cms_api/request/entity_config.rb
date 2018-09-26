@@ -12,7 +12,7 @@ module CmsApi
       #
       # @return [CmsApi::Request::User] returns an object of CmsApi::Request::User class
       #
-      def initialize(host, cookies = {}, headers = {})
+      def initialize(host, cookies = {}, headers = {}, param = '')
         super
         @service_base_route = 'content/configs/'
       end
@@ -22,7 +22,7 @@ module CmsApi
       # @return [Result::Base] returns an object of Result::Base class
       #
       def get_config()
-        get("")
+        get("?entity=#{@param}")
       end
 
       # Get configurations required for application

@@ -19,13 +19,14 @@ module CmsApi
       #
       # @return [CmsApi::Request::Base] returns an object of CmsApi::Request::Base class
       #
-      def initialize(host, cookies, headers)
+      def initialize(host, cookies, headers, param='')
         @host = host
         @cookies = cookies
         @headers = headers
         @request_class = nil
         @service_base_route = nil
         @api_url = nil
+        @param = param
       end
 
       private

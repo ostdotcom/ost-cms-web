@@ -79,6 +79,17 @@
     return (year+ separator + month + separator + date);
   });
 
+  Handlebars.registerHelper('getDisplayDate', function (val, language , config , options) {
+    var normalisedVal = parseInt(val) * normaliser ,
+        dateObj       = new Date( normalisedVal ),
+        lang          = language || 'en-US',
+        config        = config || {day: 'numeric',month:'long',year:'numeric'}
+    ;
+    return dateObj.toLocaleDateString(lang, config);
+  });
+
+
+
   Handlebars.registerHelper('ifFilePath', function (data, options) {
     if (typeof data == "string") {
       return options.fn(this);
