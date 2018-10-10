@@ -19,7 +19,7 @@
     sForm           : "#generic_form" ,
     sModalWrapper   : "#genericModal .modal-content",
 
-    defaultFileUploadConfig :{ getSignedURLApi :"/api/content/get_signed_url" },
+    defaultFileUploadConfig :{ getSignedURLApi :"/api/content/get-signed-url" },
 
     formApi     : null,
     formMethod  : 'POST',

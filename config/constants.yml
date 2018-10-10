@@ -13,7 +13,7 @@ constants:
     read_timeout: 50
 
   cms_web:
-    default_entity: 'uber_banner'
+    default_entity: ''
 
   ost_web:
     url: <%= ENV['OCW_OST_URL'] %>
