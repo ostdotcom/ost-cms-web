@@ -13,7 +13,8 @@
 
     init: function (config) {
       oThis.bindActions();
-      oThis.hideEntityButtos();
+      oThis.styleDashboardMenu();
+
 
     },
 
@@ -35,8 +36,8 @@
       oThis.jPublishModal.modal('show');
     },
 
-    hideEntityButtos: function(){
-      $(".entity-navbar").hide();
+    styleDashboardMenu: function(){
+      $(".dashboard_menu").css({'background-color': '#212c3c'});
     },
 
 
