@@ -1,5 +1,8 @@
 <%
   meta_info = {
+
+
+
       home_page: {
           page_label: "Home Page",
           page_icon_class: "fa-home",
@@ -72,6 +75,7 @@
 <% previewed_entities = [] %>
 <aside class="app-sidebar">
   <ul class="app-menu">
+   <li class="treeview dashboard_menu"> <a href="/dashboard" class="app-menu__item"> CMS Dashboard </a> </li>
     <% meta_info.each do |key, data | %>
       <li class="treeview">
         <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa <%=data[:page_icon_class] %>"></i><span class="app-menu__label"><%= data[:page_label] %></span><i class="treeview-indicator fa fa-angle-right"></i></a>

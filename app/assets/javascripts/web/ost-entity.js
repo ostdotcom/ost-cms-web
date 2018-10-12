@@ -11,4 +11,5 @@
 //= require plugins/ost-component/ColorPicker
 //= require plugins/ost-component/DatePicker
 //= require components/genericSpriteComponent
+//= require web/ost/sidebar
 
