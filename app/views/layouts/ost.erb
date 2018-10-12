@@ -75,16 +75,85 @@
 
   <%= render :partial => "/shared/web/common/fav_icons" %>
   <%= render :partial => "/shared/web/common/svgs" %>
+  <%= render :partial => "/shared/svg_sprite" %>
 
 </head>
 
 <body contenteditable="false" id="page-top">
 
   <%= render :partial => "/web/ost/index/navbar" %>
-  <%= render :partial => "/web/ost/index/sidebar" %>
-  <div class="app-content h-100">
+  <div>
     <%= yield %>
   </div>
+
+  <div class="modal" id="requestErrorModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body error-message text-center py-5" >
+          <svg class="icon " style="width:50px; height: 50px">
+            <switch>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#error-info-icon">
+              </use>
+            </switch>
+          </svg>
+          <div class="general_error text-size-normal"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="requestSuccessModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class=" modal-body success-message text-center py-5">
+          <svg class="icon" style="width:50px; height: 50px">
+            <switch>
+              <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#success-icon">
+              </use>
+            </switch>
+          </svg>
+          <div class="success_message text-size-normal"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="requestProcessingModal" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class=" modal-body text-center py-5">
+          <img src="https://dxwfxs8b4lg24.cloudfront.net/ost-kit/images/processed-loader-1.gif" style="width:50px; height: 50px"/>
+          <div class="text-size-normal processing-message mt-4"> Processing... </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="resetModal" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class=" modal-body text-center py-4">
+          <div class="confirm_message text-size-normal">Are you sure you want to reset changes?</div>
+          <button class="btn btn-primary mt-3 reset-btn">Proceed</button>
+          <button class="btn btn-secondary mt-3" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="publishModal" data-backdrop="static">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class=" modal-body text-center py-4">
+          <div class="confirm_message text-size-normal">Are you sure you want to publish changes?</div>
+          <button class="btn btn-primary mt-3 publish-btn">Proceed</button>
+          <button class="btn btn-secondary mt-3" data-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
