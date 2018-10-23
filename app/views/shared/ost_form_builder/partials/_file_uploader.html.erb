@@ -16,6 +16,8 @@
       </label>
       <input id="{{generateId true}}" class="file-upload-mocker not-in-view" type='file' name="{{data_key_name}}_mocker"
             {{#validations.width_weight}} data-width-weight="{{this}}" {{/validations.width_weight}}
+            {{#validations.width}} data-width="{{this}}" {{/validations.width}}
+            {{#validations.height}} data-height="{{this}}" {{/validations.height}}
             {{#validations.height_weight}} data-height-weight="{{this}}" {{/validations.height_weight}}
             {{#validations.min_bytes}} data-min-bytes="{{this}}" {{/validations.min_bytes}}
             {{#validations.max_bytes}} data-max-bytes="{{this}}" {{/validations.max_bytes}}

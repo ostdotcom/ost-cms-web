@@ -75,6 +75,7 @@ meta:
                 validations:
                     width_weight: 16
                     height_weight: 9
+                    width: 1000
             - news_list_link:
                 :input_kind: generic-link
                 :input_label: Link

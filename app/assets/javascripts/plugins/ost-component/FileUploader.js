@@ -100,6 +100,14 @@
       oThis.getSignedUrl();
     },
 
+
+    getValidDimensions: function () {
+      var width  = this.jElMocker.data('width'),
+        height = this.jElMocker.data('height');
+      return {width: width, height: height};
+    },
+
+
     checkValidAndUpload : function () {
       var oThis     = this,
           jElMocker   = oThis.jElMocker,
@@ -115,6 +123,8 @@
           maxBytes    = jElMocker.data('max-bytes'),
           accept      = jElMocker.data('accept').split(","),
           aspectRatio = oThis.getAspectRatio(),
+          dimensions   = oThis.getValidDimensions(),
+
           validFile = true,
           maxMb ,
           errorMsg
@@ -137,7 +147,7 @@
         oThis.showError( errorMsg  ) ;
       }
 
-      if( aspectRatio ){
+      if( aspectRatio || dimensions.width || dimensions.height ){
         var height , width ,
             roundedWR , roundedHR,
             ratioTolerance , raitoDiff
@@ -147,14 +157,19 @@
           width  = oImg.width;
           height = oImg.height;
           ratioTolerance = width * 0.03 ;
-          roundedWR = Math.ceil(  width * aspectRatio['height'] );
-          roundedHR = Math.ceil(  height * aspectRatio['width'] );
-          raitoDiff = Math.abs( roundedWR - roundedHR ) ;
-          console.log("Image upload - width " , width , " height ",  height , " aspectRatio['width'] " , aspectRatio['width'] , " aspectRatio['height'] " ,  aspectRatio['height'] , " roundedWR " , roundedWR , " roundedHR " , roundedHR  , " raitoDiff " , raitoDiff , " ratioTolerance " , ratioTolerance);
-          if( raitoDiff >  ratioTolerance ){
+          if (aspectRatio){
+            roundedWR = Math.ceil(  width * aspectRatio['height'] );
+            roundedHR = Math.ceil(  height * aspectRatio['width'] );
+            raitoDiff = Math.abs( roundedWR - roundedHR ) ;
+            console.log("Image upload - width " , width , " height ",  height , " aspectRatio['width'] " , aspectRatio['width'] , " aspectRatio['height'] " ,  aspectRatio['height'] , " roundedWR " , roundedWR , " roundedHR " , roundedHR  , " raitoDiff " , raitoDiff , " ratioTolerance " , ratioTolerance);
+          }
+          if( aspectRatio && (raitoDiff >  ratioTolerance) ){
             errorMsg = name +' invalid aspect ratio';
             oThis.showError( errorMsg  ) ;
-          }else {
+          } else if ( ( dimensions.width && width > dimensions.width) || ( dimensions.height && height > dimensions.height)){
+            errorMsg = name +' dimensions are exceeding';
+            oThis.showError(errorMsg) ;
+          } else {
             oThis.startUpload();
           }
         };
