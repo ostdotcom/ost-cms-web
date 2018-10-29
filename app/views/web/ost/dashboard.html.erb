@@ -31,7 +31,10 @@
           <button class="btn btn-secondary reset" data-entity-name="<%= entity["entity"] %>">Reset</button>
         <% else %>
           <small>
-            Publisher: <%= entity["last_publisher"] %> <br /> Published on: <%= Time.parse(entity["last_publish_ts"]).strftime("%d %b %Y %H:%M %Z") %>
+            <% if entity["last_publish_ts"].present?  %>
+              Publisher: <%= entity["last_publisher"] %> <br /> Published on:
+              <%= Time.parse(entity["last_publish_ts"]).strftime("%d %b %Y %H:%M %Z")  %>
+            <% end %>
           </small>
         <% end %>
       </td>

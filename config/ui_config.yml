@@ -355,3 +355,63 @@ meta:
                 :input_label: Job Description Link
                 :data_key_name: careers_url
                 :tooltip_title: Required
+
+    :new_york_career_list:
+        :meta_ui:
+           :title_key: careers_title
+        :fields:
+            - careers_title:
+                :input_kind: generic-text
+                :input_label: Title
+                :data_key_name: careers_title
+                :tooltip_title: Required. Max length 80 characters.
+            - careers_description:
+                :input_kind: generic-textarea
+                :input_label: Description
+                :data_key_name: careers_description
+                :tooltip_title: Required. Max length 700 characters.
+            - careers_url:
+                :input_kind: generic-link
+                :input_label: Job Description Link
+                :data_key_name: careers_url
+                :tooltip_title: Required
+
+    :hongkong_career_list:
+        :meta_ui:
+           :title_key: careers_title
+        :fields:
+            - careers_title:
+                :input_kind: generic-text
+                :input_label: Title
+                :data_key_name: careers_title
+                :tooltip_title: Required. Max length 80 characters.
+            - careers_description:
+                :input_kind: generic-textarea
+                :input_label: Description
+                :data_key_name: careers_description
+                :tooltip_title: Required. Max length 700 characters.
+            - careers_url:
+                :input_kind: generic-link
+                :input_label: Job Description Link
+                :data_key_name: careers_url
+                :tooltip_title: Required
+
+    :europe_career_list:
+        :meta_ui:
+           :title_key: careers_title
+        :fields:
+            - careers_title:
+                :input_kind: generic-text
+                :input_label: Title
+                :data_key_name: careers_title
+                :tooltip_title: Required. Max length 80 characters.
+            - careers_description:
+                :input_kind: generic-textarea
+                :input_label: Description
+                :data_key_name: careers_description
+                :tooltip_title: Required. Max length 700 characters.
+            - careers_url:
+                :input_kind: generic-link
+                :input_label: Job Description Link
+                :data_key_name: careers_url
+                :tooltip_title: Required
