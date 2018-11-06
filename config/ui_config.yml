@@ -134,7 +134,7 @@ meta:
                 :tooltip_title: Optional
             - members_list_website:
                 :input_kind: generic-link
-                :input_label: Website
+                :input_label: OST Live
                 :data_key_name: members_list_website
                 :tooltip_title: Optional
             - members_list_description:
