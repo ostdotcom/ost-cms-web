@@ -438,8 +438,18 @@ meta:
             - sec_btn_title:
                 :input_kind: generic-text
                 :input_label: Secondary button Title
-                :tooltip_title: Required.
+                :tooltip_title: Optional.
                 :data_key_name: sec_btn_title
+            - primary_btn_link:
+                :input_kind: generic-text
+                :input_label: Primary Button Link
+                :tooltip_title: Required.
+                :data_key_name: primary_btn_link
+            - sec_btn_link:
+                :input_kind: generic-text
+                :input_label: Secondary Button Link
+                :tooltip_title: Optional.
+                :data_key_name: sec_btn_link
             - primary_btn_enabled_flag:
                 :input_kind: generic-radio-button
                 :input_label: Primary Button Enabled
