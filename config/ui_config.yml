@@ -18,55 +18,6 @@ meta:
                 :input_label: Banner Enabled
                 :tooltip_title: Required. Banner should be shown or not.
                 :data_key_name: banner_enabled_flag
-
-    :home_page_jumbotron:
-            :meta_ui:
-                :title: Home Page Jumbotron
-            :fields:
-                - jumbotron_title:
-                    :input_kind: generic-text
-                    :input_label: Jumbotron Title
-                    :tooltip_title: Required. Max length 40 characters.
-                    :data_key_name: jumbotron_title
-                - jumbotron_description:
-                    :input_kind: generic-textarea
-                    :input_label: Jumbotron Description
-                    :tooltip_title: Optional. If present, max length 500 characters and min 40 characters.
-                    :data_key_name: jumbotron_description
-                - primary_btn_title:
-                    :input_kind: generic-text
-                    :input_label: Primary button Title
-                    :tooltip_title: Required.
-                    :data_key_name: primary_btn_title
-                - sec_btn_title:
-                    :input_kind: generic-text
-                    :input_label: Secondary button Title
-                    :tooltip_title: Required.
-                    :data_key_name: sec_btn_title
-                - primary_btn_enabled_flag:
-                    :input_kind: generic-radio-button
-                    :input_label: Primary Button Enabled
-                    :tooltip_title: Required. Primary button should be shown or not.
-                    :data_key_name: primary_btn_enabled_flag
-                - sec_btn_enabled_flag:
-                    :input_kind: generic-radio-button
-                    :input_label: Secondary button Enabled
-                    :tooltip_title: Required. Secondary button should be shown or not.
-                    :data_key_name: sec_btn_enabled_flag
-                - jumbotron_image:
-                    :input_kind: ost-input-file
-                    :input_label: Jumbotron Image
-                    :tooltip_title: Required. Make sure aspect ratio is right and image size is optimized by UX.
-                    :data_key_name: jumbotron_image
-                    validations:
-                        width_weight: 16
-                        height_weight: 9
-                - jumbotron_video_link:
-                    :input_kind: generic-link
-                    :input_label: Video Link
-                    :tooltip_title: Required.
-                    :data_key_name: jumbotron_video_link
-
     :upcoming_events_list:
         :meta_ui:
             :title_key: event_name
@@ -183,7 +134,7 @@ meta:
                 :tooltip_title: Optional
             - members_list_website:
                 :input_kind: generic-link
-                :input_label: Website
+                :input_label: OST Live
                 :data_key_name: members_list_website
                 :tooltip_title: Optional
             - members_list_description:
@@ -191,6 +142,8 @@ meta:
                 :input_label: Description
                 :data_key_name: members_list_description
                 :tooltip_title: Required. Max length 500 characters.
+
+
     :advisors_list:
            :meta_ui:
                :title_key: advisors_list_name
@@ -238,6 +191,37 @@ meta:
                    :input_label: Description
                    :data_key_name: advisors_list_description
                    :tooltip_title: Required. Max length 550 characters.
+
+    :partners_sprite:
+      :meta_ui:
+          :title: Partners sprite
+      :fields:
+        - partners_bw_1x:
+            :input_kind: ost-input-file
+            :input_label: BW 1x sprite image
+            :tooltip_title: Required. Black and white 1x sprite image for grid (non-retina)
+            :data_key_name: partners_bw_1x
+        - partners_bw_2x:
+            :input_kind: ost-input-file
+            :input_label: BW 2x sprite image
+            :tooltip_title: Required. Black and white 2x sprite image for grid (retina)
+            :data_key_name: partners_bw_2x
+        - partners_color_1x:
+            :input_kind: ost-input-file
+            :input_label: Color 1x sprite image
+            :tooltip_title: Required. Color 1x sprite image for detail (non-retina)
+            :data_key_name: partners_color_1x
+        - partners_color_2x:
+            :input_kind: ost-input-file
+            :input_label: Color 2x sprite image
+            :tooltip_title: Required. Color 2x sprite image for detail (retina)
+            :data_key_name: partners_color_2x
+        - partners_blocks_in_sprite:
+            :input_kind: generic-number
+            :data_key_name: partners_blocks_in_sprite
+            :input_label: Number of companies
+            :tooltip_title: Required. Number of partner companies in sprite
+            :data_key_name: partners_blocks_in_sprite
 
     :partners_list:
         :meta_ui:
@@ -297,10 +281,14 @@ meta:
                 :data_key_name: partners_is_exited
                 :tooltip_title: Has Partner exited?
             - partners_sprite_index:
-                :input_kind: generic-number
+                :input_kind: generic-sprite
                 :input_label: Sprite Index
                 :data_key_name: partners_sprite_index
                 :tooltip_title: Sprite index of partner logo (starting from 0)
+                validations:
+                    :entity_name: partners_sprite
+                    :image_key: partners_bw_2x
+                    :sprite_count: partners_blocks_in_sprite
             - partners_url:
                 :input_kind: generic-link
                 :input_label: URL
@@ -367,3 +355,111 @@ meta:
                 :input_label: Job Description Link
                 :data_key_name: careers_url
                 :tooltip_title: Required
+
+    :new_york_career_list:
+        :meta_ui:
+           :title_key: careers_title
+        :fields:
+            - careers_title:
+                :input_kind: generic-text
+                :input_label: Title
+                :data_key_name: careers_title
+                :tooltip_title: Required. Max length 80 characters.
+            - careers_description:
+                :input_kind: generic-textarea
+                :input_label: Description
+                :data_key_name: careers_description
+                :tooltip_title: Required. Max length 700 characters.
+            - careers_url:
+                :input_kind: generic-link
+                :input_label: Job Description Link
+                :data_key_name: careers_url
+                :tooltip_title: Required
+
+    :hongkong_career_list:
+        :meta_ui:
+           :title_key: careers_title
+        :fields:
+            - careers_title:
+                :input_kind: generic-text
+                :input_label: Title
+                :data_key_name: careers_title
+                :tooltip_title: Required. Max length 80 characters.
+            - careers_description:
+                :input_kind: generic-textarea
+                :input_label: Description
+                :data_key_name: careers_description
+                :tooltip_title: Required. Max length 700 characters.
+            - careers_url:
+                :input_kind: generic-link
+                :input_label: Job Description Link
+                :data_key_name: careers_url
+                :tooltip_title: Required
+
+    :europe_career_list:
+        :meta_ui:
+           :title_key: careers_title
+        :fields:
+            - careers_title:
+                :input_kind: generic-text
+                :input_label: Title
+                :data_key_name: careers_title
+                :tooltip_title: Required. Max length 80 characters.
+            - careers_description:
+                :input_kind: generic-textarea
+                :input_label: Description
+                :data_key_name: careers_description
+                :tooltip_title: Required. Max length 700 characters.
+            - careers_url:
+                :input_kind: generic-link
+                :input_label: Job Description Link
+                :data_key_name: careers_url
+                :tooltip_title: Required
+
+    :home_page_jumbotron:
+        :meta_ui:
+            :title: Home Page Jumbotron
+        :fields:
+            - jumbotron_title:
+                :input_kind: generic-text
+                :input_label: Jumbotron Title
+                :tooltip_title: Required. Max length 40 characters.
+                :data_key_name: jumbotron_title
+            - jumbotron_description:
+                :input_kind: generic-textarea
+                :input_label: Jumbotron Description
+                :tooltip_title: Optional. If present, max length 500 characters and min 40 characters.
+                :data_key_name: jumbotron_description
+            - primary_btn_title:
+                :input_kind: generic-text
+                :input_label: Primary button Title
+                :tooltip_title: Required.
+                :data_key_name: primary_btn_title
+            - sec_btn_title:
+                :input_kind: generic-text
+                :input_label: Secondary button Title
+                :tooltip_title: Required.
+                :data_key_name: sec_btn_title
+            - primary_btn_enabled_flag:
+                :input_kind: generic-radio-button
+                :input_label: Primary Button Enabled
+                :tooltip_title: Required. Primary button should be shown or not.
+                :data_key_name: primary_btn_enabled_flag
+            - sec_btn_enabled_flag:
+                :input_kind: generic-radio-button
+                :input_label: Secondary button Enabled
+                :tooltip_title: Required. Secondary button should be shown or not.
+                :data_key_name: sec_btn_enabled_flag
+            - jumbotron_image:
+                :input_kind: ost-input-file
+                :input_label: Jumbotron Image
+                :tooltip_title: Required. Make sure aspect ratio is right and image size is optimized by UX.
+                :data_key_name: jumbotron_image
+                validations:
+                    width_weight: 16
+                    height_weight: 9
+            - jumbotron_video_link:
+                :input_kind: generic-link
+                :input_label: Video Link
+                :tooltip_title: Required.
+                :data_key_name: jumbotron_video_link
