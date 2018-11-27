@@ -415,7 +415,7 @@ meta:
                 :input_label: Job Description Link
                 :data_key_name: careers_url
                 :tooltip_title: Required
-  :home_page_jumbotron:
+    :home_page_jumbotron:
         :meta_ui:
             :title: Home Page Jumbotron
         :fields:
