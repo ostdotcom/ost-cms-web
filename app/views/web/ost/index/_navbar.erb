@@ -31,15 +31,16 @@
   <!-- Navbar Right Menu-->
 
   <ul class="app-nav">
-    <li class="dropdown mt-1">
+    <li class="dropdown mt-1  entity-navbar">
       <select id="preview-page-options" class="selectpicker">
         <% page_preview_options.each_with_index do|option, index| %>
           <option  value="<%= option[:value] %>"><%= option[:display_text] %></option>
         <% end %>
       </select>
     </li>
-    <li class="mt-1">
-      <button class="btn btn-primary" id="preview-page-btn" data-toggle="tooltip" data-placement="top" title="The preview is valid only for 5 minutes">Preview </button>
+    <li class="mt-1 entity-navbar">
+      <button class="btn btn-primary navbar-btn" id="preview-page-btn" data-toggle="tooltip" data-placement="top" title="The preview is valid only for 5 minutes">Preview </button>
+
     </li>
     <!-- User Menu-->
     <li class="dropdown"><a class="app-nav__item" href="#" data-toggle="dropdown" aria-label="Open Profile Menu">

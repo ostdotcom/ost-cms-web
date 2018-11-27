@@ -2,13 +2,18 @@ class Web::OstController < Web::BaseController
 
   layout "ost"
 
-  before_action :get_entity_ui_config, except: [:preview]
+  before_action :get_entity_ui_config, except: [:preview, :dashboard]
   before_action :get_configurations, except: [:preview]
 
   # Edit entity Dashboard
   #
-  def dashboard
+  def entity
     @entity_name = params[:name] || GlobalConstant::Base.cms_web['default_entity']
+  end
+
+
+  def dashboard
+    @entitites_status = get_entitites_status
   end
 
 
@@ -33,6 +38,10 @@ class Web::OstController < Web::BaseController
   def get_configurations
     app_config = CmsApi::Request::EntityConfig.new(GlobalConstant::Base.root_url, request.cookies, {"User-Agent" => http_user_agent}).get_app_config
     @app_config = app_config.data["meta"]
+  end
+
+  def get_entitites_status
+    CmsApi::Request::EntityStatus.new(GlobalConstant::Base.root_url, request.cookies, {"User-Agent" => http_user_agent}).get_entity_status
   end
 
 end

@@ -1,5 +1,8 @@
 <%
   meta_info = {
+
+
+
       home_page: {
           page_label: "Home Page",
           page_icon_class: "fa-home",
@@ -65,7 +68,20 @@
                   {pune_careers_ol: {
                       list_label: "Pune Careers",
                        id: "pune_career_list"
-                  }}
+                  }},
+                  {new_york_careers_ol: {
+                      list_label: "New York Careers",
+                      id: "new_york_career_list"
+                  }},
+                  {hongkong_careers_ol: {
+                      list_label: "Hong Kong Careers",
+                      id: "hongkong_career_list"
+                  }},
+                  {europe_careers_ol: {
+                      list_label: "Europe Careers",
+                      id: "europe_career_list"
+                  }},
+
 
           ]
       }
@@ -73,8 +89,10 @@
 
 %>
 <% selected_path = '' %>
+<% previewed_entities = [] %>
 <aside class="app-sidebar">
   <ul class="app-menu">
+   <li class="treeview dashboard_menu"> <a href="/dashboard" class="app-menu__item"> CMS Dashboard </a> </li>
     <% meta_info.each do |key, data | %>
       <li class="treeview">
         <a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa <%=data[:page_icon_class] %>"></i><span class="app-menu__label"><%= data[:page_label] %></span><i class="treeview-indicator fa fa-angle-right"></i></a>
@@ -84,6 +102,9 @@
               rec_id = list_item.values[0][:id].to_s.to_sym
               if list_item.values[0][:id] == request.path.split('/')[-1]
                 selected_path = data[:preview_path]
+                data[:lists].each do | item |
+                  previewed_entities.push(item.values[0][:id])
+                end
               end
             %>
               <li><a class="treeview-item pl-5" data-entity-id="<%= list_item.values[0][:id] %>" href="/dashboard/<%= list_item.values[0][:id] %>"><%= list_item.values[0][:list_label] %></a>
@@ -98,5 +119,6 @@
 <% content_for :end_js do %>
   <script>
     $('#preview-page-options').selectpicker('val', '<%= selected_path %>');
+    $('#preview-page-options').attr('previewed_entity',  '<%= previewed_entities %>')
   </script>
 <% end %>

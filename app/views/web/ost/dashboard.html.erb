@@ -1,144 +1,53 @@
-<nav>
-  <ul class="nav nav-tabs justify-content-end">
-    <li class="nav-item">
-      <a class="nav-link active nav-item" id="nav-home-tab" data-toggle="tab" href="#nav-draft" role="tab" aria-controls="nav-draft" aria-selected="false">Draft Mode</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-published" role="tab" aria-controls="nav-published" aria-selected="false">Published</a>
-    </li>
-    <li class="nav-item pr-3">
-      <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Actions</a>
-      <div class="dropdown-menu dropdown-menu-right">
-        <a class="dropdown-item j-create-link" href="#" data-toggle="modal" data-target="#genericModal">Create New</a>
-        <div class="dropdown-divider"></div>
-        <a class="dropdown-item j-reset-publish-link" href="#">Reset to Published Version</a>
-        <a class="dropdown-item j-publish-changes-link" href="#">Publish Changes</a>
-      </div>
-    </li>
-  </ul>
-</nav>
-<div class="content-wrapper ">
-  <div class="container-fluid">
-    <div class="tab-content pb-4" id="nav-tabContent">
+<div class="container dashboard-wrapper">
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <th scope="col">Entity</th>
+      <th scope="col">Status</th>
+      <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+      <%  entities = @entitites_status.data["entities"]
+          entities.each_with_index  do |entity , index|
+      %>
+      <tr class="entity-row">
+      <td>
+       <a href=<%= '/dashboard/'+ entity["entity"] %> > <%= entity["entity"].titleize %> </a>
+      </td>
+      <td>
+        <% if entity["status"] != "published" %>
+          <span class="badge badge-pill badge-info">Drafted</span>
+          <% if entity["status"] == "previewed" %>
+          <small> (previewed) </small>
+          <% end %>
+          <% else %>
+          <span class="badge badge-pill badge-primary">Published</span>
+          <% end %>
+      </td>
+      <td>
+        <% if entity["status"] != "published" %>
+          <button class="btn btn-primary publish" data-entity-name="<%= entity["entity"] %>">Publish</button>
+          <button class="btn btn-secondary reset" data-entity-name="<%= entity["entity"] %>">Reset</button>
+        <% else %>
+          <small>
+            <% if entity["last_publish_ts"].present?  %>
+              Publisher: <%= entity["last_publisher"] %> <br /> Published on:
+              <%= Time.parse(entity["last_publish_ts"]).strftime("%d %b %Y %H:%M %Z")  %>
+            <% end %>
+          </small>
+        <% end %>
+      </td>
+    </tr>
 
-      <div class="tab-pane fade show active mt-4" id="nav-draft" role="tabpanel" aria-labelledby="nav-home-tab">
-        <div id="list"></div>
-      </div>
-
-      <div class="modal fade" id="genericModal" tabindex="-1" role="dialog" aria-labelledby="genericModalLabel" aria-hidden="false">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-          </div>
-        </div>
-      </div>
-
-
-      <div class="modal fade" id="" tabindex="-1" role="dialog" aria-labelledby="genericModalLabel" aria-hidden="false">
-        <div class="modal-dialog modal-lg" role="document">
-          <div class="modal-content">
-          </div>
-        </div>
-      </div>
-
-
-        <div class="modal" id="requestErrorModal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-body error-message text-center py-5" >
-              <svg class="icon " style="width:50px; height: 50px">
-                <switch>
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#error-info-icon">
-                  </use>
-                </switch>
-              </svg>
-              <div class="general_error text-size-normal"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal" id="requestSuccessModal">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class=" modal-body success-message text-center py-5">
-              <svg class="icon" style="width:50px; height: 50px">
-                <switch>
-                  <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#success-icon">
-                  </use>
-                </switch>
-              </svg>
-              <div class="success_message text-size-normal"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="modal" id="requestProcessingModal" data-backdrop="static">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class=" modal-body text-center py-5">
-              <img src="https://dxwfxs8b4lg24.cloudfront.net/ost-kit/images/processed-loader-1.gif" style="width:50px; height: 50px"/>
-              <div class="text-size-normal processing-message mt-4"> Processing... </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="modal" id="deleteModal" data-backdrop="static">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class=" modal-body text-center py-4">
-              <div class="confirm_message text-size-normal">Are you sure you want to delete this item?</div>
-              <button class="btn btn-primary mt-3 delete-btn">Proceed</button>
-              <button class="btn btn-secondary mt-3" data-dismiss="modal">Cancel</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="modal" id="resetModal" data-backdrop="static">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class=" modal-body text-center py-4">
-              <div class="confirm_message text-size-normal">Are you sure you want to reset changes?</div>
-              <button class="btn btn-primary mt-3 reset-btn">Proceed</button>
-              <button class="btn btn-secondary mt-3" data-dismiss="modal">Cancel</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="modal" id="publishModal" data-backdrop="static">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class=" modal-body text-center py-4">
-              <div class="confirm_message text-size-normal">Are you sure you want to publish changes?</div>
-              <button class="btn btn-primary mt-3 publish-btn">Proceed</button>
-              <button class="btn btn-secondary mt-3" data-dismiss="modal">Cancel</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="tab-pane fade mt-4" id="nav-published" role="tabpanel" aria-labelledby="nav-profile-tab">
-       <div id="published_list"></div>
-      </div>
-    </div>
-
-  </div>
-
+        <% end %>
+    </tbody>
+  </table>
 
 </div>
-<!-- /.container-fluid -->
-
 <% content_for :end_js do %>
-  <%= render :partial => "/shared/ost_form_builder/all_partials_templates" %>
-  <%= render :partial => "/shared/svg_sprite" %>
-  <script type="text/javascript">
-    cms.dashboard.init({
-      'entityConfig' : <%= raw @config_response.to_json %>
-    });
 
+  <script type="text/javascript">
+    cms.dashboard.init();
   </script>
 <% end %>
-
-<!-- /.content-wrapper -->
-<!-- /#wrapper -->
