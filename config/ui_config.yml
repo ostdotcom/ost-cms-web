@@ -427,7 +427,7 @@ meta:
             - jumbotron_description:
                 :input_kind: generic-textarea
                 :input_label: Jumbotron Description
-                :tooltip_title: Optional. If present, max length 500 characters and min 40 characters.
+                :tooltip_title: Required. Max length 500 characters and min 40 characters.
                 :data_key_name: jumbotron_description
             - primary_btn_title:
                 :input_kind: generic-text
@@ -465,8 +465,16 @@ meta:
                 :tooltip_title: Required. Make sure aspect ratio is right and image size is optimized by UX.
                 :data_key_name: jumbotron_image
                 validations:
-                    width_weight: 16
-                    height_weight: 9
+                    width_weight: 36
+                    height_weight: 29
+            - jumbotron_image_mobile:
+                :input_kind: ost-input-file
+                :input_label: Jumbotron Image Mobile
+                :tooltip_title: Required. Make sure aspect ratio is right and image size is optimized by UX.
+                :data_key_name: jumbotron_image_mobile
+                validations:
+                    width_weight: 351
+                    height_weight: 577
             - jumbotron_video_link:
                 :input_kind: generic-link
                 :input_label: Video Link
