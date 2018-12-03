@@ -427,7 +427,7 @@ meta:
             - jumbotron_title:
                 :input_kind: generic-text
                 :input_label: Jumbotron Title
-                :tooltip_title: Required. Max length 50 characters.
+                :tooltip_title: Required. Max length 65 characters.
                 :data_key_name: jumbotron_title
             - jumbotron_description:
                 :input_kind: generic-textarea
