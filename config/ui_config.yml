@@ -8,6 +8,11 @@ meta:
                 :input_label: Banner Html
                 :tooltip_title: Required. Max length 130 characters.
                 :data_key_name: banner_html
+            - banner_html_mobile:
+                :input_kind: ost-rich-text-editor
+                :input_label: Banner Html for Mobile
+                :tooltip_title: Required. Max length 30 characters.
+                :data_key_name: banner_html_mobile
             - banner_background_color:
                 :input_kind: generic-color-picker
                 :input_label: Banner Background Color
