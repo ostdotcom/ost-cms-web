@@ -8,6 +8,11 @@ meta:
                 :input_label: Banner Html
                 :tooltip_title: Required. Max length 130 characters.
                 :data_key_name: banner_html
+            - banner_html_mobile:
+                :input_kind: ost-rich-text-editor
+                :input_label: Banner Html for Mobile
+                :tooltip_title: Required. Max length 30 characters.
+                :data_key_name: banner_html_mobile
             - banner_background_color:
                 :input_kind: generic-color-picker
                 :input_label: Banner Background Color
@@ -415,3 +420,68 @@ meta:
                 :input_label: Job Description Link
                 :data_key_name: careers_url
                 :tooltip_title: Required
+    :home_page_jumbotron:
+        :meta_ui:
+            :title: Home Page Jumbotron
+        :fields:
+            - jumbotron_title:
+                :input_kind: generic-text
+                :input_label: Jumbotron Title
+                :tooltip_title: Required. Max length 65 characters.
+                :data_key_name: jumbotron_title
+            - jumbotron_description:
+                :input_kind: generic-textarea
+                :input_label: Jumbotron Description
+                :tooltip_title: Required. Max length 500 characters and min 40 characters.
+                :data_key_name: jumbotron_description
+            - primary_btn_title:
+                :input_kind: generic-text
+                :input_label: Primary button Title
+                :tooltip_title: Required.
+                :data_key_name: primary_btn_title
+            - sec_btn_title:
+                :input_kind: generic-text
+                :input_label: Secondary button Title
+                :tooltip_title: Optional.
+                :data_key_name: sec_btn_title
+            - primary_btn_link:
+                :input_kind: generic-text
+                :input_label: Primary Button Link
+                :tooltip_title: Required.
+                :data_key_name: primary_btn_link
+            - sec_btn_link:
+                :input_kind: generic-text
+                :input_label: Secondary Button Link
+                :tooltip_title: Optional.
+                :data_key_name: sec_btn_link
+            - primary_btn_enabled_flag:
+                :input_kind: generic-radio-button
+                :input_label: Primary Button Enabled
+                :tooltip_title: Required. Primary button should be shown or not.
+                :data_key_name: primary_btn_enabled_flag
+            - sec_btn_enabled_flag:
+                :input_kind: generic-radio-button
+                :input_label: Secondary button Enabled
+                :tooltip_title: Required. Secondary button should be shown or not.
+                :data_key_name: sec_btn_enabled_flag
+            - jumbotron_image:
+                :input_kind: ost-input-file
+                :input_label: Jumbotron Image
+                :tooltip_title: Required. Make sure aspect ratio is right and image size is optimized by UX.
+                :data_key_name: jumbotron_image
+                validations:
+                    width_weight: 36
+                    height_weight: 29
+            - jumbotron_image_mobile:
+                :input_kind: ost-input-file
+                :input_label: Jumbotron Image Mobile
+                :tooltip_title: Required. Make sure aspect ratio is right and image size is optimized by UX.
+                :data_key_name: jumbotron_image_mobile
+                validations:
+                    width_weight: 351
+                    height_weight: 577
+            - jumbotron_video_link:
+                :input_kind: generic-link
+                :input_label: Video Link
+                :tooltip_title: Required.
+                :data_key_name: jumbotron_video_link
