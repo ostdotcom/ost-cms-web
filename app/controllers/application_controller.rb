@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   before_action :set_request_from_bot_flag
 
   after_action :handle_whitelisted_api_cookies
+  after_action :set_response_headers
 
   # Sanitize params
   include Sanitizer
@@ -37,6 +38,12 @@ class ApplicationController < ActionController::Base
         cookies[key.to_sym] = whitelisted_cookie
       end
     end
+  end
+
+  # Set response headers
+  #
+  def set_response_headers
+    response.headers["Content-Type"] = 'text/html; charset=utf-8'
   end
 
   # Get user agent

@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
 
-  scope '', controller: 'web/ost' do
+  scope '', controller: 'web/ost', :format => false do
     get '/dashboard/:name' => :entity
     get '/dashboard' => :dashboard
   end
 
-  scope '', controller: 'web/signin' do
+  scope '', controller: 'web/signin', :format => false do
     get '/' => :sign_in, as: 'sign_in'
     get '/go-to-dashboard' => :goto_dashboard, as: 'goto_dashboard'
   end
