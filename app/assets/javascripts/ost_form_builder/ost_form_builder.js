@@ -129,7 +129,7 @@
       return header;
     },
 
-    getModalWrapper : function() {
+    getModalWrapper() {
       return oThis.sModalWrapper;
     },
 
