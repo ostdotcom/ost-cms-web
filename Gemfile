@@ -41,7 +41,6 @@ group :development, :test do
   # gem 'pry'
   # gem 'web-console', '>= 3.3.0'
   gem 'letter_opener'
-  gem 'listen'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
