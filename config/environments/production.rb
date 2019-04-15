@@ -37,7 +37,7 @@ Rails.application.configure do
   config.action_controller.asset_host = GlobalConstant::Cloudfront.domain
 
   # Incase we want to test asset precompile in development
-  config.assets.prefix = "/js-css/cms-web-prod"
+  #config.assets.prefix = "/js-css/cms-web-prod"
 
   config.log_level = :info
 
