@@ -25,6 +25,8 @@ gem 'exception_notification', '4.2.1'
 # hkdf for sha256
 gem 'hkdf', '0.2.0'
 
+gem 'listen', '3.1.5'
+
 
 
 # For identifying browser & device type of devices sending requests
@@ -36,7 +38,6 @@ group :development, :test do
   # # Adds support for Capybara system testing and selenium driver
   # gem 'capybara', '~> 2.13'
   # gem 'selenium-webdriver'
-  gem 'listen', '3.1.5'
   gem 'puma', '~> 3.7'
   # gem 'pry'
   # gem 'web-console', '>= 3.3.0'
