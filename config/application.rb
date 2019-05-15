@@ -30,7 +30,7 @@ module OstCmsWeb
     # Custom directories with classes and modules you want to be autoloadable.
     config.autoload_paths << "#{config.root}/lib/"
     config.eager_load_paths << "#{config.root}/lib/"
-
+    config.assets.prefix = "/js-css/cms-web"
     # Custom log formatter
     require_relative('../lib/custom_log_formatter')
     config.log_level = :debug
